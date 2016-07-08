@@ -5,124 +5,12 @@ setwd("C:/Users/sfos0247/Dropbox/XtraWork/Foresight")
 require(dplyr)
 .oldpar <- par(no.readonly = TRUE)
 
-## Fig 1.1
+## Fig 1.1 The population distribution of the United Kingdom by age group for 1925, 1950 and 2015
 ###############################################################################
-data.1.1 <- read.csv("fig13.csv")
-par(mar=c(1.6, 3.1, 0.1,2.1))
-# barplot(t(as.matrix(data.1.1[,2:4])),
-#         names.arg = c(9,5,19,data.1.1[4:20,1]),
-#         las=2,
-#         beside=TRUE,
-#         horiz=TRUE,
-#         axes=FALSE,
-#         legend = c("1925", "1950", "2015"), 
-#         args.legend = list(x = 10,  cex=1,bty="n"),
-#         xlim=c(0,10))
-# axis(1)
-# lines(c(0,0), c(0,95), lty=2, col="gray30")
-# lines(c(2,2), c(0,95), lty=2, col="gray30")
-# lines(c(4,4), c(0,95), lty=2, col="gray30")
-# lines(c(6,6), c(0,95), lty=2, col="gray30")
-# lines(c(8,8), c(0,95), lty=2, col="gray30")
-# lines(c(10,10), c(0,95), lty=2, col="gray30")
-# 
-# 
-# dev.copy2eps(file="fig01.eps", width=7, height=3.5)
-
-
-## version 2
-par(mar=c(1.6, 3.1, 0.1,0.1))
-plot( c(0,data.1.1[,2],0), c(data.1.1[1:20,1],100, 100), type="s", ylim=c(0, 100), col="gray90",
-      xaxt="n", lwd=2,
-      axes=FALSE, xlim=c(0,10), xlab="", ylab="")
-lines(c(0,0), c(-5,100), lty=2, col="gray80")
-lines(c(2,2), c(-5,100), lty=2, col="gray80")
-lines(c(4,4), c(-5,100), lty=2, col="gray80")
-lines(c(6,6), c(-5,100), lty=2, col="gray80")
-lines(c(8,8), c(-5,100), lty=2, col="gray80")
-lines(c(10,10), c(-5,100), lty=2, col="gray80")
-polygon(c(0,rep(data.1.1[,2], each=2),0), 
-        c(rep(data.1.1[1:20,1],each=2), 100,100), col="gray90", border="gray90", lwd = 1)
-lines(c(0,data.1.1[,3],0), c(data.1.1[1:20,1], 100, 100), type="s", col="gray50", lwd = 1)
-polygon(c(0,rep(data.1.1[,3], each=2),0), 
-        c(rep(data.1.1[1:20,1],each=2), 100,100), col="gray50", border="gray50", lwd = 1,angle=45, density=10)
-lines(c(0,data.1.1[,4],0), c(data.1.1[1:20,1],100, 100), type="s", col="black", lwd = 1)
-polygon(c(0,rep(data.1.1[,4], each=2),0), 
-        c(rep(data.1.1[1:20,1],each=2), 100,100), col="black", border="black", angle=-45, density=10,lwd = 1)
-#lines(c(0,data.1.1[,5],0), c(data.1.1[1:20,1], 100,100),type="s", col="red", lwd = 2)
-axis(1)
-axis(2, las=2, at= c(0,5,10,data.1.1[4:20,1])+2.5, labels= c(9,5,19,data.1.1[4:20,1]))
-par("usr")
-rect(7,70,11,100, col="white", border=NA)
-legend(x=7, y=100, rev(c("A", "B", "C")), col=rev(c(NA, NA, NA)), 
-       density=rev(c(10,10,NA)), angle=c(0,45,-45), fill=rev(c("black", "gray50", "gray90")),
-       border=rev(c("black", "gray50", "gray90")),
-       bty="n", lwd=c(1,1,1), cex=1.5, lty = c(NA, NA, NA),
-       x.intersp=rep(-1,3))
-dev.copy2eps(file="fig01.2.eps", width=7, height=3.5)
-par(.oldpar)
-
-## Fig 1.2
-###############################################################################
-data.1.2 <- read.csv("fig14.csv")
-# par(mar=c(1.6, 3.1, 0.1,2.1))
-# barplot(t(as.matrix(data.1.2[,2:4])),
-#         names.arg = c(9,5,19,data.1.2[4:20,1]),
-#         las=2,
-#         beside=TRUE,
-#         horiz=TRUE,
-#         axes=FALSE,
-#         legend = c("1925", "1950", "2015"), 
-#         args.legend = list(x = 10,  cex=1,bty="n"),
-#         xlim=c(0,10))
-# axis(1)
-# lines(c(0,0), c(0,95), lty=2, col="gray30")
-# lines(c(2,2), c(0,95), lty=2, col="gray30")
-# lines(c(4,4), c(0,95), lty=2, col="gray30")
-# lines(c(6,6), c(0,95), lty=2, col="gray30")
-# lines(c(8,8), c(0,95), lty=2, col="gray30")
-# lines(c(10,10), c(0,95), lty=2, col="gray30")
-# dev.copy2eps(file="fig02.eps", width=7, height=3.5)
-
-## version 2
-
-par(mar=c(1.6, 3.1, 0.1,0.1))
-plot( c(0,data.1.2[,2],0), c(data.1.2[1:20,1],100, 100), type="s", ylim=c(0, 100), col="gray90",
-      xaxt="n", lwd=2,
-      axes=FALSE, xlim=c(0,10), xlab="", ylab="")
-lines(c(0,0), c(-5,100), lty=2, col="gray80")
-lines(c(2,2), c(-5,100), lty=2, col="gray80")
-lines(c(4,4), c(-5,100), lty=2, col="gray80")
-lines(c(6,6), c(-5,100), lty=2, col="gray80")
-lines(c(8,8), c(-5,100), lty=2, col="gray80")
-lines(c(10,10), c(-5,100), lty=2, col="gray80")
-polygon(c(0,rep(data.1.2[,2], each=2),0), 
-        c(rep(data.1.2[1:20,1],each=2), 100,100), col="gray90", border="gray90", lwd = 1)
-lines(c(0,data.1.2[,3],0), c(data.1.2[1:20,1], 100, 100), type="s", col="gray50", lwd = 1)
-polygon(c(0,rep(data.1.2[,3], each=2),0), 
-        c(rep(data.1.2[1:20,1],each=2), 100,100), col="gray50", border="gray50", lwd = 1,angle=45, density=10)
-lines(c(0,data.1.2[,4],0), c(data.1.2[1:20,1],100, 100), type="s", col="black", lwd = 1)
-polygon(c(0,rep(data.1.2[,4], each=2),0), 
-        c(rep(data.1.2[1:20,1],each=2), 100,100), col="black", border="black", angle=-45, density=10,lwd = 1)
-#lines(c(0,data.1.2[,5],0), c(data.1.2[1:20,1], 100,100),type="s", col="red", lwd = 2)
-axis(1)
-axis(2, las=2, at= c(0,5,10,data.1.2[4:20,1])+2.5, labels= c(9,5,19,data.1.2[4:20,1]))
-par("usr")
-rect(7,70,11,100, col="white", border=NA)
-legend(x=7, y=100, rev(c("A", "B", "C")), col=rev(c(NA, NA, NA)), 
-       density=rev(c(10,10,NA)), angle=c(0,45,-45), fill=rev(c("black", "gray50", "gray90")),
-       border=rev(c("black", "gray50", "gray90")),
-       bty="n", lwd=c(1,1,1), cex=1.5, lty = c(NA, NA, NA),
-       x.intersp=rep(-1,3))
-dev.copy2eps(file="fig02.2.eps", width=7, height=3.5)
-par(.oldpar)
-
-
-## Fig 1 and 2 together
-###############################################################################
-
+data.1.1 <- read.csv("data/UKpopM.csv")
+data.1.2 <- read.csv("data/UKpopF.csv")
 par(mfrow=c(1,2))
-par(mar=c(2.6, 1.1, 1.1,2.1))
+par(mar=c(3.6, 1.1, 1.1,2.1))
 plot( c(0,-data.1.1[,2],0), c(data.1.1[1:20,1],100, 100), type="s", ylim=c(0, 100), col="gray90",
       xaxt="n", lwd=2,
       axes=FALSE, xlim=c(-10,0), xlab="", ylab="")
@@ -151,7 +39,7 @@ legend(x=-10, y=105, rev(c("A", "B", "C")), col=rev(c(NA, NA, NA)),
        bty="n", lwd=c(1,1,1), cex=1.5, lty = c(NA, NA, NA),
        x.intersp=rep(-1,3))
 mtext("x", 3)
-par(mar=c(2.6, 2.1, 1.1,1.1))
+par(mar=c(3.6, 2.1, 1.1,1.1), xpd=TRUE)
 
 plot( c(0,data.1.2[,2],0), c(data.1.2[1:20,1],100, 100), type="s", ylim=c(0, 100), col="gray90",
       xaxt="n", lwd=2,
@@ -181,8 +69,12 @@ legend(x=7, y=105, rev(c("A", "B", "C")), col=rev(c(NA, NA, NA)),
        bty="n", lwd=c(1,1,1), cex=1.5, lty = c(NA, NA, NA),
        x.intersp=rep(-1,3))
 mtext("y", 3)
-dev.copy2eps(file="fig01.3.eps", width=7, height=4)
+text(-1.4, -5, "a")
+text(-1.4, -18, "l")
+dev.copy2eps(file="figures/Fig1.1.eps", width=7, height=4)
+
 par(mfrow=c(1,1))
+
 
 ## Tab 1.1
 ###############################################################################
@@ -192,9 +84,9 @@ table.1.1 <- cbind(data.1.1[1:4], data.1.2[2:4])
 print(xtable(table.1.1),include.rownames=FALSE )
 
 
-## Fig 1.3
+## Fig 1.2 Total fertility in the United Kingdom, 1960-2012.
 ###############################################################################
-data.1.3 <- read.csv("fig15.csv")
+data.1.3 <- read.csv("data/UKFert.csv")
 
 par(mar=c(4.1, 4.1, 0.1,0.1))
 
@@ -204,14 +96,15 @@ plot(data.1.3[,1], data.1.3[,2], typ="l",
 axis(1, at=c(seq(1960, 2010, 5), 2012), labels = FALSE)
 axis(2, las=2)
 axis(1, at=tlab, labels=FALSE)
-text(x=c(seq(1960, 2010, 5), 2012), y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
+text(x=c(seq(1960, 2010, 5), 2012), y=par()$usr[3]-0.07*(par()$usr[4]-par()$usr[3]),
      labels=c(seq(1960, 2010, 5), 2012), srt=45, adj=1, xpd=TRUE)
 
 lines(c(1960, 2012), c(0,0), lty=2, col="gray80")
 lines(c(1960, 2012), c(1,1), lty=2, col="gray80")
 lines(c(1960, 2012), c(2,2), lty=2, col="gray80")
 lines(c(1960, 2012), c(3,3), lty=2, col="gray80")
-dev.copy2eps(file="fig03.eps", width=7, height=3.5)
+mtext("y",1, line=3)
+dev.copy2eps(file="figures/Fig1.2.eps", width=7, height=3.5)
 par(.oldpar)
 
 
@@ -220,13 +113,122 @@ table.1.2 <- t(data.1.3[c(1,6,11,16,21,26,31,36,41,46, 51, 53),])
 print(xtable(table.1.2),include.rownames=FALSE )
 
 
+
+## Fig 1.3 EUROSTAT fertility EU chart
+###############################################################################
+
+data.eu.fert <- read.csv("data/demo_find_1_Data.csv",
+                         colClasses = c("factor","factor", "factor", "numeric", "factor"))
+data.ined.fert <- read.csv("data/INEDfertility.csv")
+require(tidyr)
+require(dplyr)
+
+require(RColorBrewer)
+redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
+
+data.eu.fert %>%
+  filter(INDIC_DE == "Total fertility rate") %>%
+  spread(TIME, Value) %>%
+  filter(GEO %in% c("Denmark", "Finland", "Iceland", "Norway",
+                    "Sweden", "United Kingdom", "Ireland", "Switzerland",
+                    "Austria", "Belgium", "France", "Germany (until 1990 former territory of the FRG)", "Luxembourg",
+                    "Netherlands", "Greece", "Italy", "Portugal", "Spain", 
+                    "Bulgaria", "Czech Republic", "Estonia",
+                    "Hungary", "Latvia", "Lithuania", "Poland", "Romania", "Slovakia", "Slovenia")) ->
+  data.eu.fert
+
+# replace missing values with broken/provisional data
+data.eu.fert[2,55] <- data.eu.fert[3,55]
+data.eu.fert[12,56] <- data.eu.fert[13,56]
+data.eu.fert[15,57] <- data.eu.fert[16,57]
+data.eu.fert[20,56] <- data.eu.fert[21,56]
+data.eu.fert[24,c(44,53)]<- data.eu.fert[25,c(44,53)]
+data.eu.fert[32,55] <- data.eu.fert[33,55]
+
+data.eu.fert %>%
+  filter (Flag.and.Footnotes == "") %>%
+  dplyr::select(-Flag.and.Footnotes, -INDIC_DE) %>%
+  dplyr::select(GEO, `2010`,`2011`, `2012`, `2013`) ->
+  data.eu.fert
+
+data.ined.fert %>%
+  dplyr::select(country,X1960:X2013) %>%
+  filter(country %in% c("Denmark", "Finland", "Iceland", "Norway",
+                        "Sweden", "United Kingdom", "Ireland", "Switzerland",
+                        "Austria", "Belgium", "France", "Germany", "Luxembourg",
+                        "Netherlands", "Greece", "Italy", "Portugal", "Spain", 
+                        "Bulgaria", "Czech Republic", "Estonia", "Germany  Former Democratic Republic",
+                        "Hungary", "Latvia", "Lithuania", "Poland", "Romania", "Slovakia", "Slovenia"))->
+  data.ined.fert
+data.ined.fert[,1] <- as.character(factor(data.ined.fert[,1]))
+data.eu.fert[,1] <- as.character(factor(data.eu.fert[,1]))
+
+data.ined.fert[9,1] <- data.eu.fert[9,1]
+# remove DDR after 1990
+data.ined.fert[10,32:55] <- NA
+fert <- left_join(data.ined.fert, data.eu.fert, by=c("country"= "GEO")) %>%
+  mutate(X2010 = ifelse(is.na(X2010), `2010`, X2010),
+         X2011 = ifelse(is.na(X2011), `2011`, X2011),
+         X2012 = ifelse(is.na(X2012), `2012`, X2012),
+         X2013 = ifelse(is.na(X2013), `2013`, X2013)) %>%
+  mutate(group = c("gfs", "gfs", "tps", "tps", "de", "tps", 
+                   "de", "gfs", "gfs", "tps", "fam", "tps",
+                   "de", "lib", "fam", "tps", "tps", "gfs",
+                   "gfs", "de", "tps", "fam", "tps", "tps",
+                   "tps", "fam", "de", "lib", "lib")) %>%
+  group_by(group) %>%
+  summarize_each(funs(mean(., na.rm=TRUE)))
+
+par(mar=c(4.1, 4.1, 0.1,0.1), xpd=TRUE)
+plot(1960:2013,fert[1,3:56], type="l", ylim=c(1,3.5), lwd=2, col="black",
+     axes=FALSE, xlab="", ylab="y")
+lines(c(1960,2013), c(1,1), col="gray80", lty=2)
+lines(c(1960,2013), c(1.5,1.5), col="gray80", lty=2)
+lines(c(1960,2013), c(2,2), col="gray80", lty=2)
+lines(c(1960,2013), c(2.5,2.5), col="gray80", lty=2)
+lines(c(1960,2013), c(3,3), col="gray80", lty=2)
+lines(c(1960,2013), c(3.5,3.5), col="gray80", lty=2)
+lines(1960:2013,fert[1,3:56], type="l", lwd=3,col="black")
+lines(1960:2013,fert[2,3:56], type="l", lwd=3,col=redgray[1])
+lines(1960:2013,fert[3,3:56], type="l", lwd=3,col=redgray[15])
+lines(1960:2013,fert[4,3:56], type="l", lwd=3,col=redgray[30])
+lines(1960:2013,fert[5,3:56], type="l", lwd=3,col=redgray[80])
+axis(1, at=c(seq(1960, 2010, 5), 2013), labels=letters[1:12])
+axis(2, las=2)
+
+legend(1980, 3.6, LETTERS[1:5], 
+       col=c("black", redgray[30], redgray[15], redgray[80], redgray[1]),
+       lwd=3, y.intersp = 1.5, bty="n")
+mtext("x", 1, line=3)
+dev.copy2eps(file="figures/Fig1.3.eps", width=7.5, height=4.5)
+par(.oldpar)
+
+### EUROSTAT fertility EU table
+###############################################################################
+
+fert.table <- t(fert[,3:56])[c(seq(1,51,5), 54),]
+require(xtable)
+
+
+print(xtable(fert.table,digits=c(2,2,2,2,2,2)) )
+
+
+uk.fert.table <- data.1.3[c(seq(1,51,5), 53),2]
+
+## version with UK data as well. 
+print(xtable(cbind(uk.fert.table, fert.table),digits=c(2,2,2,2,2,2,2)) )
+
+
+
+
+
 ## Fig 1.4
 ###############################################################################
-data.1.4 <- read.csv("fig16.csv")
-par(mar=c(4.1, 3.1, 0.1,0.1))
+data.1.4 <- read.csv("data/UKMort.csv")
+par(mar=c(4.1, 3.6, 0.1,0.1))
 plot(data.1.4[,1], data.1.4[,2], typ="l",
      axes= FALSE,
-     xlab="", ylab="tfr", lwd=2,
+     xlab="", ylab="", lwd=2,
      ylim=c(0,30))
 lines(data.1.4[,1], data.1.4[,3], lwd=2, col= "red")
 axis(1, at=c(1953,seq(1955, 2010, 5), 2012), labels = FALSE)
@@ -242,7 +244,10 @@ lines(c(1953, 2012), c(20,20), lty=2, col="gray80")
 lines(c(1953, 2012), c(30,30), lty=2, col="gray80")
 lines(c(1953, 2012), c(15,15), lty=2, col="gray80")
 lines(c(1953, 2012), c(25,25), lty=2, col="gray80")
-dev.copy2eps(file="fig04.eps", width=7, height=3.5)
+mtext("x", 1, line=3)
+mtext("y", 2, line=3)
+
+dev.copy2eps(file="figures/Fig1.4.eps", width=7, height=3.5)
 par(.oldpar)
 
 ## table for 1.4
@@ -252,142 +257,9 @@ require(xtable)
 print(xtable(t(table1.4)), include.rownames = FALSE)
 
 
-## Fig 1.5
-###############################################################################
-data.1.1 <- read.csv("fig13.csv")
-# par(mar=c(1.6, 3.1, 0.1,2.1))
-# barplot(t(as.matrix(data.1.1[,2:5])),
-#         names.arg = c(9,5,19,data.1.1[4:20,1]),
-#         las=2,
-#         beside=TRUE,
-#         horiz=TRUE,
-#         axes=FALSE,
-#         legend = c("1925", "1950", "2015", "2050"), 
-#         args.legend = list(x = 10,  cex=1,bty="n"),
-#         xlim=c(0,10),
-#         col=c("gray20", "gray50", "gray80", "red"))
-# axis(1)
-# lines(c(0,0), c(0,95), lty=2, col="gray30")
-# lines(c(2,2), c(0,95), lty=2, col="gray30")
-# lines(c(4,4), c(0,95), lty=2, col="gray30")
-# lines(c(6,6), c(0,95), lty=2, col="gray30")
-# lines(c(8,8), c(0,95), lty=2, col="gray30")
-# lines(c(10,10), c(0,95), lty=2, col="gray30")
-# 
-# 
-# dev.copy2eps(file="fig05.eps", width=7, height=3.5)
 
 
-## Fig 1.5 version 2
-###############################################################################
-# par(mar=c(1.6, 3.1, 0.1,0.1))
-# plot( c(0,data.1.1[,2],0), c(data.1.1[1:20,1],100, 100), type="s", ylim=c(0, 100), col="black",
-#       xaxt="n", lwd=2,
-#       axes=FALSE, xlim=c(0,10))
-# lines(c(0,data.1.1[,3],0), c(data.1.1[1:20,1], 100, 100), type="s", col="gray70", lwd = 2)
-# lines(c(0,data.1.1[,4],0), c(data.1.1[1:20,1],100, 100), type="s", col="gray80", lwd = 2)
-# polygon(c(0,rep(data.1.1[,4], each=2),0), 
-#         c(rep(data.1.1[1:20,1],each=2), 100,100), col="gray80", border="gray80", angle=45, density=10,lwd = 2)
-# lines(c(0,data.1.1[,5],0), c(data.1.1[1:20,1], 100,100),type="s", col="red", lwd = 2)
-# axis(1)
-# axis(2, las=2, at= c(0,5,10,data.1.1[4:20,1])+2.5, labels= c(9,5,19,data.1.1[4:20,1]))
-# par("usr")
-# legend(x=7, y=100, rev(c("A", "B", "C", "D")), col=rev(c(NA, NA, NA,NA)), 
-#        density=rev(c(0,0,10,0)), fill=rev(c("black", "gray70", "gray80", "red")),
-#        border=rev(c("black", "gray70", "gray80", "red")),
-#        bty="n", lwd=c(2,2,2,2), cex=1.5, lty = c(NA, NA, NA,NA),
-#        x.intersp=rep(-1,4))
-# 
-# dev.copy2eps(file="fig05.eps", width=7, height=3.5)
-
-# par(mar=c(1.6, 3.1, 0.1,0.1))
-# plot( c(0,data.1.1[,2],0), c(data.1.1[1:20,1],100, 100), type="s", ylim=c(0, 100), col="gray90",
-#       xaxt="n", lwd=2,
-#       axes=FALSE, xlim=c(0,10))
-# polygon(c(0,rep(data.1.1[,2], each=2),0), 
-#         c(rep(data.1.1[1:20,1],each=2), 100,100), col="gray90", border="gray90", lwd = 1)
-# lines(c(0,data.1.1[,3],0), c(data.1.1[1:20,1], 100, 100), type="s", col="gray50", lwd = 1)
-# polygon(c(0,rep(data.1.1[,3], each=2),0), 
-#         c(rep(data.1.1[1:20,1],each=2), 100,100), col="gray50", border="gray50", lwd = 1,angle=45, density=10)
-# lines(c(0,data.1.1[,4],0), c(data.1.1[1:20,1],100, 100), type="s", col="black", lwd = 1)
-# polygon(c(0,rep(data.1.1[,4], each=2),0), 
-#         c(rep(data.1.1[1:20,1],each=2), 100,100), col="black", border="black", angle=-45, density=10,lwd = 1)
-# polygon(c(0,rep(data.1.1[,5], each=2),0), 
-#         c(rep(data.1.1[1:20,1],each=2), 100,100),border="red", lwd = 2)
-# axis(1)
-# axis(2, las=2, at= c(0,5,10,data.1.1[4:20,1])+2.5, labels= c(9,5,19,data.1.1[4:20,1]))
-# 
-# legend(x=7, y=100, rev(c("D", "A", "B", "C")), col=rev(c(NA, NA, NA,NA)), 
-#        density=rev(c(0,10,10,NA)), fill=rev(c( "red","black", "gray70", "gray80")),
-#        border=rev(c("red","black", "gray70", "gray80")),angle=c(0,45,-45,0),
-#        bty="n", lwd=c(2,2,2,2), cex=1.5, lty = c(NA, NA, NA,NA),
-#        x.intersp=rep(-1,4))
-# dev.copy2eps(file="fig05.2.eps", width=7, height=3.5)
-
-## Fig 1.5 version 3
-# ###############################################################################
-# data.1.1 <- read.csv("fig13.csv")
-# data.1.1.2 <- read.csv("fig15.2.csv")
-# require(dplyr)
-# data.1.m <- data.frame(age.group=c(rep(1:6, each=3),6,6),M2015=data.1.1[,4])
-# data.1.m <- data.1.m %>%
-#   group_by(age.group) %>%
-#   summarise(M2015=sum(M2015)) %>%
-#   mutate(M2040 = data.1.1.2[,2])
-# 
-
-#dev.copy2eps(file="fig05.3.eps", width=7, height=3.5)
-
-## Fig 1.6
-###############################################################################
-
-par(mar=c(1.6, 3.1, 0.1,0.1))
-plot( c(0,data.1.2[,2],0), c(data.1.2[1:20,1],100, 100), type="s", ylim=c(0, 100), col="black",
-      xaxt="n", lwd=2,
-      axes=FALSE, xlim=c(0,10))
-lines(c(0,data.1.2[,3],0), c(data.1.2[1:20,1], 100, 100), type="s", col="gray70", lwd = 2)
-lines(c(0,data.1.2[,4],0), c(data.1.2[1:20,1],100, 100), type="s", col="gray80", lwd = 2)
-polygon(c(0,rep(data.1.2[,4], each=2),0), 
-        c(rep(data.1.2[1:20,1],each=2), 100,100), col="gray80", border="gray80", angle=45, density=10,lwd = 2)
-lines(c(0,data.1.2[,5],0), c(data.1.2[1:20,1], 100,100),type="s", col="red", lwd = 2)
-axis(1)
-axis(2, las=2, at= c(0,5,10,data.1.2[4:20,1])+2.5, labels= c(9,5,19,data.1.2[4:20,1]))
-par("usr")
-legend(x=7, y=100, rev(c("A", "B", "C", "D")), col=rev(c(NA, NA, NA,NA)), 
-       density=rev(c(0,0,10,0)), fill=rev(c("black", "gray70", "gray80", "red")),
-       border=rev(c("black", "gray70", "gray80", "red")),
-       bty="n", lwd=c(2,2,2,2), cex=1.5, lty = c(NA, NA, NA,NA),
-       x.intersp=rep(-1,4))
-
-dev.copy2eps(file="fig06.eps", width=7, height=3.5)
-par(.oldpar)
-
-par(mar=c(1.6, 3.1, 0.1,0.1))
-plot( c(0,data.1.2[,2],0), c(data.1.2[1:20,1],100, 100), type="s", ylim=c(0, 100), col="gray90",
-      xaxt="n", lwd=2,
-      axes=FALSE, xlim=c(0,10))
-polygon(c(0,rep(data.1.2[,2], each=2),0), 
-        c(rep(data.1.2[1:20,1],each=2), 100,100), col="gray90", border="gray90", lwd = 1)
-lines(c(0,data.1.2[,3],0), c(data.1.2[1:20,1], 100, 100), type="s", col="gray50", lwd = 1)
-polygon(c(0,rep(data.1.2[,3], each=2),0), 
-        c(rep(data.1.2[1:20,1],each=2), 100,100), col="gray50", border="gray50", lwd = 1,angle=45, density=10)
-lines(c(0,data.1.2[,4],0), c(data.1.2[1:20,1],100, 100), type="s", col="black", lwd = 1)
-polygon(c(0,rep(data.1.2[,4], each=2),0), 
-        c(rep(data.1.2[1:20,1],each=2), 100,100), col="black", border="black", angle=-45, density=10,lwd = 1)
-lines(c(0,data.1.2[,5],0), c(data.1.2[1:20,1], 100,100),type="s", col="red", lwd = 2)
-axis(1)
-axis(2, las=2, at= c(0,5,10,data.1.2[4:20,1])+2.5, labels= c(9,5,19,data.1.2[4:20,1]))
-legend(x=7, y=100, rev(c("D", "A", "B", "C")), col=rev(c(NA, NA, NA,NA)), 
-       density=rev(c(0,10,10,NA)), fill=rev(c( "red","black", "gray70", "gray80")),
-       border=rev(c("red","black", "gray70", "gray80")),angle=c(0,45,-45,0),
-       bty="n", lwd=c(2,2,2,2), cex=1.5, lty = c(NA, NA, NA,NA),
-       x.intersp=rep(-1,4))
-dev.copy2eps(file="fig06.2.eps", width=7, height=3.5)
-par(.oldpar)
-
-
-## Fig 1.6 version 3
-###############################################################################
+## Fig 1.5 The population distribution (principle variant) of the United Kingdom according to age group, 2015 and 2040. 
 ###############################################################################
 data.1.1 <- read.csv("fig13.csv")
 data.1.1.2 <- read.csv("fig15.2.csv")
@@ -3122,112 +2994,6 @@ par(mar=c(4,4,1,1))
 barplot(t(as.matrix(data.USW5ind[,2:5])),
         beside=TRUE, las=2, names.arg = groz)
 
-
-
-##############################################################################
-### EUROSTAT fertility EU chart
-###############################################################################
-
-data.eu.fert <- read.csv("eurostatfertilityEU/demo_find_1_Data.csv",
-                         colClasses = c("factor","factor", "factor", "numeric", "factor"))
-data.ined.fert <- read.csv("eurostatfertilityEU/INEDfertility.csv")
-require(tidyr)
-require(dplyr)
-
-require(RColorBrewer)
-redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
-
-
-data.eu.fert %>%
-  filter(INDIC_DE == "Total fertility rate") %>%
-  spread(TIME, Value) %>%
-  filter(GEO %in% c("Denmark", "Finland", "Iceland", "Norway",
-                    "Sweden", "United Kingdom", "Ireland", "Switzerland",
-                    "Austria", "Belgium", "France", "Germany (until 1990 former territory of the FRG)", "Luxembourg",
-                    "Netherlands", "Greece", "Italy", "Portugal", "Spain", 
-                    "Bulgaria", "Czech Republic", "Estonia",
-                    "Hungary", "Latvia", "Lithuania", "Poland", "Romania", "Slovakia", "Slovenia")) ->
-  data.eu.fert
-
-# replace missing values with broken/provisional data
-data.eu.fert[2,55] <- data.eu.fert[3,55]
-data.eu.fert[12,56] <- data.eu.fert[13,56]
-data.eu.fert[15,57] <- data.eu.fert[16,57]
-data.eu.fert[20,56] <- data.eu.fert[21,56]
-data.eu.fert[24,c(44,53)]<- data.eu.fert[25,c(44,53)]
-data.eu.fert[32,55] <- data.eu.fert[33,55]
-
-data.eu.fert %>%
-  filter (Flag.and.Footnotes == "") %>%
-  dplyr::select(-Flag.and.Footnotes, -INDIC_DE) %>%
-  dplyr::select(GEO, `2010`,`2011`, `2012`, `2013`) ->
-  data.eu.fert
-
-data.ined.fert %>%
-  dplyr::select(country,X1960:X2013) %>%
-  filter(country %in% c("Denmark", "Finland", "Iceland", "Norway",
-                    "Sweden", "United Kingdom", "Ireland", "Switzerland",
-                    "Austria", "Belgium", "France", "Germany", "Luxembourg",
-                    "Netherlands", "Greece", "Italy", "Portugal", "Spain", 
-                    "Bulgaria", "Czech Republic", "Estonia", "Germany  Former Democratic Republic",
-                    "Hungary", "Latvia", "Lithuania", "Poland", "Romania", "Slovakia", "Slovenia"))->
-  data.ined.fert
-data.ined.fert[,1] <- as.character(factor(data.ined.fert[,1]))
-data.eu.fert[,1] <- as.character(factor(data.eu.fert[,1]))
-
-data.ined.fert[9,1] <- data.eu.fert[9,1]
-# remove DDR after 1990
-data.ined.fert[10,32:55] <- NA
-fert <- left_join(data.ined.fert, data.eu.fert, by=c("country"= "GEO")) %>%
-  mutate(X2010 = ifelse(is.na(X2010), `2010`, X2010),
-         X2011 = ifelse(is.na(X2011), `2011`, X2011),
-         X2012 = ifelse(is.na(X2012), `2012`, X2012),
-         X2013 = ifelse(is.na(X2013), `2013`, X2013)) %>%
-  mutate(group = c("gfs", "gfs", "tps", "tps", "de", "tps", 
-                   "de", "gfs", "gfs", "tps", "fam", "tps",
-                   "de", "lib", "fam", "tps", "tps", "gfs",
-                   "gfs", "de", "tps", "fam", "tps", "tps",
-                   "tps", "fam", "de", "lib", "lib")) %>%
-  group_by(group) %>%
-  summarize_each(funs(mean(., na.rm=TRUE)))
-
-par(mar=c(4.1, 4.1, 0.1,0.1), xpd=TRUE)
-plot(1960:2013,fert[1,3:56], type="l", ylim=c(1,3.5), lwd=2, col="black",
-     axes=FALSE, xlab="", ylab="y")
-lines(c(1960,2013), c(1,1), col="gray80", lty=2)
-lines(c(1960,2013), c(1.5,1.5), col="gray80", lty=2)
-lines(c(1960,2013), c(2,2), col="gray80", lty=2)
-lines(c(1960,2013), c(2.5,2.5), col="gray80", lty=2)
-lines(c(1960,2013), c(3,3), col="gray80", lty=2)
-lines(c(1960,2013), c(3.5,3.5), col="gray80", lty=2)
-lines(1960:2013,fert[1,3:56], type="l", lwd=3,col="black")
-lines(1960:2013,fert[2,3:56], type="l", lwd=3,col=redgray[1])
-lines(1960:2013,fert[3,3:56], type="l", lwd=3,col=redgray[15])
-lines(1960:2013,fert[4,3:56], type="l", lwd=3,col=redgray[30])
-lines(1960:2013,fert[5,3:56], type="l", lwd=3,col=redgray[80])
-axis(1, at=c(seq(1960, 2010, 5), 2013), labels=letters[1:12])
-axis(2, las=2)
-
-legend(1980, 3.6, LETTERS[1:5], 
-       col=c("black", redgray[30], redgray[15], redgray[80], redgray[1]),
-       lwd=3, y.intersp = 1.5, bty="n")
-
-dev.copy2eps(file="figEUfert.eps", width=7.5, height=4.5)
-par(.oldpar)
-### EUROSTAT fertility EU table
-###############################################################################
-
-fert.table <- t(fert[,3:56])[c(seq(1,51,5), 54),]
-require(xtable)
-
-
-print(xtable(fert.table,digits=c(2,2,2,2,2,2)) )
-
-
-uk.fert.table <- data.1.3[c(seq(1,51,5), 53),2]
-
-## version with UK data as well. 
-print(xtable(cbind(uk.fert.table, fert.table),digits=c(2,2,2,2,2,2,2)) )
 
 
 
