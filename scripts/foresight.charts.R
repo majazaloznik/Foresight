@@ -575,7 +575,7 @@ par(mfrow=c(1,2))
 par(mar=c(3.6, 1.1, 2.1,2.1), xpd=TRUE)
 
 barplot(-as.matrix(data.2.6[c(1,8),c(3,11:17)]), beside = TRUE, 
-        angle=45, density=15, 
+        angle=45, density=10, 
         col = c("black", redgray[1]), horiz=TRUE,
         axes=FALSE, las=2, ylab=NA, xlim=c(-100,0), names.arg = NA)
 mtext("LE", side=1, line=2.5)
@@ -591,22 +591,23 @@ lines(c(-90, -90), c(0,25), lty=2, col="gray80")
 lines(c(-95, -95), c(0,25), lty=2, col="gray80")
 lines(c(-100, -100), c(0,25), lty=2, col="gray80")
 barplot(-as.matrix(data.2.6[c(1,8),c(3,11:17)]), beside = TRUE, 
-        angle=45, density=15, 
+        angle=45, density=10, 
         col = c("black", redgray[1]), horiz=TRUE,
         axes=FALSE, las=2, ylab="", xlab="", add=TRUE, names.arg = NA)
+mtext("aa", 4, line=0.5)
 barplot(-matrix(rep(c(0,20,40,60,65,75,80,85), each=2), nrow=2), 
-        beside = TRUE, add=TRUE,angle=-45, density=15,
+        beside = TRUE, add=TRUE,angle=-45, density=10,
         col=c( "black", redgray[1]), horiz=TRUE,names.arg = NA)
 axis(1, at=seq(0,-100,-20), labels=seq(0,100,20) )
 legend(x=-10,y=29.5, letters[2],col =c( "black"), fill =  c("black"),
-       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
+       density=10, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
 
 par(mar=c(3.6, 2.1, 2.1,1.1), xpd=TRUE)
 mp <-barplot(as.matrix(data.2.6[c(9,16),c(3,11:17)]), beside = TRUE, 
-        angle=45, density=15, 
+        angle=45, density=10, 
         col = c("black", redgray[1]), horiz=TRUE,
         axes=FALSE, las=2, ylab="aa",  xlim=c(0,100), names.arg = NA)
-text(rep(-10, 8), apply(mp, 2, mean), LETTERS[1:8], pos=4)
+text(rep(-15, 8), apply(mp, 2, mean), LETTERS[1:8], pos=4)
 
 mtext("LE", side=1, line=2.5)
 mtext("yy", side=3, line=0.5)
@@ -621,18 +622,18 @@ lines(c(90, 90), c(0,25), lty=2, col="gray80")
 lines(c(95, 95), c(0,25), lty=2, col="gray80")
 lines(c(100, 100), c(0,25), lty=2, col="gray80")
 barplot(as.matrix(data.2.6[c(9,16),c(3,11:17)]), beside = TRUE, 
-        angle=45, density=15, 
+        angle=45, density=10, 
         col = c("black", redgray[1]), horiz=TRUE,
         axes=FALSE, las=2, ylab="", xlab="", add=TRUE, names.arg = NA)
 barplot(matrix(rep(c(0,20,40,60,65,75,80,85), each=2), nrow=2), 
-        beside = TRUE, add=TRUE,angle=-45, density=15,
+        beside = TRUE, add=TRUE,angle=-45, density=10,
         col=c( "black", redgray[1]), horiz=TRUE,names.arg = NA)
 axis(1, at=seq(0,100,20))
 legend(x=-10,y=29.5, letters[4],col =c(  redgray[1]), fill =  c( redgray[1]),
        border= redgray[1],
-       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
+       density=10, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
 
-dev.copy2eps(file="figures/Fig2.6", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig2.6.eps", width=7, height=3.5)
 par(.oldpar)
 
 ## Tab 2.6
@@ -642,17 +643,18 @@ table.2.6 <- cbind(data.2.6[c(1,8,9,16), 1:10])
 print(xtable(table.2.6),include.rownames=FALSE )
 
 
-## Fig 3.1
+
+## Fig 3.1 The population distribution of the United Kingdom by age group for 1925, 1950 and 2015.
 ###############################################################################
-data.3.1 <- read.csv("fig31.csv")
+data.3.1 <- read.csv("data/UKHealthLexp.csv")
 require(RColorBrewer)
 redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
 require(plotrix)
 
-par(mar=c(3.1, 3.1, 1.1,4.1), xpd=TRUE)
+par(mar=c(4.1, 3.6, 1.1,4.1), xpd=TRUE)
 plot(2000:2009, data.3.1[,2], typ="l",
      axes= FALSE,
-     xlab="", ylab="", lwd=2,    ylim=c(0,85))
+     xlab="x", ylab="y", lwd=2,    ylim=c(0,85))
 lines(2000:2009, data.3.1[,4], lwd=2, col= "gray50")
 lines(2000:2009, data.3.1[,3], lwd=2, col= "black", lty=2)
 lines(2000:2009, data.3.1[,5], lwd=2, col= "red", lty=1)
@@ -661,9 +663,6 @@ lines(2000:2009, data.3.1[,6], lwd=2, col= "red", lty=2)
 
 axis(1, at=2000:2009, labels = FALSE)
 axis(2, las=2)
-#axis(2, las=2, at=c(45, 50, 60, 70, 80), labels=c(0, 50, 60, 70, 80) )
-
-#axis.break(2,47,style="slash") 
 
 text(x=2000:2009, y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
      labels=2000:2009, srt=45, adj=1, xpd=TRUE)
@@ -674,17 +673,17 @@ lines(c(2000, 2009), c(40,40), lty=2, col="gray80")
 lines(c(2000, 2009), c(60,60), lty=2, col="gray80")
 lines(c(2000, 2009), c(80,80), lty=2, col="gray80")
 
-rect(2003,15,2008.5, 55, col="white", border="white")
+rect(2006,15,2008.7, 55, col="white", border="white")
 
-legend(2003, 30, legend=letters[1:3], col =c("black", "gray50", "black"), lwd=c( 2,2, 2), 
+legend(2006, 30, legend=letters[1:3], col =c("black", "gray50", "black"), lwd=c( 2,2, 2), 
        box.col="white", lty = c(1,1, 2), fill=c(NA, NA, NA), border=c(NA, NA, NA),x.intersp=c(1,1,1),
        bg = "white", merge = TRUE, cex=1, y.intersp = 1.4)
 
-legend(2003, 55, legend=letters[4:6], col =c("red", redgray[20], "red"), lwd=c( 2,2, 2), 
+legend(2006, 55, legend=letters[4:6], col =c("red", redgray[20], "red"), lwd=c( 2,2, 2), 
        box.col="white", lty = c(1,1, 2), fill=c(NA, NA, NA), border=c(NA, NA, NA),x.intersp=c(1,1,1),
        bg = "white", merge = TRUE, cex=1, y.intersp = 1.4)
 
-dev.copy2eps(file="fig31.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig3.1.eps", width=7, height=3.5)
 
 par(.oldpar)
 
