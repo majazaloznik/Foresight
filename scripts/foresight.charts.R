@@ -261,11 +261,11 @@ print(xtable(t(table1.4)), include.rownames = FALSE)
 
 ## Fig 1.5 The population distribution (principle variant) of the United Kingdom according to age group, 2015 and 2040. 
 ###############################################################################
-data.1.1 <- read.csv("fig13.csv")
-data.1.1.2 <- read.csv("fig15.2.csv")
+data.1.1 <- read.csv("data/UKpopM.csv")
+data.1.2 <- read.csv("data/UKpopF.csv")
+data.1.1.2 <- read.csv("data/UKpopProj.csv")
 
-data.1.2 <- read.csv("fig14.csv")
-data.1.1.2 <- read.csv("fig15.2.csv")
+
 require(dplyr)
 data.1.f <- data.frame(age.group=c(rep(1:6, each=3),6,6),F2015=data.1.2[,4])
 data.1.f <- data.1.f %>%
@@ -281,9 +281,9 @@ data.1.m <- data.1.m %>%
 
 data.1.5to6 <- cbind(data.1.f,data.1.m[,2:3])
 
-par(mfrow=c(1,2))
-par(mar=c(3.1, 0.6, 1.1,2.6))
 
+par(mfrow=c(1,2), xpd=TRUE)
+par(mar=c(4.1, 0.6, 1.1,2.6))
 plot(c(0,-data.1.5to6[,4],0), c(0,data.1.5to6[1:6,1], 6), type="s", ylim=c(0, 6), col="gray50",
      lwd=2,
      xlim=c(-25,0), axes=FALSE, xlab="", ylab="", main="XX")
@@ -301,7 +301,7 @@ polygon(c(0,rep(-data.1.5to6[,4],each=2),0),
 polygon(c(0,rep(-data.1.5to6[,5],each=2),0),
         c(0,0,rep(data.1.5to6[1:6,1], each=2)), col="red",
         lwd=1, density=10, angle=45)
-par(mar=c(3.1, 2.6, 1.1,0.6))
+par(mar=c(4.1, 2.6, 1.1,0.6))
 plot(c(0,data.1.5to6[,2],0), c(0,data.1.5to6[1:6,1], 6), type="s", ylim=c(0, 6), col="gray50",
      lwd=2,
      xlim=c(0,25), axes=FALSE, xlab="", ylab="", main="YY")
@@ -327,7 +327,9 @@ legend(x=17, y=6.4, c("A", "B"), col=c(NA, NA),
        x.intersp = c(-1,-1),
        y.intersp = 2)
 
-dev.copy2eps(file="fig15to6.eps", width=7, height=3.5)
+text(-5, 6.1, "a")
+text(-5, -1.6, "y")
+dev.copy2eps(file="figures/Fig1.5.eps", width=7, height=3.5)
 par(.oldpar)
 
 ## Tab 1.3

@@ -1,0 +1,769 @@
+% $ biblatex auxiliary file $
+% $ biblatex version 2.4 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\entry{DCLG2013}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{DCLG}}{D.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{D1}
+  \strng{fullhash}{D1}
+  \field{labelyear}{2013}
+  \field{sortinit}{D}
+  \field{howpublished}{Department for Communities and Local Government,
+  \url{https://www.gov.uk/government/statistical-data-sets/dwelling-condition-and-safety}}
+  \field{title}{Dwelling condition and safety - English housing survey}
+  \field{year}{2013}
+\endentry
+
+\entry{DCLG2015}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{DCLG}}{D.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{D1}
+  \strng{fullhash}{D1}
+  \field{labelyear}{2015}
+  \field{sortinit}{D}
+  \field{howpublished}{Department for Communities and Local Government,
+  \url{https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/469214/2013-14_Section_1_Households_tables_and_figures_FINAL.xlsx}}
+  \field{title}{English Housing Survey Headline Report 2013-14 Section 1:
+  Tables, Figures and Annex Tables}
+  \field{year}{2015}
+\endentry
+
+\entry{DoT201}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Department of Transport}}{D.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{D2}
+  \strng{fullhash}{D2}
+  \field{labelyear}{2015}
+  \field{sortinit}{D}
+  \field{howpublished}{\url{https://www.gov.uk/government/collections/national-travel-survey-statistics}}
+  \field{note}{Accessed 11.1.2016}
+  \field{title}{National Travel Survey Statistics}
+  \field{year}{2015}
+\endentry
+
+\entry{DWP2013}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Department of Work and Pensions}}{D.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{D3}
+  \strng{fullhash}{D3}
+  \field{labelyear}{2013}
+  \field{sortinit}{D}
+  \field{title}{Extending Working Life Sector Initiative Analysis}
+  \field{year}{2013}
+\endentry
+
+\entry{Dutt2013}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Dutton}{D.}%
+     {WH}{W.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Blank}{B.}%
+     {G}{G}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DWBG1}
+  \strng{fullhash}{DWBG1}
+  \field{labelyear}{2013}
+  \field{sortinit}{D}
+  \field{title}{Cultures of the internet: the internet in Britain. Oxford
+  Internet Survey 2013 Report}
+  \field{journaltitle}{available on line at http://oxis. oii. ox. ac.
+  uk/sites/oxis. oii. ox. ac. uk/files/content/files/publications/OxIS\_2013.
+  pdf}
+  \field{year}{2013}
+\endentry
+
+\entry{DWP2015b}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {DWP}{D.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{D4}
+  \strng{fullhash}{D4}
+  \field{labelyear}{2015}
+  \field{sortinit}{D}
+  \field{howpublished}{Department for Work and Pensions --National Statistics,
+  \url{https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/437253/hbai-2013-2014-supporting-excel-files.zip}}
+  \field{title}{Households Below Average Income, 1994/95 – 2013/14 ---
+  Supporting data tables}
+  \field{year}{2015}
+\endentry
+
+\entry{EUST2016}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Eurostat }}{E.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{E1}
+  \strng{fullhash}{E1}
+  \field{labelyear}{2016}
+  \field{sortinit}{E}
+  \field{howpublished}{\url{http://ec.europa.eu/eurostat/web/population-demography-migration-projections/births-fertitily-data/database}}
+  \field{note}{Accessed 15.2.2016}
+  \field{title}{Fertility Indicators}
+  \field{year}{2016}
+\endentry
+
+\entry{HMD2015}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Human Mortality Database}}{H.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{H1}
+  \strng{fullhash}{H1}
+  \field{labelyear}{2015}
+  \field{sortinit}{H}
+  \field{howpublished}{University of California, Berkeley (USA), and Max Planck
+  Institute for Demographic Research (Germany), \url{http:\\www.mortality.org
+  }}
+  \field{note}{Accessed 2014}
+  \field{year}{2015}
+\endentry
+
+\entry{INED2016}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{INED }}{I.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{I1}
+  \strng{fullhash}{I1}
+  \field{labelyear}{2016}
+  \field{sortinit}{I}
+  \field{howpublished}{\url{http://www.ined.fr/en/everything_about}\\\url{_population/data/online-databases/developed-countries-database/}}
+  \field{note}{Accessed 15.2.2016}
+  \field{title}{Developed countries database}
+  \field{year}{2016}
+\endentry
+
+\entry{ONS2013d}{misc}{}
+  \list{publisher}{1}{%
+    {Office of Public Sector Information}%
+  }
+  \field{labelyear}{2013}
+  \field{sortinit}{I}
+  \field{howpublished}{Statistical Bulletin, Office of National Statistics}
+  \field{title}{Inequality in Disability-Free Life Expectancy by Area
+  Deprivation: England: 2003–06 and 2007–10}
+  \field{year}{2013}
+\endentry
+
+\entry{Kirk1996}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Kirk}{K.}%
+     {D.}{D.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{KD1}
+  \strng{fullhash}{KD1}
+  \field{labelyear}{1996}
+  \field{sortinit}{K}
+  \field{issue}{3}
+  \field{pages}{361\bibrangedash 387}
+  \field{title}{Demographic transition theory}
+  \field{volume}{50}
+  \field{journaltitle}{Population Studies}
+  \field{year}{1996}
+\endentry
+
+\entry{Lees2014}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Leeson}{L.}%
+     {George~W}{G.~W.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Hindawi Publishing Corporation}%
+  }
+  \strng{namehash}{LGW1}
+  \strng{fullhash}{LGW1}
+  \field{labelyear}{2014}
+  \field{sortinit}{L}
+  \field{title}{Increasing Longevity and the New Demography of Death}
+  \field{volume}{2014}
+  \field{journaltitle}{International Journal of Population Research}
+  \field{year}{2014}
+\endentry
+
+\entry{Mad2006}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Madouros}{M.}%
+     {Vassilis}{V.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{MV1}
+  \strng{fullhash}{MV1}
+  \field{labelyear}{2006}
+  \field{sortinit}{M}
+  \field{title}{Projections of the UK labour force, 2006 to 2020}
+  \field{journaltitle}{ONS Labour Market Trends}
+  \field{year}{2006}
+\endentry
+
+\entry{OECD2015}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {OECD}{O.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {OECD Publishing}%
+  }
+  \strng{namehash}{O1}
+  \strng{fullhash}{O1}
+  \field{labelyear}{2015}
+  \field{sortinit}{O}
+  \field{note}{Accessed 16.2.2016}
+  \field{title}{Pensions at a Glance 2015}
+  \verb{url}
+  \verb http://www.oecd-ilibrary.org/social-issues-migration-health/pensions-at
+  \verb -a-glance-2015_pension_glance-2015-en
+  \endverb
+  \field{year}{2015}
+\endentry
+
+\entry{Ofco2015b}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Ofcom}}{O.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{O2}
+  \strng{fullhash}{O2}
+  \field{labelyear}{2015}
+  \field{extrayear}{1}
+  \field{sortinit}{O}
+  \field{howpublished}{\url{http://stakeholders.ofcom.org.uk/binaries/research/media-literacy/media-lit-10years/2015_}\\\url{Adults_media_use_and_attitudes_report.pdf}}
+  \field{title}{Adults' media use and attitudes Report 2015}
+  \field{year}{2015}
+\endentry
+
+\entry{Ofco2015}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Ofcom}}{O.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{O2}
+  \strng{fullhash}{O2}
+  \field{labelyear}{2015}
+  \field{extrayear}{2}
+  \field{sortinit}{O}
+  \field{howpublished}{\url{http://stakeholders.ofcom.org.uk/market-data-research/market-data/communications-market-reports/cmr15/downloads/}}
+  \field{title}{The Communications Market Report: Full Report - Data}
+  \field{year}{2015}
+\endentry
+
+\entry{ONS2014}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Office for National Statistics}}{O.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{O3}
+  \strng{fullhash}{O3}
+  \field{labelyear}{2014}
+  \field{sortinit}{O}
+  \field{title}{Vital Statistics. Population and health reference Tables}
+  \field{year}{2014}
+\endentry
+
+\entry{Olah2014}{book}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Ol{\'a}h}{O.}%
+     {Livia~Sz}{L.~S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Richter}{R.}%
+     {Rudolf}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kotowska}{K.}%
+     {Irena~E}{I.~E.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{2}{%
+    {Families}%
+    {societies. Working Paper Series}%
+  }
+  \strng{namehash}{OLS+1}
+  \strng{fullhash}{OLSRRKIE1}
+  \field{labelyear}{2014}
+  \field{sortinit}{O}
+  \field{title}{The new roles of men and women and implications for families
+  and societies}
+  \field{year}{2014}
+\endentry
+
+\entry{ONS2012}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{ONS}}{O.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{O4}
+  \strng{fullhash}{O4}
+  \field{labelyear}{2012}
+  \field{sortinit}{O}
+  \field{howpublished}{Office of National Statistics,
+  \url{http://www.ons.gov.uk/ons/rel/wellbeing/measuring-national-well-being/health/rft-health-tab-1.xls}}
+  \field{title}{Healthy Life Expectancy}
+  \field{year}{2012}
+\endentry
+
+\entry{ONS2013}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{ONS}}{O.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Office of National Statistics}%
+  }
+  \strng{namehash}{O4}
+  \strng{fullhash}{O4}
+  \field{labelyear}{2013}
+  \field{extrayear}{1}
+  \field{sortinit}{O}
+  \field{howpublished}{\url{http://www.ons.gov.uk/ons/dcp171776_318773.pdf}}
+  \field{title}{Ethnic Variations in General Health and Unpaid Care Provision,
+  2011}
+  \field{year}{2013}
+\endentry
+
+\entry{ONS2013a}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{ONS}}{O.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{O4}
+  \strng{fullhash}{O4}
+  \field{labelyear}{2013}
+  \field{extrayear}{2}
+  \field{sortinit}{O}
+  \field{howpublished}{Office of National Statistics}
+  \field{title}{General health (General Lifestyle Survey Overview - a report on
+  the 2011 General Lifestyle Survey)}
+  \field{year}{2013}
+\endentry
+
+\entry{ONS2013c}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{ONS}}{O.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{O4}
+  \strng{fullhash}{O4}
+  \field{labelyear}{2013}
+  \field{extrayear}{3}
+  \field{sortinit}{O}
+  \field{howpublished}{Office of National Statistics}
+  \field{note}{Accessed 2014}
+  \field{title}{Historic and Projected Mortality Data from the Period and
+  Cohort Life Tables, 2012-based}
+  \field{year}{2013}
+\endentry
+
+\entry{ONS2013b}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{ONS}}{O.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{O4}
+  \strng{fullhash}{O4}
+  \field{labelyear}{2013}
+  \field{extrayear}{4}
+  \field{sortinit}{O}
+  \field{howpublished}{Office of National Statistics,
+  \url{http://www.ons.gov.uk/ons/rel/npp/national-population-}\\\url{projections/2012-based-projections/index.html}}
+  \field{note}{Accessed 2014}
+  \field{title}{National Population Projections, 2012-based projections}
+  \field{year}{2013}
+\endentry
+
+\entry{ONS2014c}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{ONS}}{O.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Office of National Statistics}%
+  }
+  \strng{namehash}{O4}
+  \strng{fullhash}{O4}
+  \field{labelyear}{2014}
+  \field{extrayear}{1}
+  \field{sortinit}{O}
+  \field{howpublished}{Office of National Statistics,
+  \url{http://www.ons.gov.uk/ons/dcp171776_365592.pdf}}
+  \field{title}{Characteristics of Home Workers, 2014}
+  \field{year}{2014}
+\endentry
+
+\entry{ONS2014b}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{ONS}}{O.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{O4}
+  \strng{fullhash}{O4}
+  \field{labelyear}{2014}
+  \field{extrayear}{2}
+  \field{sortinit}{O}
+  \field{howpublished}{Office of National Statistics,
+  \url{http://www.ons.gov.uk/ons/guide-method/compendiums/compendium-of-uk-statistics/population-and-migration/find-out-more/index.html}}
+  \field{title}{Compendium of UK Statistics: Population and Migratio;
+  Projections of the dependency ratio}
+  \field{year}{2014}
+\endentry
+
+\entry{ONS2015b}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{ONS}}{O.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{O4}
+  \strng{fullhash}{O4}
+  \field{labelyear}{2015}
+  \field{extrayear}{1}
+  \field{sortinit}{O}
+  \field{howpublished}{Office of National Statistics,
+  \url{http://www.ons.gov.uk/ons/rel/pop-estimate/population-estimates-for-uk--england-and-wales--scotland-and-northern-ireland/mid-2014/sty-ageing-of-the-uk-population.html}}
+  \field{title}{Ageing of the UK population}
+  \field{year}{2015}
+\endentry
+
+\entry{ONS2015}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{ONS}}{O.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{O4}
+  \strng{fullhash}{O4}
+  \field{labelyear}{2015}
+  \field{extrayear}{2}
+  \field{sortinit}{O}
+  \field{howpublished}{\url{http://www.ons.gov.uk/ons/rel/rdit2/internet-access---households-and-individuals/2015/rft-ia-2015.xls}}
+  \field{title}{Internet Access - Households and Individuals Dataset}
+  \field{year}{2015}
+\endentry
+
+\entry{ONS2015c}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{ONS}}{O.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{O4}
+  \strng{fullhash}{O4}
+  \field{labelyear}{2015}
+  \field{extrayear}{3}
+  \field{sortinit}{O}
+  \field{howpublished}{Office of National Statistics}
+  \field{title}{ONS Longitudinal Study (LS) based estimates of Life Expectancy
+  (LE) by the National Statistics Socioeconomic Classification (NS-SEC):
+  England and Wales}
+  \field{year}{2015}
+\endentry
+
+\entry{ONS2015a}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{ONS}}{O.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{O4}
+  \strng{fullhash}{O4}
+  \field{labelyear}{2015}
+  \field{extrayear}{4}
+  \field{sortinit}{O}
+  \field{howpublished}{\url{http://www.ons.gov.uk/ons/publications/re-reference-tables.html?edition=tcm\%3A77-396521}}
+  \field{title}{Participation Rates in the UK Labour Market , 2014}
+  \field{year}{2015}
+\endentry
+
+\entry{DWP2015}{misc}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Shale}{S.}%
+     {John}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Balchin}{B.}%
+     {Khadija}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rahman}{R.}%
+     {Juwaria}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Reeve}{R.}%
+     {Robert}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rolin}{R.}%
+     {Mark}{M.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{SJ+1}
+  \strng{fullhash}{SJBKRJRRRM1}
+  \field{labelyear}{2015}
+  \field{sortinit}{S}
+  \field{howpublished}{Department for Work and Pensions --National Statistics,
+  \url{https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/437246/households-below-average-income-1994-95-to-2013-14.pdf}}
+  \field{title}{Households Below Average Income, An analysis of the income
+  distribution 1994/95 – 2013/14}
+  \field{year}{2015}
+\endentry
+
+\entry{Sieg2008}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Siegler}{S.}%
+     {Veronique}{V.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Langford}{L.}%
+     {Ann}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Johnson}{J.}%
+     {Brian}{B.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Office of Public Sector Information}%
+  }
+  \strng{namehash}{SV+1}
+  \strng{fullhash}{SVLAJB1}
+  \field{labelyear}{2008}
+  \field{sortinit}{S}
+  \field{number}{40}
+  \field{pages}{6}
+  \field{title}{Regional differences in male mortality inequalities using the
+  National Statistics Socio-economic Classification, England and Wales,
+  2001-03}
+  \field{journaltitle}{Health statistics quarterly}
+  \field{year}{2008}
+\endentry
+
+\entry{Sieg2015}{misc}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Siegler}{S.}%
+     {Veronique}{V.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Njeru}{N.}%
+     {Rittah}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Thomas}{T.}%
+     {Jennifer}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{SV+1}
+  \strng{fullhash}{SVNRTJ1}
+  \field{labelyear}{2015}
+  \field{sortinit}{S}
+  \field{howpublished}{\url{http://www.ons.gov.uk/ons/dcp171766_410190.pdf}}
+  \field{note}{ONS}
+  \field{title}{Inequalities in Social Capital by Age and Sex, July 2015}
+  \field{year}{2015}
+\endentry
+
+\entry{UoE2015}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{University of Essex}}{U.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{3}{%
+    {Institute for Social}%
+    {Economic Research}%
+    {NatCen Social Research}%
+  }
+  \strng{namehash}{U1}
+  \strng{fullhash}{U1}
+  \field{labelyear}{2015}
+  \field{sortinit}{U}
+  \field{howpublished}{7th Edition. Colchester, Essex: UK Data Archive
+  [distributor], November 2015. SN: 6614}
+  \field{title}{Understanding Society: Waves 1-5, 2009-2014 [computer file]}
+  \field{year}{2015}
+\endentry
+
+\entry{vdKaa1987}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Van de Kaa}}{V.}%
+     {D.J.}{D.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{VD1}
+  \strng{fullhash}{VD1}
+  \field{labelyear}{1987}
+  \field{sortinit}{V}
+  \field{issue}{1}
+  \field{pages}{3\bibrangedash 57}
+  \field{title}{Europe’s second demographic transition}
+  \field{volume}{42}
+  \field{journaltitle}{Population Bulletin}
+  \field{year}{1987}
+\endentry
+
+\entry{Wilson2014}{misc}{}
+  \true{moreauthor}
+  \name{author}{5}{}{%
+    {{}%
+     {Wilson}{W.}%
+     {Rob}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Beaven}{B.}%
+     {Rachel}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {May-Gillings}{M.-G.}%
+     {Mike}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hay}{H.}%
+     {Graham}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Stevens}{S.}%
+     {James}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Wath-upon-Dearne, England; UKCES}%
+  }
+  \strng{namehash}{WR+1}
+  \strng{fullhash}{WRBRMGMHGSJ+1}
+  \field{labelyear}{2014}
+  \field{sortinit}{W}
+  \field{title}{Working futures 2012-2022}
+  \field{year}{2014}
+\endentry
+
+\lossort
+\endlossort
+
+\endinput
