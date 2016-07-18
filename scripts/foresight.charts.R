@@ -755,6 +755,8 @@ require(xtable)
 table.4.1 <- cbind(data.4.2, data.4.1[,2])
 print(xtable(table.4.1), include.rownames=FALSE)
 
+
+
 ## Fig 4.3  Projections: Working age population, pensionable age population
 ###############################################################################
 data.4.3 <- read.csv("data/UKWorkPensionProj.csv")
@@ -787,23 +789,27 @@ legend(2030, 38000, legend=c( "m", "f"), col = c("black", "red"), lwd=c( 2,2),
 dev.copy2eps(file="figures/Fig4.3.eps", width=7, height=3.3)
 
 par(.oldpar)
+## Tab 4.3
+###############################################################################
+require(xtable)
+table.4.2 <- cbind(round(data.4.3,2), round(data.4.3[,2]/data.4.3[,3],2))
+print(xtable(table.4.2,digits=c(0,0,0,0,2)), include.rownames=FALSE )
+
 
 ## Fig 4.4
 ###############################################################################
-data.4.4 <- read.csv("fig44.csv")
+data.4.4 <- read.csv("data/UKDependencyRatio.csv")
 
-par(mar=c(3.1, 5.6, 1.1,3.1), xpd=TRUE)
+par(mar=c(3.6, 5.6, 3.1,4.1), xpd=TRUE)
 plot(data.4.4[,1], data.4.4[,2], typ="l",
      axes= FALSE,
-     xlab="", ylab="", lwd=2,
+     xlab="x", ylab="", lwd=2,
      ylim=c(2.2,4), col="red")
-lines(data.4.4[,1], data.4.4[,3], lwd=2, col= "black", lty=2)
-lines(data.4.4[,1], data.4.4[,4], lwd=2, col= "gray60", lty=2)
-lines(data.4.4[,1], data.4.4[,5], lwd=2, col= "gray40", lty=2)
-lines(data.4.4[,1], data.4.4[,6], lwd=2, col= "gray70", lty=2)
+
 
 axis(1, at=c(2012,seq(2015, 2035, 5), 2037), labels = FALSE)
 axis(4, at=seq(2.2,4,0.2),las=2)
+mtext("y", 4, line=3)
 text(x=c(2012,seq(2015, 2035, 5), 2037), y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
      labels=c(2012,seq(2015, 2035, 5), 2037), srt=45, adj=1, xpd=TRUE)
 
@@ -818,36 +824,35 @@ lines(c(2012, 2037), c(3.8,3.8), lty=2, col="gray80")
 lines(c(2012, 2037), c(3.0,3.0), lty=2, col="gray80")
 lines(c(2012, 2037), c(4.0,4.0), lty=2, col="gray80")
 
+lines(data.4.4[,1], data.4.4[,2], lwd=2, col= "red", lty=1)
+lines(data.4.4[,1], data.4.4[,3], lwd=2, col= "black", lty=2)
+lines(data.4.4[,1], data.4.4[,4], lwd=2, col= "gray60", lty=2)
+lines(data.4.4[,1], data.4.4[,5], lwd=2, col= "gray40", lty=2)
+lines(data.4.4[,1], data.4.4[,6], lwd=2, col= "gray70", lty=2)
+
 text(2011, data.4.4[1,2], "a")
 text(2011, data.4.4[1,3]+0.1, "b")
 text(2011, data.4.4[1,4], "c")
 text(2011, data.4.4[1,5]-0.1, "d")
 text(2011, data.4.4[1,6], "e")
 
-dev.copy2eps(file="fig15.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig4.4.eps", width=7, height=3.5)
 
 par(.oldpar)
 
-
-## Tab 4.2
-###############################################################################
-require(xtable)
-table.4.2 <- cbind(round(data.4.3,2), round(data.4.3[,2]/data.4.3[,3],2))
-print(xtable(table.4.2,digits=c(0,0,0,0,2)), include.rownames=FALSE )
-
-
-
-## Tab 4.3
+## Tab 4.4
 ###############################################################################
 require(xtable)
 table.4.4 <-data.4.4[c(1,seq(4,26,5), 26),]
 print(xtable(table.4.4,digits=c(0,0,2,2,2,2,2)), include.rownames=FALSE )
 
 
+
+
 ## Fig 5.1
 ###############################################################################
 
-data.5.1.1 <- read.csv("fig51.1.csv")
+data.5.1.1 <- read.csv("data/UKSectorAge.csv")
 data.5.1.1p <- prop.table(as.matrix(data.5.1.1[10:1,2:5]), 1)
 
 
@@ -855,7 +860,8 @@ par(mar=c(3.1, 8.5, 1.6,0.1), xpd=TRUE)
 
 barplot(t(as.matrix(data.5.1.1p)), width=data.5.1.1[10:1,6], horiz = TRUE,
         axes=FALSE, las=2, angle=45, density = c(20,15,10,5),
-        col=c("black", "gray30", "gray50", "gray80"))
+        col=c("black", "gray30", "gray50", "gray80"), xlab="")
+mtext("x", 1, line=2.5)
 axis(1)
 legend(x=0, y=39000, letters[1:4], horiz = TRUE, bty="n", x.intersp = 4,
        col=c("black", "gray30", "gray50", "gray80"), angle=45, density = c(20,15,10,5))
@@ -870,7 +876,7 @@ lines(c(1.0,1.0), c(0, 35500), lty=2, col="gray80")
 barplot(t(as.matrix(data.5.1.1p)), width=data.5.1.1[10:1,6], horiz = TRUE,
         axes=FALSE, las=2, angle=45, density = c(20,15,10,5),
         col=c("black", "gray30", "gray50", "gray80"), add=TRUE)
-dev.copy2eps(file="fig51.eps", width=7, height=5.5)
+dev.copy2eps(file="figures/Fig5.1.eps", width=7, height=5.5)
 par(.oldpar)
 
 
