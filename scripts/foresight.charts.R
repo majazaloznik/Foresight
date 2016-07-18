@@ -340,24 +340,15 @@ print(xtable(table.1.5to6),include.rownames=FALSE )
 
 
 
-## Fig 2.1
+## Fig 2.1 Life expectancy at birth for males and females in the United Kingdom, 1950-2010 and life expectancy gender difference.
 ###############################################################################
-data.2.1 <- read.csv("fig21.csv")
+data.2.1 <- read.csv("data/UKLexpBirth.csv")
 
-par(mar=c(3.1, 3.1, 1.1,0.1))
+par(mar=c(3.6, 3.6, 1.1,0.1))
 plot(data.2.1[,1], data.2.1[,2], typ="l",
      axes= FALSE,
-     xlab="", ylab="tfr", lwd=2,
+     xlab="x", ylab="y", lwd=2,
      ylim=c(0,100))
-lines(data.2.1[,1], data.2.1[,3], lwd=2, col= "red")
-polygon(c(1950,data.2.1[,1], 2010), c(0,data.2.1[,4],0), border="gray", col= "gray")
-
-axis(1, at=c(seq(1950, 2010, 5)), labels = FALSE)
-axis(2, at=seq(0,100,10),las=2)
-text(x=c(seq(1950, 2010, 5)), y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
-     labels=c(seq(1950, 2010, 5)), srt=45, adj=1, xpd=TRUE)
-
-
 lines(c(1950, 2010), c(50,50), lty=2, col="gray80")
 lines(c(1950, 2010), c(10,10), lty=2, col="gray80")
 lines(c(1950, 2010), c(20,20), lty=2, col="gray80")
@@ -369,25 +360,40 @@ lines(c(1950, 2010), c(80,80), lty=2, col="gray80")
 lines(c(1950, 2010), c(90,90), lty=2, col="gray80")
 lines(c(1950, 2010), c(100,100), lty=2, col="gray80")
 lines(c(1950, 2010), c(0,0), lty=2, col="gray80")
+lines(data.2.1[,1], data.2.1[,3], lwd=2, col= "red")
+lines(data.2.1[,1], data.2.1[,2], lwd=2, col= "black")
+
+polygon(c(1950,data.2.1[,1], 2010), c(0,data.2.1[,4],0), border="gray", col= "gray")
+
+axis(1, at=c(seq(1950, 2010, 5)), labels = FALSE)
+axis(2, at=seq(0,100,10),las=2)
+text(x=c(seq(1950, 2010, 5)), y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
+     labels=c(seq(1950, 2010, 5)), srt=45, adj=1, xpd=TRUE)
+
+
+
 rect(1990, 25,2008, 55, col="white", border="white")
 legend(1990, 60, legend=rev(c("d", "m", "f")), col = rev(c("gray", "black", "red")), lwd=c( 2,2, NA), 
        box.col="white", lty = c(1,1, NA), fill=c(NA, NA, "gray"), border=c(NA, NA, "gray"),x.intersp=c(1,1,1),
        bg = "white", merge = TRUE, cex=1.5, y.intersp = 1.4)
 
-dev.copy2eps(file="fig07.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig2.1.eps", width=7, height=3.5)
 par(.oldpar)
-
-(data.2.1[13,2]-data.2.1[1,2])*12/60
-(data.2.1[13,3]-data.2.1[1,3])*12/60
-
-## Fig 2.2
+## Tab 2.1
 ###############################################################################
-data.2.2 <- read.csv("fig22.csv")
 
-par(mar=c(3.1, 3.1, 1.1,4.1), xpd=TRUE)
+require(xtable)
+table.2.1 <- data.2.1
+print(xtable(t(table.2.1),include.rownames=FALSE ))
+
+## Fig 2.2 Life expectancy at ages 65 and 80 for males and females in the United Kingdom, 1950-2010.
+###############################################################################
+data.2.2 <- read.csv("data/UKLexp6085.csv")
+
+par(mar=c(3.6, 3.6, 1.1,4.1), xpd=TRUE)
 plot(data.2.2[,1], data.2.2[,2], typ="l",
      axes= FALSE,
-     xlab="", ylab="tfr", lwd=2,
+     xlab="x", ylab="y", lwd=2,
      ylim=c(0,25))
 lines(data.2.2[,1], data.2.2[,3], lwd=2, col= "red")
 lines(data.2.2[,1], data.2.2[,4], lwd=2, col= "black", lty=2)
@@ -411,62 +417,69 @@ text(2012, data.2.2[13,3], "b")
 text(2012, data.2.2[13,4]-.5, "c")
 text(2012, data.2.2[13,5]+.5, "d")
 
-dev.copy2eps(file="fig08.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig2.2.eps", width=7, height=3.5)
 par(.oldpar)
 
-data.2.2[13,2]-data.2.2[1,2]
-data.2.2[13,3]-data.2.2[1,3]
-data.2.2[13,4]-data.2.2[1,4]
-data.2.2[13,5]-data.2.2[1,5]
 
-data.2.2[1,3]-data.2.2[1,2]
-data.2.2[13,3]-data.2.2[13,2]
-data.2.2[1,5]-data.2.2[1,4]
-data.2.2[13,5]-data.2.2[13,4]
-
-data.2.2[,3]-data.2.2[,2]
-data.2.2[,5]-data.2.2[,4]
-
-## Tab 2.1
-###############################################################################
-data.2.1 <- read.csv("fig21.csv")
-
-require(xtable)
-table.2.1 <- data.2.1
-print(xtable(t(table.2.1),include.rownames=FALSE ))
 
 ## Tab 2.2
 ###############################################################################
-data.2.2 <- read.csv("fig22.csv")
 
 require(xtable)
 table.2.2 <- data.2.2[,c(1,2,4,3,5)]
 print(xtable(t(table.2.2)),include.rownames=FALSE )
 
-## Fig 2.3 MISING
+## Fig 2.3 Survival from birth to age 15 and from age 60 to age 75 years, United Kingdom, 1922-2011, both sexes combined. Source: own calculations from the Human Mortality Database
 ###############################################################################
-data.2.3 <- read.csv("fig23.csv")
+data.G01<- read.csv("data/UKsurvivorship.csv")
+
+require(RColorBrewer)
+redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
+
+par(mar=c(3.6, 3.6, 2.1,4.1), xpd=TRUE)
+plot(c(1922, seq(1925,2010,5)), data.G01[,2], typ="l",
+     axes= FALSE,
+     col= "gray50",
+     xlab="x", ylab="y", lwd=2,
+     ylim=c(0,1))
+lines(c(1922, seq(1925,2010,5)), data.G01[,3], lwd=2, col= redgray[1])
+
+lines(c(1922, 2010), c(0,0), lty=2, col="gray80")
+lines(c(1922, 2010), c(0.2,0.2), lty=2, col="gray80")
+lines(c(1922, 2010), c(0.4,0.4), lty=2, col="gray80")
+lines(c(1922, 2010), c(0.6,0.6), lty=2, col="gray80")
+lines(c(1922, 2010), c(0.8,0.8), lty=2, col="gray80")
+lines(c(1922, 2010), c(1.0,1.0), lty=2, col="gray80")
+
+axis(2, las=2)
+axis(1, c(1922, seq(1925,2010,5)), labels=FALSE)
+text(x=c(1922, seq(1925,2010,5)), y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
+     labels=LETTERS[1:19], srt=45, adj=1, xpd=TRUE)
+text(2013, data.G01[19,2], "a")
+text(2013, data.G01[19,3], "b")
+
+dev.copy2eps(file="figures/Fig2.3.eps", width=7, height=3.5)
+par(.oldpar)
+
+## Tab extra george
+###############################################################################
+require(xtable)
+xx <- cbind(data.G01[1:10,], rbind(data.G01[11:19,], c(NA, NA)))
+print(xtable(xx), include.rownames=FALSE )
+
 
 
 
 ## Fig 2.4 
 ###############################################################################
-data.2.4 <- read.csv("fig24.csv")
+data.2.4 <- read.csv("data/UKLexpBirthProj.csv")
 
-par(mar=c(3.1, 3.1, 1.1,0.1))
+
+par(mar=c(3.6, 3.6, 1.1,0.1))
 plot(data.2.4[,1], data.2.4[,2], typ="l",
      axes= FALSE,
-     xlab="", ylab="", lwd=2,
+     xlab="x", ylab="y", lwd=2,
      ylim=c(0,100))
-lines(data.2.4[,1], data.2.4[,3], lwd=2, col= "red")
-polygon(c(2012,data.2.4[,1], 2050), c(0,data.2.4[,4],0), border="gray", col= "gray")
-
-axis(1, at=c(2012,seq(2015, 2050, 5)), labels = FALSE)
-axis(2, at=seq(0,100,10),las=2)
-text(x=c(2012,seq(2015, 2050, 5)), y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
-     labels=c(2012,seq(2015, 2050, 5)), srt=45, adj=1, xpd=TRUE)
-
-
 lines(c(2012, 2050), c(50,50), lty=2, col="gray80")
 lines(c(2012, 2050), c(10,10), lty=2, col="gray80")
 lines(c(2012, 2050), c(20,20), lty=2, col="gray80")
@@ -478,24 +491,47 @@ lines(c(2012, 2050), c(80,80), lty=2, col="gray80")
 lines(c(2012, 2050), c(90,90), lty=2, col="gray80")
 lines(c(2012, 2050), c(100,100), lty=2, col="gray80")
 lines(c(2012, 2050), c(0,0), lty=2, col="gray80")
+lines(data.2.4[,1], data.2.4[,2], lwd=2, col= "black")
+lines(data.2.4[,1], data.2.4[,3], lwd=2, col= "red")
+polygon(c(2012,data.2.4[,1], 2050), c(0,data.2.4[,4],0), border="gray", col= "gray")
+
+axis(1, at=c(2012,seq(2015, 2050, 5)), labels = FALSE)
+axis(2, at=seq(0,100,10),las=2)
+text(x=c(2012,seq(2015, 2050, 5)), y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
+     labels=c(2012,seq(2015, 2050, 5)), srt=45, adj=1, xpd=TRUE)
+
+
 rect(2040, 20,2050, 65, col="white", border="white")
 legend(2040, 60, legend=rev(c("d", "m", "f")), col = rev(c("gray", "black", "red")), lwd=c( 2,2, NA), 
        box.col="white", lty = c(1,1, NA), fill=c(NA, NA, "gray"), border=c(NA, NA, "gray"),x.intersp=c(1,1,1),
        bg = "white", merge = TRUE, cex=1.5, y.intersp = 1.4)
 
-dev.copy2eps(file="fig10.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig2.4.eps", width=7, height=3.5)
 par(.oldpar)
 
-
-## Fig 2.5
+## Tab 2.4
 ###############################################################################
-data.2.5 <- read.csv("fig25.csv")
+table.2.4 <- data.2.4[c(1,seq(4,39,5 )),]
+require(xtable)
 
-par(mar=c(3.1, 3.1, 1.1,4.1), xpd=TRUE)
+print(xtable(t(table.2.4)),include.rownames=FALSE )
+
+## Fig 2.5 Life expectancy at ages 65 and 80 for males and females in the United Kingdom, 2012-2050
+###############################################################################
+data.2.5 <- read.csv("data/UKLexp6085Proj.csv")
+
+par(mar=c(3.6, 3.6, 1.1,4.1), xpd=TRUE)
 plot(data.2.5[,1], data.2.5[,2], typ="l",
      axes= FALSE,
-     xlab="", ylab="", lwd=2,
+     xlab="x", ylab="y", lwd=2,
      ylim=c(0,30))
+lines(c(2012, 2050), c(10,10), lty=2, col="gray80")
+lines(c(2012, 2050), c(20,20), lty=2, col="gray80")
+lines(c(2012, 2050), c(30,30), lty=2, col="gray80")
+lines(c(2012, 2050), c(15,15), lty=2, col="gray80")
+lines(c(2012, 2050), c(25,25), lty=2, col="gray80")
+lines(c(2012, 2050), c(5,5), lty=2, col="gray80")
+lines(data.2.5[,1], data.2.5[,2], lwd=2, col= "black")
 lines(data.2.5[,1], data.2.5[,3], lwd=2, col= "red")
 lines(data.2.5[,1], data.2.5[,4], lwd=2, col= "black", lty=2)
 lines(data.2.5[,1], data.2.5[,5], lwd=2, col= "red", lty=2)
@@ -505,125 +541,25 @@ axis(2, at=seq(0,30,5),las=2)
 text(x=c(2012,seq(2015, 2050, 5)), y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
      labels=c(2012,seq(2015, 2050, 5)), srt=45, adj=1, xpd=TRUE)
 
-lines(c(2012, 2050), c(10,10), lty=2, col="gray80")
-lines(c(2012, 2050), c(20,20), lty=2, col="gray80")
-lines(c(2012, 2050), c(30,30), lty=2, col="gray80")
-lines(c(2012, 2050), c(15,15), lty=2, col="gray80")
-lines(c(2012, 2050), c(25,25), lty=2, col="gray80")
-lines(c(2012, 2050), c(5,5), lty=2, col="gray80")
-
 text(2051, data.2.5[39,2], "a")
 text(2051, data.2.5[39,3], "b")
 text(2051, data.2.5[39,4]-.5, "c")
 text(2051, data.2.5[39,5]+.5, "d")
 
-dev.copy2eps(file="fig11.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig2.5.eps", width=7, height=3.5)
 par(.oldpar)
 
 
-## Fig 2.6
+## Tab 2.5
 ###############################################################################
-data.2.6 <- read.csv("fig26.csv", colClasses = c("factor", rep("numeric", 9)) )
-require(RColorBrewer)
-redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
+table.2.5 <- data.2.5[c(1,seq(4,39,5 )),]
+require(xtable)
+print(xtable(t(table.2.5)),include.rownames=FALSE )
 
-data.2.6[,11] <- data.2.6[,4]+20
-data.2.6[,12] <- data.2.6[,5]+40
-data.2.6[,13] <- data.2.6[,6]+60
-data.2.6[,14] <- data.2.6[,7]+65
-data.2.6[,15] <- data.2.6[,8]+75
-data.2.6[,16] <- data.2.6[,9]+80
-data.2.6[,17] <- data.2.6[,10]+85
-
-par(mar=c(3.6, 4.1, 2.1,1.1), xpd=TRUE)
-
-barplot(as.matrix(data.2.6[c(1,8),c(3,11:17)]), beside = TRUE, 
-        angle=45, density=15, 
-        col = c("black", redgray[1]), horiz=TRUE,
-        axes=FALSE, las=2, ylab="aa", xlim=c(0,100),names.arg = LETTERS[1:8])
-mtext("LE", side=1, line=2.5)
-
-lines(c(0, 0), c(0,25), lty=2, col="gray80")
-lines(c(20, 20), c(0,25), lty=2, col="gray80")
-lines(c(40, 40), c(0,25), lty=2, col="gray80")
-lines(c(60, 60), c(0,25), lty=2, col="gray80")
-lines(c(80, 80), c(0,25), lty=2, col="gray80")
-lines(c(85, 85), c(0,25), lty=2, col="gray80")
-lines(c(90, 90), c(0,25), lty=2, col="gray80")
-lines(c(95, 95), c(0,25), lty=2, col="gray80")
-lines(c(100, 100), c(0,25), lty=2, col="gray80")
-barplot(as.matrix(data.2.6[c(1,8),c(3,11:17)]), beside = TRUE, 
-        angle=45, density=15, 
-        col = c("black", redgray[1]), horiz=TRUE,
-        axes=FALSE, las=2, ylab="aa", xlab="", add=TRUE, names.arg = NA)
-barplot(matrix(rep(c(0,20,40,60,65,75,80,85), each=2), nrow=2), 
-        beside = TRUE, add=TRUE,angle=-45, density=15,
-        col=c( "black", redgray[1]), horiz=TRUE,names.arg = NA)
-axis(1, at=seq(0,100,20))
-legend(x=20,y=27.5, letters[2],col =c( "black"), fill =  c("black"),
-       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
-
-legend(x=40,y=27.5, letters[4],col =c(  redgray[1]), fill =  c( redgray[1]),
-       border= redgray[1],
-       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
-
-dev.copy2eps(file="fig26.eps", width=7, height=3.5)
-par(.oldpar)
-
-## Fig 2.7
-###############################################################################
-data.2.6 <- read.csv("fig26.csv", colClasses = c("factor", rep("numeric", 9)) )
-require(RColorBrewer)
-redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
-
-data.2.6[,11] <- data.2.6[,4]+20
-data.2.6[,12] <- data.2.6[,5]+40
-data.2.6[,13] <- data.2.6[,6]+60
-data.2.6[,14] <- data.2.6[,7]+65
-data.2.6[,15] <- data.2.6[,8]+75
-data.2.6[,16] <- data.2.6[,9]+80
-data.2.6[,17] <- data.2.6[,10]+85
-
-par(mar=c(3.6, 4.1, 2.1,1.1), xpd=TRUE)
-
-barplot(as.matrix(data.2.6[c(9,16),c(3,11:17)]), beside = TRUE, 
-        angle=45, density=15, 
-        col = c("black", redgray[1]), horiz=TRUE,
-        axes=FALSE, las=2, ylab="aa",  xlim=c(0,100),names.arg = LETTERS[1:8])
-mtext("LE", side=1, line=2.5)
-lines(c(0, 0), c(0,25), lty=2, col="gray80")
-lines(c(20, 20), c(0,25), lty=2, col="gray80")
-lines(c(40, 40), c(0,25), lty=2, col="gray80")
-lines(c(60, 60), c(0,25), lty=2, col="gray80")
-lines(c(80, 80), c(0,25), lty=2, col="gray80")
-lines(c(85, 85), c(0,25), lty=2, col="gray80")
-lines(c(90, 90), c(0,25), lty=2, col="gray80")
-lines(c(95, 95), c(0,25), lty=2, col="gray80")
-lines(c(100, 100), c(0,25), lty=2, col="gray80")
-barplot(as.matrix(data.2.6[c(9,16),c(3,11:17)]), beside = TRUE, 
-        angle=45, density=15, 
-        col = c("black", redgray[1]), horiz=TRUE,
-        axes=FALSE, las=2, ylab="aa", xlab="", add=TRUE, names.arg = NA)
-barplot(matrix(rep(c(0,20,40,60,65,75,80,85), each=2), nrow=2), 
-        beside = TRUE, add=TRUE,angle=-45, density=15,
-        col=c( "black", redgray[1]), horiz=TRUE,names.arg = NA)
-axis(1, at=seq(0,100,20))
-legend(x=20,y=27.5, letters[2],col =c( "black"), fill =  c("black"),
-       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
-
-legend(x=40,y=27.5, letters[4],col =c(  redgray[1]), fill =  c( redgray[1]),
-       border= redgray[1],
-       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
-
-dev.copy2eps(file="fig27.eps", width=7, height=3.5)
-par(.oldpar)
-
-
-
-## Joined 2.6 and 2.7
+## Fig 2.6 Cohort life expectancies in 2012 and 2050 for selected cohorts, principal projection, 2012-based.
 ###############################################################################
 
-data.2.6 <- read.csv("fig26.csv", colClasses = c("factor", rep("numeric", 9)) )
+data.2.6 <- read.csv("data/UKpopStrProj.csv", colClasses = c("factor", rep("numeric", 9)) )
 require(RColorBrewer)
 redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
 
@@ -666,10 +602,12 @@ legend(x=-10,y=29.5, letters[2],col =c( "black"), fill =  c("black"),
        density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
 
 par(mar=c(3.6, 2.1, 2.1,1.1), xpd=TRUE)
-barplot(as.matrix(data.2.6[c(9,16),c(3,11:17)]), beside = TRUE, 
+mp <-barplot(as.matrix(data.2.6[c(9,16),c(3,11:17)]), beside = TRUE, 
         angle=45, density=15, 
         col = c("black", redgray[1]), horiz=TRUE,
-        axes=FALSE, las=2, ylab="aa",  hadj=2,xlim=c(0,100),names.arg = LETTERS[1:8])
+        axes=FALSE, las=2, ylab="aa",  xlim=c(0,100), names.arg = NA)
+text(rep(-10, 8), apply(mp, 2, mean), LETTERS[1:8], pos=4)
+
 mtext("LE", side=1, line=2.5)
 mtext("yy", side=3, line=0.5)
 
@@ -694,34 +632,13 @@ legend(x=-10,y=29.5, letters[4],col =c(  redgray[1]), fill =  c( redgray[1]),
        border= redgray[1],
        density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
 
-dev.copy2eps(file="fig267.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig2.6", width=7, height=3.5)
 par(.oldpar)
-
-
-
-## Tab 2.4
-###############################################################################
-data.2.4 <- read.csv("fig24.csv")
-table.2.4 <- data.2.4[c(1,seq(4,39,5 )),]
-require(xtable)
-
-print(xtable(t(table.2.4)),include.rownames=FALSE )
-
-## Tab 2.5
-###############################################################################
-data.2.5 <- read.csv("fig25.csv")
-table.2.5 <- data.2.5[c(1,seq(4,39,5 )),]
-require(xtable)
-print(xtable(t(table.2.5)),include.rownames=FALSE )
-
 
 ## Tab 2.6
 ###############################################################################
-
 require(xtable)
-data.2.6 <- read.csv("fig24.csv")
 table.2.6 <- cbind(data.2.6[c(1,8,9,16), 1:10])
-
 print(xtable(table.2.6),include.rownames=FALSE )
 
 
@@ -2438,45 +2355,6 @@ data.9.4 <- read.csv("fig94.csv")
 t(as.matrix(data.9.4))
 print(xtable(data.9.4), include.rownames=FALSE )
 
-
-## Fig extra george
-###############################################################################
-data.G01<- read.csv("figG01.csv")
-
-require(RColorBrewer)
-redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
-
-par(mar=c(2.7, 2.5, 0.1,4.1), xpd=TRUE)
-plot(c(1922, seq(1925,2010,5)), data.G01[,2], typ="l",
-     axes= FALSE,
-     col= "gray50",
-     xlab="", ylab="", lwd=2,
-     ylim=c(0,1.2))
-lines(c(1922, seq(1925,2010,5)), data.G01[,3], lwd=2, col= redgray[1])
-
-lines(c(1922, 2010), c(0,0), lty=2, col="gray80")
-lines(c(1922, 2010), c(0.2,0.2), lty=2, col="gray80")
-lines(c(1922, 2010), c(0.4,0.4), lty=2, col="gray80")
-lines(c(1922, 2010), c(0.6,0.6), lty=2, col="gray80")
-lines(c(1922, 2010), c(0.8,0.8), lty=2, col="gray80")
-lines(c(1922, 2010), c(1.0,1.0), lty=2, col="gray80")
-lines(c(1922, 2010), c(1.2,1.2), lty=2, col="gray80")
-
-axis(2, las=2)
-axis(1, c(1922, seq(1925,2010,5)), labels=FALSE)
-text(x=c(1922, seq(1925,2010,5)), y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
-     labels=LETTERS[1:19], srt=45, adj=1, xpd=TRUE)
-text(2013, data.G01[19,2], "a")
-text(2013, data.G01[19,3], "b")
-
-dev.copy2eps(file="figG01.eps", width=7, height=3.5)
-par(.oldpar)
-
-## Tab extra george
-###############################################################################
-require(xtable)
-xx <- cbind(data.G01[1:10,], rbind(data.G01[11:19,], c(NA, NA)))
-print(xtable(xx), include.rownames=FALSE )
 
 
 ## Fig extra ethn
