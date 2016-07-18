@@ -688,15 +688,15 @@ dev.copy2eps(file="figures/Fig3.1.eps", width=7, height=3.5)
 par(.oldpar)
 
 
-## Fig 4.1
+## Fig 4.1 Median age in the UK 1974 onwards.
 ###############################################################################
-data.4.1 <- read.csv("fig41.csv")
+data.4.1 <- read.csv("data/UKMedianAge.csv")
 
 par(mar=c(4.1, 4.1, 0.1,0.1))
 
 plot(data.4.1[,1], data.4.1[,2], typ="l",
      ylim=c(30,42), axes= FALSE,
-     xlab="", ylab="ma", lwd=2)
+     xlab="x", ylab="ma", lwd=2)
 axis(1, at=c(seq(1974, 2014, 4)), labels = FALSE)
 axis(2, las=2)
 text(x=c(seq(1974, 2014, 4)), y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
@@ -708,24 +708,24 @@ lines(c(1974, 2014), c(36,36), lty=2, col="gray80")
 lines(c(1974, 2014), c(38,38), lty=2, col="gray80")
 lines(c(1974, 2014), c(40,40), lty=2, col="gray80")
 lines(c(1974, 2014), c(42,42), lty=2, col="gray80")
-
-dev.copy2eps(file="fig12.eps", width=7, height=3.5)
+lines(data.4.1[,1], data.4.1[,2])
+dev.copy2eps(file="figures/Fig4.1.eps", width=7, height=3.5)
 par(.oldpar)
     
 require(xtable)
 table.4.1 <-  t(data.4.1[seq(1, 41, 4),])
 print(xtable(table.4.1), include.rownames=FALSE)
 
-## Fig 4.2
+## Fig 4.2 Proportion of people at older ages, UK population mid-1974 onwards.
 ###############################################################################
-data.4.2 <- read.csv("fig42.csv")
+data.4.2 <- read.csv("data/UKPropOlder.csv")
 
 par(mar=c(3.1, 3.1, 1.1,5.1))
 plot(data.4.2[,1], data.4.2[,2], typ="n",
      axes= FALSE,
-     xlab="", ylab="", lwd=2,
+     xlab="x", ylab="y", lwd=2,
      ylim=c(0,12))
-polygon(c(1974,data.4.2[,1], 2014), c(0,data.4.2[,4],0), border="black", col= "black", density=20)
+polygon(c(1974,data.4.2[,1], 2014), c(0,data.4.2[,4],0), border="black", col= "black", density=15)
 polygon(c(data.4.2[,1], rev(data.4.2[,1])), c(data.4.2[,4],rev(data.4.2[,3])), border="black", col= "black", density=10)
 polygon(c(data.4.2[,1], rev(data.4.2[,1])), c(data.4.2[,3],rev(data.4.2[,2])), border="black", col= "black", density=5)
 
@@ -746,9 +746,8 @@ text(2015, mean(c(data.4.2[41,2], data.4.2[41,3])), "a")
 text(2015, mean(c(data.4.2[41,3], data.4.2[41,4])), "b")
 text(2015, mean(c(data.4.2[41,4], 0)), "c")
 
-dev.copy2eps(file="fig13.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig4.2.eps", width=7, height=3.5)
 par(.oldpar)
-
 
 ## Tab 4.1
 ###############################################################################
@@ -756,14 +755,14 @@ require(xtable)
 table.4.1 <- cbind(data.4.2, data.4.1[,2])
 print(xtable(table.4.1), include.rownames=FALSE)
 
-## Fig 4.3
+## Fig 4.3  Projections: Working age population, pensionable age population
 ###############################################################################
-data.4.3 <- read.csv("fig43.csv")
+data.4.3 <- read.csv("data/UKWorkPensionProj.csv")
 
-par(mar=c(3.1, 4.1, 1.1,0.1))
+par(mar=c(3.6, 4.1, 1.1,0.1))
 plot(data.4.3[,1], data.4.3[,2], typ="l",
      axes= FALSE,
-     xlab="", ylab="xx", lwd=2,
+     xlab="x", ylab="xx", lwd=2,
      ylim=c(0,50000))
 lines(data.4.3[,1], data.4.3[,3], lwd=2, col= "red")
 
@@ -785,7 +784,7 @@ legend(2030, 38000, legend=c( "m", "f"), col = c("black", "red"), lwd=c( 2,2),
        box.col="white", lty = c(1,1), fill=c(NA, NA), border=c(NA, NA),
        bg = "white", merge = TRUE, cex=1.5, y.intersp = 1.4)
 
-dev.copy2eps(file="fig14.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig4.3.eps", width=7, height=3.3)
 
 par(.oldpar)
 
