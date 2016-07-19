@@ -847,9 +847,7 @@ table.4.4 <-data.4.4[c(1,seq(4,26,5), 26),]
 print(xtable(table.4.4,digits=c(0,0,2,2,2,2,2)), include.rownames=FALSE )
 
 
-
-
-## Fig 5.1
+## Fig 5.1 Proportion of workers (empoyed and self-employed) by age group and sector, 2012, representative sample of UK private households (LFS)
 ###############################################################################
 
 data.5.1.1 <- read.csv("data/UKSectorAge.csv")
@@ -863,7 +861,7 @@ barplot(t(as.matrix(data.5.1.1p)), width=data.5.1.1[10:1,6], horiz = TRUE,
         col=c("black", "gray30", "gray50", "gray80"), xlab="")
 mtext("x", 1, line=2.5)
 axis(1)
-legend(x=0, y=39000, letters[1:4], horiz = TRUE, bty="n", x.intersp = 4,
+legend(x=0, y=39000, letters[1:4], horiz = TRUE, bty="n", x.intersp = 6,
        col=c("black", "gray30", "gray50", "gray80"), angle=45, density = c(20,15,10,5))
 lines(c(0.0,0.0), c(0, 35500), lty=2, col="gray80")
 lines(c(0.2,0.2), c(0, 35500), lty=2, col="gray80")
@@ -880,24 +878,9 @@ dev.copy2eps(file="figures/Fig5.1.eps", width=7, height=5.5)
 par(.oldpar)
 
 
-## Fig 5.2
-###############################################################################
-
-data.5.1.1 <- read.csv("fig51.1.csv")
-data.5.1.2p <- prop.table(as.matrix(data.5.1.1[,2:5]), 2)
-# 
-# barplot(t(as.matrix(data.5.1.2p)), beside=TRUE)
-#         col=c("black", "gray30", "gray50", "gray80"))
-# axis(1)
-# legend(x=0.1, y=38000, letters[1:4], horiz = TRUE, bty="n", x.intersp = 5,
-#        col=c("black", "gray30", "gray50", "gray80"), angle=45, density = c(30,20,10,5))
-# 
-
 ## Tab 5.1
 ###############################################################################
 require(xtable)
-
-data.5.1.1 <- read.csv("fig51.1.csv")
 table.5.1.1 <- cbind(data.5.1.1[,1], as.data.frame(round(100*prop.table(as.matrix(data.5.1.1[,2:5]), 1), 2)), rep(100,10))
 print(xtable(table.5.1.1), include.rownames=FALSE )
 
@@ -913,31 +896,21 @@ print(xtable(table.5.1.2), include.rownames=FALSE )
 
 
 
-## Fig 5.3
+## Fig 5.2
 ###############################################################################
 
-data.5.3 <- read.csv("fig53.csv")
+data.5.3 <- read.csv("data/UKFullPartWork.csv")
 data.5.3$m1 <- data.5.3[,2]/(data.5.3[,2]+data.5.3[,3])
 data.5.3$m2 <- data.5.3[,3]/(data.5.3[,2]+data.5.3[,3])
 
-# par(mfrow=c(1,2))
-# par(mar=c(3.1, 1.6, 1.1,1.6))
-# mp <- barplot(-data.5.3$m1, horiz = TRUE, xlim=c(-1,0), width=(data.5.3[,2]+data.5.3[,3]),
-#               axes=FALSE, angle=45, density=20, col = "black")
-# axis(4, at=mp[seq(1,31,5)], labels=seq(40,70,5), las=2)
-# axis(1, at=seq(0,-1,-0.2))
-# barplot(data.5.3$m2, horiz = TRUE, xlim=c(0,1), width=(data.5.3[,2]+data.5.3[,3]),
-#         axes=FALSE, angle=45, density=20, col = "black")
-# axis(2, at=mp[seq(1,31,5)], labels=FALSE)
-# axis(1, at=seq(0,1,0.2))
-
 par(mfrow=c(2,1))
-par(mar=c(1.3, .6, 1.3,2.6))
+par(mar=c(1.3, .6, 1.3,4.6))
 mp <- barplot(data.5.3$m1,  ylim=c(0,1), width=(data.5.3[,2]+data.5.3[,3]),
               axes=FALSE, angle=45, density=20, col = "black")
 axis(1, at=mp[seq(1,31,5)], labels=seq(40,70,5))
 axis(4, at=seq(0,1,0.2), las=2)
-mtext("xx", side=2)
+mtext("xx", side=2, line=-1)
+mtext("Y", side=4, line=4.5)
 lines(c(0, 7750), c(0,0), lty=2, col="gray80")
 lines(c(0, 7750), c(0.2,0.2), lty=2, col="gray80")
 lines(c(0, 7750), c(0.4,0.4), lty=2, col="gray80")
@@ -950,7 +923,8 @@ barplot(-data.5.3$m2, ylim=c(-1,0), width=(data.5.3[,2]+data.5.3[,3]),
         axes=FALSE, angle=45, density=20, col = "black")
 axis(3, at=mp[seq(1,31,5)], labels=FALSE)
 axis(4, at=seq(-1,0,0.2), las=2)
-mtext("yy", side=2)
+mtext("yy", side=2, line=-1)
+text(-150, 0.05, "a")
 lines(c(0, 7750), c(-0,-0), lty=2, col="gray80")
 lines(c(0, 7750), c(-0.2,-0.2), lty=2, col="gray80")
 lines(c(0, 7750), c(-0.4,-0.4), lty=2, col="gray80")
@@ -959,7 +933,8 @@ lines(c(0, 7750), c(-0.8,-0.8), lty=2, col="gray80")
 lines(c(0, 7750), c(-1,-1), lty=2, col="gray80")
 barplot(-data.5.3$m2, ylim=c(-1,0), width=(data.5.3[,2]+data.5.3[,3]),
         axes=FALSE, angle=45, density=20, col = "black", add=TRUE)
-dev.copy2eps(file="fig53.eps", width=14, height=7)
+mtext("Y", side=4, line=4.5)
+dev.copy2eps(file="figures/Fig5.2.eps", width=14, height=7)
 par(.oldpar)
 
 ## Fig 5.4
@@ -968,27 +943,17 @@ par(.oldpar)
 data.5.3 <- read.csv("fig53.csv")
 data.5.3$f1 <- data.5.3[,4]/(data.5.3[,4]+data.5.3[,5])
 data.5.3$f2 <- data.5.3[,5]/(data.5.3[,4]+data.5.3[,5])
-# 
-# par(mfrow=c(1,2))
-# par(mar=c(3.1, 1.6, 1.1,1.6))
-# mp <- barplot(-data.5.3$f1, horiz = TRUE, xlim=c(-1,0), width=(data.5.3[,4]+data.5.3[,5]),
-#               axes=FALSE, angle=45, density=20, col = "black")
-# axis(4, at=mp[seq(1,31,5)], labels=seq(40,70,5), las=2)
-# axis(1, at=seq(0,-1,-0.2))
-# barplot(data.5.3$f2, horiz = TRUE, xlim=c(0,1), width=(data.5.3[,4]+data.5.3[,5]),
-#         axes=FALSE, angle=45, density=20, col = "black")
-# axis(2, at=mp[seq(1,31,5)], labels=FALSE)
-# axis(1, at=seq(0,1,0.2))
-# dev.copy2eps(file="fig54.eps", width=14, height=8)
 
 
-par(mfrow=c(2,1))
-par(mar=c(1.3, .6, 1.3,2.6))
+par(mfrow=c(2,1), xpd=TRUE)
+par(mar=c(1.3, .6, 1.3,4.5))
 mp <- barplot(data.5.3$f1,  ylim=c(0,1), width=(data.5.3[,4]+data.5.3[,5]),
               axes=FALSE, angle=45, density=20, col = "black")
 axis(1, at=mp[seq(1,31,5)], labels=seq(40,70,5))
 axis(4, at=seq(0,1,0.2), las=2)
-mtext("xx", side=2)
+mtext("xx", side=2, line=-1)
+mtext("Y", side=4, line=4.5)
+
 lines(c(0, 7750), c(0,0), lty=2, col="gray80")
 lines(c(0, 7750), c(0.2,0.2), lty=2, col="gray80")
 lines(c(0, 7750), c(0.4,0.4), lty=2, col="gray80")
@@ -999,9 +964,11 @@ barplot(data.5.3$f1,  ylim=c(0,1), width=(data.5.3[,4]+data.5.3[,5]),
         axes=FALSE, angle=45, density=20, col = "black", add=TRUE)
 barplot(-data.5.3$f2, ylim=c(-1,0), width=(data.5.3[,4]+data.5.3[,5]),
         axes=FALSE, angle=45, density=20, col = "black")
+text(-150, 0.05, "a")
+
 axis(3, at=mp[seq(1,31,5)], labels=FALSE)
 axis(4, at=seq(-1,0,0.2), las=2)
-mtext("yy", side=2)
+mtext("yy", side=2, line=-1)
 lines(c(0, 7750), c(-0,-0), lty=2, col="gray80")
 lines(c(0, 7750), c(-0.2,-0.2), lty=2, col="gray80")
 lines(c(0, 7750), c(-0.4,-0.4), lty=2, col="gray80")
@@ -1010,7 +977,9 @@ lines(c(0, 7750), c(-0.8,-0.8), lty=2, col="gray80")
 lines(c(0, 7750), c(-1,-1), lty=2, col="gray80")
 barplot(-data.5.3$f2, ylim=c(-1,0), width=(data.5.3[,4]+data.5.3[,5]),
         axes=FALSE, angle=45, density=20, col = "black", add=TRUE)
-dev.copy2eps(file="fig54.eps", width=14, height=7)
+mtext("Y", side=4, line=4.5)
+
+dev.copy2eps(file="figures/Fig5.3.eps", width=14, height=7)
 par(.oldpar)
 
 
