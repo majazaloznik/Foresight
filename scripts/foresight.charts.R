@@ -896,7 +896,7 @@ print(xtable(table.5.1.2), include.rownames=FALSE )
 
 
 
-## Fig 5.2
+## Fig 5.2 Proportion of female employees aged between 40 and 70 in full-time or part-time work in the UK, 4th quarter average 2011 
 ###############################################################################
 
 data.5.3 <- read.csv("data/UKFullPartWork.csv")
@@ -937,7 +937,7 @@ mtext("Y", side=4, line=4.5)
 dev.copy2eps(file="figures/Fig5.2.eps", width=14, height=7)
 par(.oldpar)
 
-## Fig 5.4
+## Fig 5.3 Proportion of male employees aged between 40 and 70 in full-time or part-time work in the UK, 4th quarter average 2011 
 ###############################################################################
 
 data.5.3 <- read.csv("fig53.csv")
@@ -1000,12 +1000,168 @@ print(xtable(table.5.3), digits = c(0,0,0,2,0,0,2), include.rownames=FALSE )
 
 
 
-## Fig 5.7
+## Fig 5.4 Participation rates in the United Kingdom for both genders and women only in dashed line, 1994-2014, based on 4 quarter rolling averages. 
+###############################################################################
+require(RColorBrewer)
+redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
+
+data.5.8 <- read.csv("data/UKParticipationRates.csv")
+data.5.8$date <- rep(seq(1994,2014), each=4)+ rep(c(0, .25, .5, .75),21)
+
+par(mar=c(3.6, 4.6, 3.1,1.1), xpd=TRUE)
+plot(data.5.8[,10],data.5.8[,2], type="l",
+     lwd=2, col="black", bty="n", axes=FALSE, xlab="x", ylab="", ylim=c(0,100))
+lines(data.5.8[,10],data.5.8[,3], col="gray40", lwd=2)
+lines(data.5.8[,10],data.5.8[,4], col="gray60", lwd=2)
+lines(data.5.8[,10],data.5.8[,5], col=redgray[1], lwd=2)
+mtext("y", side=2, line=4)
+lines(data.5.8[,10],data.5.8[,6], col="black",lwd=2, lty=2)
+lines(data.5.8[,10],data.5.8[,7], col="gray40", lwd=2, lty=2)
+lines(data.5.8[,10],data.5.8[,8], col="gray60", lwd=2, lty=2)
+lines(data.5.8[,10],data.5.8[,9],col=redgray[1], lwd=2, lty=2)
+axis(1, at=seq(1994, 2015), labels=FALSE)
+axis(2, las=2)
+text(x=seq(1994, 2015), y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
+     labels=seq(1994, 2015), srt=45, adj=1, xpd=TRUE)
+
+legend(x=1995, y=115, c("a", "c", "e", "o"), horiz = TRUE, bty="n", x.intersp = 7,
+       col=c("black", "gray40", "gray60", redgray[1]), lwd=2)
+
+
+dev.copy2eps(file="figures/Fig5.4.eps", width=7, height=3.5)
+par(.oldpar)
+
+## Tab 5.4
+###############################################################################
+require(xtable)
+table.5.8 <- data.5.8[  seq(1,81,4),c(10,2:9)]
+print(xtable(table.5.8,digits = c(0,0,1,1,1,1,1,1,1,1)) , include.rownames=FALSE )
+
+
+
+
+### Fig5.5 oecd employment rate charts
+###############################################################################
+require(dplyr)
+data.oecd1 <- read.csv("data/OECDEmploy.csv", as.is =c(2:8))
+
+data.oecd1 %>%
+  arrange(desc(Year), desc(X60.64)) %>%
+  filter(country != "EU21") %>%
+  mutate(lab =  c(letters, LETTERS[1:16])) ->
+  data.oecd1 
+
+myseq <- c(1:34, 37:44)
+par(mar=c(5.6, 4.6, 3.6, 0.1), xpd=TRUE)
+
+plot(myseq,data.oecd1[,2], ylim=c(0,100),
+     axes=FALSE, pch=16, col="black", cex=2,
+     xlab="", ylab="")
+axis(1, at=myseq, labels = c(letters, LETTERS[1:16]))
+axis(2, las=2)
+mtext("yy", side=2, line=5)
+mtext("xx", side=1, line=5)
+
+lines(c(1,44), rep(data.oecd1[1,5],2), col="gray20", lty=2, lwd=2)
+lines(c(1,44), rep(data.oecd1[1,6],2), col="pink", lty=2, lwd=2)
+lines(c(1,44), rep(data.oecd1[1,7],2), col="gray80", lty=2, lwd=2)
+
+mywidth <- 0.23
+for (i in myseq) {
+  if(i <=35)      {
+    rect(i-mywidth, data.oecd1[i,4], i+mywidth, data.oecd1[i,3],
+         density=15, col="gray80")
+    lines(c(i,i), c(par("usr")[3],data.oecd1[i,4]), col="gray80", lty=2, lwd=1)
+  }
+  if(i > 35)       {
+    rect(i-mywidth, data.oecd1[i-2,4], i+mywidth, data.oecd1[i-2,3],
+         density=15, col="gray80", bg="white")
+    lines(c(i,i), c(par("usr")[3], data.oecd1[i-2,4]), col="gray80", lty=2, lwd=1)
+  }
+}
+for (i in myseq) {
+  if(i <=35)      {
+    rect(i-mywidth, data.oecd1[i,3], i+mywidth, data.oecd1[i,2],
+         density=15, col="pink")
+  }
+  if(i > 35)       {
+    rect(i-mywidth, data.oecd1[i-2,3], i+mywidth, data.oecd1[i-2,2],
+         density=15, col="pink")
+  }
+}
+lines(c(15,15), c(par("usr")[3], data.oecd1[15,4]), col="red", lty=2, lwd=1)
+
+points(myseq,data.oecd1[,2], pch=16, col="black",cex=3)
+points(myseq,data.oecd1[,3], pch=16, col="red",cex=3)
+points(myseq,data.oecd1[,4], pch=16, col="gray50", cex=3)
+
+legend(20, 125, legend = c("Q", "R", "S"), pch=16, col=c("black", "red", "gray50"), 
+       pt.cex=3, bty="n", y.intersp = 1.2, title="V")
+
+legend(30, 115, legend = c("T", "U"),  fill=c("pink", "gray80"),
+       density = 15, angle=45, border=c("pink", "gray80"),
+       bty="n", y.intersp = 1.2, title = "W")
+
+
+dev.copy2eps(file="figures/Fig5.5.eps", width=20, height=14)
+
+
+cbind(as.character(data.oecd1$country),data.oecd1[,2]-data.oecd1[,4])
+###Table 5.5
+###############################################################################
+require(xtable)
+oecd.table <- data.oecd1[,1:4]
+print(xtable(oecd.table,digits=c(0,0,1,1,1)), include.rownames = FALSE)
+
+### Table 5.6
+###############################################################################
+require(dplyr)
+data.oecd2 <- read.csv("data/OECDEmploy2.csv", as.is =c(1:5))
+
+data.oecd2 %>%
+  arrange(group, Difference)
+
+par(mar=c(7.8, 4.6, 1.3,.6))
+mp <- barplot(as.matrix(data.oecd2[5]), beside = TRUE, ylim=c(-5,25),
+              axes=FALSE, angle=45, density=c(rep(20,18), 0, rep(20,24)), 
+              col = c(rep("black", 10), "red", rep("black", 31)), 
+              border = c(rep("black", 10), "red", rep("black", 31)),
+              space=c(rep(1, 35), 3, rep(1,7)), names.arg="")
+axis(2, las=2)
+text( y= c(1,1,rep(-1, 41)), x=mp, labels=c(letters, LETTERS[1:17]))
+
+lines(c(0, 89), c(0,0), lty=2, col="gray80")
+lines(c(0, 89), c(5,5), lty=2, col="gray80")
+lines(c(0, 89), c(10,10), lty=2, col="gray80")
+lines(c(0, 89), c(15,15), lty=2, col="gray80")
+lines(c(0, 89), c(20,20), lty=2, col="gray80")
+lines(c(0, 89), c(25,25), lty=2, col="gray80")
+lines(c(0, 89), c(-5,-5), lty=2, col="gray80")
+
+barplot(as.matrix(data.oecd2[5]), beside = TRUE, 
+        axes=FALSE, angle=45, density=c(rep(20,18), 0, rep(20,24)), 
+        col = c(rep("black", 10), "red", rep("black", 31)), 
+        border = c(rep("black", 10), "red", rep("black", 31)),
+        space=c(rep(1, 35), 3, rep(1,7)), add=TRUE, names.arg="")
+
+mtext("xx", side = 1, line = 7)
+mtext("yy", side = 2, line = 5)
+dev.copy2eps(file="figures/Fig5.6.eps", width=20, height=10)
+
+### Table 5.6
+###############################################################################
+oecd.table2 <- data.oecd2[,2:5]
+require(xtable)
+print(xtable(oecd.table2,digits=c(0,0,2,2,2)), include.rownames = FALSE)
+mean(oecd.table2[1:36,3])
+
+## Fig 5.7 Estimates and projections of economic  activity for men aged 65 
+## and over and women aged 60 and over 
 ###############################################################################
 require(RColorBrewer)
 require(plotrix)
 redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
-data.5.7 <- read.csv("fig57.csv")
+data.5.7 <- read.csv("data/UKEconActivity.csv")
 
 data.5.7$m.over65 <- data.5.7[,5]-data.5.7[,6]
 data.5.7$am.over65 <- data.5.7[,13]-data.5.7[,14]
@@ -1015,14 +1171,12 @@ data.5.7$w.over60 <- data.5.7[,7]-data.5.7[,8]
 data.5.7$aw.over60 <- data.5.7[,15]-data.5.7[,16]
 data.5.7$P.aw.over60 <- data.5.7$w.over60/data.5.7$aw.over60
 
-par(mar=c(3.1, 3.6, 1.1,1.1))
+par(mar=c(3.6, 3.6, 1.1,1.1))
 plot(data.5.7[1:4,1],data.5.7$P.am.over65[1:4], type="l", ylim=c(0.05,0.15), 
-     xlim=c(1990, 2020), lwd=2, col="black", bty="n", axes=FALSE, xlab="", ylab="")
-lines(data.5.7[1:4,1],data.5.7$P.aw.over60[1:4], lwd=2, col="red")
-lines(data.5.7[4:8,1],data.5.7$P.aw.over60[4:8], lwd=2, col="red", lty=2)
-lines(data.5.7[4:8,1],data.5.7$P.am.over65[4:8], lwd=2, col="black", lty=2)
-
-axis(2, las=2, at=c(5,6,8,10,12,14)/100, labels=c(0,6,8,10,12,14)/100)
+     xlim=c(1990, 2020), lwd=2, col="black", bty="n", axes=FALSE, 
+     xlab="x", ylab="")
+mtext("y", side=2, line =2.5)
+axis(2, las=2, at=c(5,6,8,10,12,14)/100, labels=LETTERS[1:6])
 axis.break(2,5.5/100,style="slash") 
 axis(1)
 
@@ -1033,28 +1187,24 @@ lines(c(1990, 2020), c(0.12,0.12), lty=2, col="gray80")
 lines(c(1990, 2020), c(0.14,0.14), lty=2, col="gray80")
 lines(c(1990, 2020), c(0.14,0.14), lty=2, col="gray80")
 lines(c(2005, 2005), c(0.05,0.145), lty=2, col="gray80")
+lines(data.5.7[1:4,1],data.5.7$P.aw.over60[1:4], lwd=2, col="red")
+lines(data.5.7[4:8,1],data.5.7$P.aw.over60[4:8], lwd=2, col="red", lty=2)
+lines(data.5.7[4:8,1],data.5.7$P.am.over65[4:8], lwd=2, col="black", lty=2)
+lines(data.5.7[1:4,1],data.5.7$P.am.over65[4:8], lwd=2, col="black", lty=2)
 
 rect(1990, 0.11, 2005, 0.15, col="white", border=NA)
 legend(1990, 0.14, legend=c( "m", "f"), col = c("black", "red"), lwd=c( 2,2), 
        box.col="white", lty = c(1,1), fill=c(NA, NA), border=c(NA, NA),
        bg = "white", merge = TRUE, cex=1.5, y.intersp = 1.4)
 
-dev.copy2eps(file="fig57.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig5.7.eps", width=7, height=3.5)
 
 par(.oldpar)
 
-## Tab 5.3
+## Tab 5.7
 ###############################################################################
 require(xtable)
-data.5.7 <- read.csv("fig57.csv")
 
-data.5.7$m.over65 <- data.5.7[,5]-data.5.7[,6]
-data.5.7$am.over65 <- data.5.7[,13]-data.5.7[,14]
-data.5.7$P.am.over65 <- data.5.7$m.over65/data.5.7$am.over65
-
-data.5.7$w.over60 <- data.5.7[,7]-data.5.7[,8]
-data.5.7$aw.over60 <- data.5.7[,15]-data.5.7[,16]
-data.5.7$P.aw.over60 <- data.5.7$w.over60/data.5.7$aw.over60
 
 table.5.7 <- cbind(data.5.7[,1],100*data.5.7[,6]/data.5.7[,14], 100*data.5.7[20],
                    100*data.5.7[,8]/data.5.7[,16], 100*data.5.7[23])
@@ -1063,51 +1213,9 @@ print(xtable(table.5.7), digits = c(0,2,2,2,2), include.rownames=FALSE )
 
 
 
-## Fig 5.8
-###############################################################################
-require(RColorBrewer)
-redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
-
-data.5.8 <- read.csv("fig58.csv")
-data.5.8$date <- rep(seq(1994,2014), each=4)+ rep(c(0, .25, .5, .75),21)
-
-
-par(mar=c(3.1, 3.6, 3.1,1.1), xpd=TRUE)
-plot(data.5.8[,10],data.5.8[,2], type="l",
-     lwd=2, col="black", bty="n", axes=FALSE, xlab="", ylab="", ylim=c(0,100))
-lines(data.5.8[,10],data.5.8[,3], col="gray40", lwd=2)
-lines(data.5.8[,10],data.5.8[,4], col="gray60", lwd=2)
-lines(data.5.8[,10],data.5.8[,5], col=redgray[1], lwd=2)
-
-lines(data.5.8[,10],data.5.8[,6], col="black",lwd=2, lty=2)
-lines(data.5.8[,10],data.5.8[,7], col="gray40", lwd=2, lty=2)
-lines(data.5.8[,10],data.5.8[,8], col="gray60", lwd=2, lty=2)
-lines(data.5.8[,10],data.5.8[,9],col=redgray[1], lwd=2, lty=2)
-axis(1, at=seq(1994, 2015), labels=FALSE)
-axis(2, las=2)
-text(x=seq(1994, 2015), y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
-     labels=seq(1994, 2015), srt=45, adj=1, xpd=TRUE)
-
-legend(x=1995, y=115, c("a", "c", "e", "o"), horiz = TRUE, bty="n", x.intersp = 4,
-       col=c("black", "gray40", "gray60", redgray[1]), lwd=2)
-
-
-dev.copy2eps(file="fig58.eps", width=7, height=3.5)
-par(.oldpar)
-
-## Tab 5.8
-###############################################################################
-require(xtable)
-data.5.8 <- read.csv("fig58.csv")
-table.5.8 <- data.5.8[  seq(1,81,4),c(10,2:9)]
-
-print(xtable(table.5.8,digits = c(0,0,1,1,1,1,1,1,1,1)) , include.rownames=FALSE )
-
-
-
-## Fig 5.9 - working futures projections sectors
+## Fig 5.8 -Estimated and projected employment status by sector in UK labour market
 ############################################################################### 
-data.5.9 <- read.csv("labourproj.csv")
+data.5.9 <- read.csv("data/UKLabourProj.csv")
 require(tidyr)
 require(RColorBrewer)
 redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
@@ -1134,13 +1242,12 @@ emp.typ.proj <- emp.typ %>%
          PT = ifelse(year %in% c("X2002", "X2012"), 0, PT ),
          SE = ifelse(year %in% c("X2002", "X2012"), 0, SE ))
 
-
-par(mar=c(4.6, 3, 1.1,3), xpd=TRUE)
+par(mar=c(4.6, 4, 1.1,3), xpd=TRUE)
   
 mp <- barplot(t(as.matrix(emp.typ[3:5])),
         space=c(0.1,rep(c(0.1,0.1,0.9), 5), 0.1, 0.1),
         col= c(c("gray30", "gray50", "gray80"),  c(redgray[20], redgray[10],redgray[1])),
-        density=10,
+        density=10,ylab="y",
         names.arg = rep("", 18), axes=FALSE)
 lines(mp[c(1,18)]+ c(-1, 1), c(0, 0), col="gray80", lty=2)
 lines(mp[c(1,18)]+ c(-1, 1), c(0.1, 0.1), col="gray80", lty=2)
@@ -1165,8 +1272,10 @@ text(rowMeans(matrix(mp, byrow=TRUE,c(6,3))), -0.06, LETTERS[1:6])
 axis(2, las=2)
 yz<- zoo::rollapply(c(0, cumsum(t(as.matrix(emp.typ[3:5]))[,18])), 2, mean)
 text(mp[18]+1, yz, letters[1:3])
+text(-1.5, -0.03, "Y1")
+text(-1.5, -0.09, "Y2")
 
-dev.copy2eps(file="fig59.eps", width=7, height=3.8)
+dev.copy2eps(file="figures/Fig5.8.eps", width=7, height=3.8)
 par(.oldpar)
 
 
@@ -1193,14 +1302,12 @@ emp.sex.proj <- emp.sex %>%
   mutate(Men = ifelse(year %in% c("X2002", "X2012"), 0, Men ),
          Women = ifelse(year %in% c("X2002", "X2012"), 0, Women ))
          
-
-
-par(mar=c(4.6, 3, 1.1,3), xpd=TRUE)
+par(mar=c(4.6, 4, 1.1,3), xpd=TRUE)
 
 mp <- barplot(t(as.matrix(emp.sex[3:4])),
               space=c(0.1,rep(c(0.1,0.1,0.9), 5), 0.1, 0.1),
               col= c(c("gray30", "gray50", "gray80"),  c(redgray[20], redgray[10],redgray[1])),
-              density=10,
+              density=10,ylab="y",
               names.arg = rep("", 18), axes=FALSE)
 lines(mp[c(1,18)]+ c(-1, 1), c(0, 0), col="gray80", lty=2)
 lines(mp[c(1,18)]+ c(-1, 1), c(0.1, 0.1), col="gray80", lty=2)
@@ -1225,11 +1332,11 @@ text(rowMeans(matrix(mp, byrow=TRUE,c(6,3))), -0.06, LETTERS[1:6])
 axis(2, las=2)
 yz<- zoo::rollapply(c(0, cumsum(t(as.matrix(emp.sex[3:4]))[,18])), 2, mean)
 text(mp[18]+1, yz, letters[1:2])
+text(-1.5, -0.03, "Y1")
+text(-1.5, -0.09, "Y2")
+dev.copy2eps(file="figures/Fig5.9.eps", width=7, height=3.8)
 
-dev.copy2eps(file="fig59.2.eps", width=7, height=3.8)
-
-
-## Tab 5.10 - working futures tables
+## Tab 5.8 - working futures tables
 ###############################################################################
 
 require(xtable)
@@ -1237,6 +1344,7 @@ table.5.10<-cbind(emp.typ, emp.sex[,3:4])
 table.5.10[,3:7] <- table.5.10[,3:7]*100
 
 print(xtable(table.5.10,digits = c(0,0,0,2,2,2,2,2)), include.rownames=FALSE)
+
 
 
 ## Fig 6.1
@@ -2849,131 +2957,6 @@ barplot(t(as.matrix(data.USW5ind[,2:5])),
 
 
 
-
-
-##############################################################################
-### OECD employment rate charts
-###############################################################################
-require(dplyr)
-data.oecd1 <- read.csv("oecdemploy.csv", as.is =c(2:8))
-                       str(data.oecd1)
-
-data.oecd1 %>%
-  arrange(desc(Year), desc(X60.64)) %>%
-  filter(country != "EU21") %>%
-  mutate(lab =  c(letters, LETTERS[1:16])) ->
-  data.oecd1 
-
-
-myseq <- c(1:34, 37:44)
-par(mar=c(5.6, 3.6, 3.6, 0.1), xpd=TRUE)
-
-plot(myseq,data.oecd1[,2], ylim=c(0,100),
-     axes=FALSE, pch=16, col="black", cex=2,
-     xlab="", ylab="")
-axis(1, at=myseq, labels = c(letters, LETTERS[1:16]))
-axis(2, las=2)
-
-#lines(c(14.5, 14.5), c(par("usr")[3], 100), col="gray80", lty=2)
-#lines(c(15.5, 15.5), c(par("usr")[3], 100), col="gray80", lty=2)
-
-lines(c(1,44), rep(data.oecd1[1,5],2), col="gray20", lty=2, lwd=2)
-lines(c(1,44), rep(data.oecd1[1,6],2), col="pink", lty=2, lwd=2)
-lines(c(1,44), rep(data.oecd1[1,7],2), col="gray80", lty=2, lwd=2)
-
-mywidth <- 0.23
-for (i in myseq) {
-if(i <=35)      {
-  rect(i-mywidth, data.oecd1[i,4], i+mywidth, data.oecd1[i,3],
-       density=15, col="gray80")
-  lines(c(i,i), c(par("usr")[3],data.oecd1[i,4]), col="gray80", lty=2, lwd=1)
-}
-if(i > 35)       {
-  rect(i-mywidth, data.oecd1[i-2,4], i+mywidth, data.oecd1[i-2,3],
-       density=15, col="gray80", bg="white")
-  lines(c(i,i), c(par("usr")[3], data.oecd1[i-2,4]), col="gray80", lty=2, lwd=1)
-}
-}
-for (i in myseq) {
-  if(i <=35)      {
-    rect(i-mywidth, data.oecd1[i,3], i+mywidth, data.oecd1[i,2],
-         density=15, col="pink")
-  }
-  if(i > 35)       {
-    rect(i-mywidth, data.oecd1[i-2,3], i+mywidth, data.oecd1[i-2,2],
-         density=15, col="pink")
-  }
-}
-lines(c(15,15), c(par("usr")[3], data.oecd1[15,4]), col="red", lty=2, lwd=1)
-
-points(myseq,data.oecd1[,2], pch=16, col="black",cex=3)
-points(myseq,data.oecd1[,3], pch=16, col="red",cex=3)
-points(myseq,data.oecd1[,4], pch=16, col="gray50", cex=3)
-
-legend(20, 125, legend = c("Q", "R", "S"), pch=16, col=c("black", "red", "gray50"), 
-       pt.cex=3, bty="n", y.intersp = 1.2, title="V")
-
-legend(30, 115, legend = c("T", "U"),  fill=c("pink", "gray80"),
-       density = 15, angle=45, border=c("pink", "gray80"),
-       bty="n", y.intersp = 1.2, title = "W")
-
-dev.copy2eps(file="figoecd1.eps", width=20, height=14)
-
-
-cbind(as.character(data.oecd1$country),data.oecd1[,2]-data.oecd1[,4])
-### OECD empl 1 table
-###############################################################################
-
-oecd.table <- data.oecd1[,1:4]
-require(xtable)
-
-print(xtable(oecd.table,digits=c(0,0,1,1,1)), include.rownames = FALSE)
-
-
-##############################################################################
-### OECD employment rate chart 2
-###############################################################################
-require(dplyr)
-data.oecd2 <- read.csv("oecdemploy2.csv", as.is =c(1:5))
-str(data.oecd2)
-
-data.oecd2 %>%
-  arrange(group, Difference)
-
-par(mar=c(5.8, 3.6, 1.3,.6))
-mp <- barplot(as.matrix(data.oecd2[5]), beside = TRUE, ylim=c(-5,25),
-              axes=FALSE, angle=45, density=c(rep(20,18), 0, rep(20,24)), 
-              col = c(rep("black", 10), "red", rep("black", 31)), 
-              border = c(rep("black", 10), "red", rep("black", 31)),
-              space=c(rep(1, 35), 3, rep(1,7)), names.arg="")
-axis(2, las=2)
-text( y= c(1,1,rep(-1, 41)), x=mp, labels=c(letters, LETTERS[1:17]))
-
-lines(c(0, 89), c(0,0), lty=2, col="gray80")
-lines(c(0, 89), c(5,5), lty=2, col="gray80")
-lines(c(0, 89), c(10,10), lty=2, col="gray80")
-lines(c(0, 89), c(15,15), lty=2, col="gray80")
-lines(c(0, 89), c(20,20), lty=2, col="gray80")
-lines(c(0, 89), c(25,25), lty=2, col="gray80")
-lines(c(0, 89), c(-5,-5), lty=2, col="gray80")
-
-barplot(as.matrix(data.oecd2[5]), beside = TRUE, 
-        axes=FALSE, angle=45, density=c(rep(20,18), 0, rep(20,24)), 
-        col = c(rep("black", 10), "red", rep("black", 31)), 
-        border = c(rep("black", 10), "red", rep("black", 31)),
-        space=c(rep(1, 35), 3, rep(1,7)), add=TRUE, names.arg="")
-
-dev.copy2eps(file="figoecd2.eps", width=20, height=10)
-
-### OECD empl 2 table
-###############################################################################
-
-oecd.table2 <- data.oecd2[,2:5]
-require(xtable)
-
-print(xtable(oecd.table2,digits=c(0,0,2,2,2)), include.rownames = FALSE)
-
-mean(oecd.table2[1:36,3])
 ### ELSA
 ###############################################################################
 data.elsa <- read.csv("elsa2.csv")
