@@ -1347,13 +1347,12 @@ print(xtable(table.5.10,digits = c(0,0,0,2,2,2,2,2)), include.rownames=FALSE)
 
 
 
-## Fig 6.1
+## Fig 6.1 Profile of housing occupied by households aged 65 and over (\%), England only
 ###############################################################################
-#2013-14_Section_1_Households_tables_and_figures_FINAL (1)
-data.6.1 <- read.csv("fig61-2.csv")
+data.6.1 <- read.csv("data/UKHousingOcc.csv")
 redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
 
-par(mar=c(2.6, 2.5, 2.1,8.1), xpd=TRUE)
+par(mar=c(3.6, 3.5, 1.1,8.1), xpd=TRUE)
 
 mp <- barplot(t(as.matrix(data.6.1[,2:5])), beside=TRUE, 
         col = c(redgray[2], redgray[2], "black", "black"),
@@ -1361,19 +1360,22 @@ mp <- barplot(t(as.matrix(data.6.1[,2:5])), beside=TRUE,
         angle = c(45, 45, 45, 45),
         density = c(15, 5, 15, 5),
         axes=FALSE)
+mtext("y", side = 2, line=2.5)
+mtext("x", side = 1, line=2.5)
+
 axis(2, las=2)
 
 text(x=colMeans(mp), y=-3,
      labels=LETTERS[1:11], srt=45, adj=1, xpd=TRUE)
 
-legend(x=53, y=50, c("a", "b", "c", "d"), 
+legend(x=53, y=60, c("a", "b", "c", "d"), 
        col = c(redgray[2],redgray[2], "black", "black"),
        border = c(redgray[2],redgray[2], "black", "black"),
        fill = c(redgray[2],redgray[2], "black", "black"),
        angle = c(45, 45, 45, 45),
        density = c(15, 5, 15, 5),
        bty="n", lwd=c(1,1,1,1), cex=1.2, lty = c(NA, NA, NA,NA),
-       x.intersp=rep(-1.5,4))
+       x.intersp=rep(-1.5,4), y.intersp = 2)
 
 lines(c(0,55), c(10,10), lty=2, col="gray80")
 lines(c(0,55), c(20,20), lty=2, col="gray80")
@@ -1388,29 +1390,21 @@ barplot(t(as.matrix(data.6.1[,2:5])), beside=TRUE,
         angle = c(45, 45, 45, 45),
         density = c(15,5,15,5),
         axes=FALSE, add=TRUE)
-dev.copy2eps(file="fig16.eps", width=7, height=3)
+dev.copy2eps(file="figures/Fig6.1.eps", width=7, height=3)
 par(.oldpar)
-
-# 
-# par(mar=c(3.1, 3.1, 1.1,5.1))
-# plot(c(2003:2013), data.6.1[,2], typ="n",
-#      
-#      xlab="", ylab="", lwd=2,
-#      ylim=c(0,100))
-# polygon(c(2003,c(2003:2013), 2013), c(0,data.6.1[,2],0), border="black", col= "black", density=30)
-# polygon(c(c(2003:2013),c(2013:2003)), c((data.6.1[,2]), rev(data.6.1[,2]+data.6.1[,3])),
-#         border="black", col= "black", density=20)
-# polygon(c(data.6.1[,1], rev(data.6.1[,1])), c(data.6.1[,3],rev(data.6.1[,2])), border="black", col= "black", density=10)
-# 
-
-## Fig 6.2
+## Tab 6.1
 ###############################################################################
-#2013-14_Section_1_Households_tables_and_figures_FINAL (1)
-data.6.1 <- read.csv("fig61-2.csv")
+require(xtable)
+table.6.1 <-data.6.1
+print(xtable(table.6.1), include.rownames=FALSE )
+ 
+## Fig 6.2 Households aged 65 and over, in rented tenures, 2003-04 to 2013-14, England only
+###############################################################################
+data.6.1 <- read.csv("data/UKHousingOcc.csv")
 require(RColorBrewer)
 redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
 
-par(mar=c(3.1, 2.5, 1.1,8.1), xpd=TRUE)
+par(mar=c(4.1, 3.5, 1.1,8.1), xpd=TRUE)
 plot(2003:2013, data.6.1[,4], typ="l",
      axes= FALSE,
      col= "gray50",
@@ -1434,21 +1428,22 @@ text(x=2003:2013, y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
 text(2013.2, data.6.1[11,4], "a")
 text(2013.2, data.6.1[11,6], "b")
 text(2013.2, data.6.1[11,7], "c")
+mtext("y", side = 2, line=2.5)
+mtext("x", side = 1, line=3.5)
 
-
-dev.copy2eps(file="fig17.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig6.2.eps", width=7, height=3.5)
 par(.oldpar)
 
-# 
 
-## Fig 6.3
+
+## Fig 6.3 Percentage of houses failing the decent homes criteria – households, 60 years or more
 ###############################################################################
-data.6.3 <- read.csv("fig63.csv")
+data.6.3 <- read.csv("data/UKDecentHomes.csv")
 require(RColorBrewer)
 redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
 
 
-par(mar=c(2.1, 2.5, 1.1,8.1), xpd=TRUE)
+par(mar=c(3.1, 3.5, 1.1,8.1), xpd=TRUE)
 plot(data.6.3[,1], data.6.3[,2], typ="l",
      axes= FALSE,
      col= redgray[1],
@@ -1467,10 +1462,10 @@ lines(c(2008, 2013), c(20,20), lty=2, col="gray80")
 lines(c(2008, 2013), c(30,30), lty=2, col="gray80")
 lines(c(2008, 2013), c(25,25), lty=2, col="gray80")
 lines(c(2008, 2013), c(35,35), lty=2, col="gray80")
-
+mtext("y", side = 2, line=2.5)
+mtext("x", side = 1, line=2.5)
 axis(2, las=2)
 axis(1, at=2008:2013)
-
 text(2013.2, data.6.3[6,2], "a")
 text(2013.2, data.6.3[6,3], "b")
 text(2013.2, data.6.3[6,4], "c")
@@ -1478,13 +1473,21 @@ text(2013.2, data.6.3[6,5], "d")
 text(2013.2, data.6.3[6,6]-1, "e")
 text(2013.2, data.6.3[6,6]-2.8, "f")
 
-dev.copy2eps(file="fig18.eps", width=7, height=3.5)
-
+dev.copy2eps(file="figures/Fig6.3.eps", width=7, height=3.5)
 par(.oldpar)
 
-## Fig 6.6
+
+## Tab 6.2
 ###############################################################################
-data.6.6 <- read.csv("failing.csv")
+require(xtable)
+table.6.2 <-t(data.6.3)
+print(xtable(table.6.2) )
+
+
+## Fig 6.4 Percentage of houses failing the decent homes criteria divided by 
+## reason for failure and age of the oldest individual in the household
+###############################################################################
+data.6.6 <- read.csv("data/UKFailingHouses.csv")
 
 par(mar = c(3.6, 3.6, 0.6, 0.1), xpd=TRUE)
 mp <- barplot(as.matrix(data.6.6[2:6]),
@@ -1511,14 +1514,21 @@ legend(15,20, c("a", "b", "c"),
        density = 10,
        bty="n", lwd=c(1,1,1), cex=1.2, lty = c(NA,  NA,NA),
        y.intersp=1.4)
-
+mtext("y", side = 2, line=2.5)
+mtext("x", side = 1, line=3)
 text(colMeans(mp), -1, LETTERS[1:5])
-dev.copy2eps(file="fig66.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig6.4.eps", width=7, height=3.5)
 
-## Fig 6.7
+## Tab 6.4
 ###############################################################################
-data.6.7 <- read.csv("fig67.csv")
-par(mar=c(2.1,2.1, 2.1,1), xpd=TRUE)
+require(xtable)
+table.6.6 <-t(data.6.6)
+print(xtable(table.6.6) )
+
+## Fig 6.5 Proportion of different age groups using their home as a place of work
+###############################################################################
+data.6.7 <- read.csv("data/UKHomeWork.csv")
+par(mar=c(3.1,4.1, 2.1,1), xpd=TRUE)
 x <- barplot(data.6.7[,2], axes=FALSE,
         density=15, space=1)
 axis(2, las=2, at=c(0,10,20,30,40))
@@ -1528,35 +1538,11 @@ for(i in c(0,10,20,30,40)) {
 }
 barplot(data.6.7[,2], axes=FALSE,
         density=15, add=TRUE, space=1)
+mtext("y", side = 2, line=2.5)
+mtext("x", side = 1, line=2)
+dev.copy2eps(file="figures/Fig6.5.eps", width=7, height=3.5)
 
-dev.copy2eps(file="fig67.eps", width=7, height=3.5)
-
-## Tab 6.1
-###############################################################################
-require(xtable)
-table.6.1 <-data.6.1
-print(xtable(table.6.1), include.rownames=FALSE )
-
-## Tab 6.2
-###############################################################################
-require(xtable)
-table.6.2 <-t(data.6.3)
-print(xtable(table.6.2) )
-
-## Tab 6.3
-###############################################################################
-require(xtable)
-table.6.2 <-t(data.6.3)
-print(xtable(table.6.2) )
-
-## Tab 6.6
-###############################################################################
-require(xtable)
-table.6.6 <-t(data.6.6)
-print(xtable(table.6.6) )
-
-
-## Tab 6.7
+## Tab 6.5
 ###############################################################################
 require(xtable)
 table.6.7 <-t(data.6.7)
