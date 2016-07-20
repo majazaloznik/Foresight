@@ -1551,43 +1551,71 @@ print(xtable(table.6.7) )
 
 ## Fig 7.1
 ###############################################################################
-data.7.1 <- read.csv("fig71.csv")
-par(mar=c(3.1, 2.5, 1.1,7.1), xpd=TRUE)
+data.7.1 <- read.csv("data/UKCompUse.csv")
 
+par(mar=c(3.1,3.1, 1.1,7.1), xpd=TRUE)
 barplot(t(as.matrix(data.7.1[,2:3])), beside=TRUE, col =c("black","gray50"), 
-        density=c(15, 10), names.arg = 1:6,
+        density=c(10, 5), names.arg = 1:6,
         axes=FALSE)
 axis(2, las=2)
 legend(19,50, letters[1:2],col =c( "gray50", "black"), fill =  c("black","gray50"),
-       density=c(15,10), bty="n", cex=2, y.intersp = 2)
+       density=c(10,5), bty="n", cex=2, y.intersp = 2)
 lines(c(0, 19), c(20,20), lty=2, col="gray80")
 lines(c(0, 19), c(40,40), lty=2, col="gray80")
 lines(c(0, 19), c(60,60), lty=2, col="gray80")
 lines(c(0, 19), c(80,80), lty=2, col="gray80")
 barplot(t(as.matrix(data.7.1[,2:3])), beside=TRUE, col =c("black","gray50"), 
-        density=c(15, 10), names.arg = 1:6,
+        density=c(10, 5), names.arg = 1:6,
         axes=FALSE, add=TRUE)
-# par(mar=c(3.6, 7.1, 2.1,3.6))
-# plot( c(1,2,3,4,5,6),c(data.7.1[,2]), type="l", ylim=c(0, 100), col=redgray[1],
-#       xaxt="n", lwd=2,xlim=c(1,6.2),
-#      axes=FALSE, xlab="", ylab="")
-# lines(c(1,2,3,4,5,6),data.7.1[,3], type="l", col="black", lwd=2)
-# axis(4, las=2)
-# mtext("y", side=4, line=3)
-# axis(1, at=seq(1,6, 1), labels=letters[1:6])
+mtext("y", side = 2, line=2.5)
+mtext("x", side = 1, line=2)
 
-dev.copy2eps(file="fig19.eps", width=7, height=2.5)
+dev.copy2eps(file="figures/Fig7.1.eps", width=7, height=2.5)
 par(.oldpar)
 
-## Fig 7.2
+## Fig 7.2 Home internet access by age and socio-economic group.
 ###############################################################################
-data.7.2 <- read.csv("fig72.csv")
+data.7.7 <- read.csv("data/UKInternetAccess.csv")
 
-par(mar=c(1.1, 11.1, 0,0.1), xpd=TRUE)
+par(mar=c(3.1, 2.5, 1.1,4.1), xpd=TRUE, lwd=1)
+mp <- barplot(as.matrix(data.7.7[,2:11]), beside=TRUE, names.arg = rep("",10),
+              col =gray.colors(4), lwd=2,
+              density=rev(c(5,10,15,20)),angle=45,
+              axes=FALSE, space = c(1, rep(0,3),3,rep(0,3),1,rep(0,3),1,rep(0,3),1,rep(0,3),1,
+                                    rep(0,3),1,rep(0,3),3,rep(0,3),1,rep(0,3),1,rep(0,3)))
+axis(2, las=2)
+lines(c(0, 55), c(0,0), lty=2, col="gray80")
+lines(c(0, 55), c(60,60), lty=2, col="gray80")
+lines(c(0, 55), c(20,20), lty=2, col="gray80")
+lines(c(0, 55), c(80,80), lty=2, col="gray80")
+lines(c(0, 55), c(40,40), lty=2, col="gray80")
+mtext("y", side = 2, line=2.5)
+
+barplot(as.matrix(data.7.7[,2:11]), beside=TRUE, names.arg = rep("",10),
+        col =gray.colors(4), lwd=2,
+        density=rev(c(5,10,15,20)),angle=45,
+        axes=FALSE, space = c(1, rep(0,3),3,rep(0,3),1,rep(0,3),1,rep(0,3),1,rep(0,3),1,
+                              rep(0,3),1,rep(0,3),3,rep(0,3),1,rep(0,3),1,rep(0,3)), add=TRUE)
+legend(54,70, LETTERS[1:4], fill =  rev(gray.colors(4)),
+       bty="n", cex=1.5, y.intersp = 1,density=c(5,10,15,20),angle=45)
+text(colMeans(mp), -7, 1:10)
+
+text(mean(mp[,4:5]), -15, "X")
+text(mean(mp[,9]), -15, "Y")
+
+dev.copy2eps(file="figures/Fig7.2.eps", width=7, height=3.5)
+par(.oldpar)
+
+
+
+## Fig 7.3 Internet activities by age group in Great Britain, 2015.
+###############################################################################
+data.7.2 <- read.csv("data/UKInternetActivities.csv")
+
+par(mar=c(2.1, 11.1, 0,0.1), xpd=TRUE)
 par(lwd = 1)
 mp <- barplot(as.matrix(data.7.2[,2:7]), beside=TRUE, horiz=TRUE, names.arg = rep(NA,6),
               col =gray.colors(6), angle=45, lwd=2, density=rev(c(1,5,10,15,20,30)))
-axis(1)
 text(rep(-11,6), colMeans(mp), LETTERS[1:6])
 lines(c(20,20), c(0,43), lty=2, col="gray80")
 lines(c(40,40), c(0,43), lty=2, col="gray80")
@@ -1602,36 +1630,19 @@ text(rep(-2,6), mp[,4], 1:6)
 text(rep(-2,6), mp[,5], 1:6)
 text(rep(-2,6), mp[,6],1:6)
 
-dev.copy2eps(file="fig20.eps", width=7, height=5)
+text(-4, 44, "Y")
+text(-20, 44, "X")
+mtext("x", side = 1, line = 1.8)
+dev.copy2eps(file="figures/Fig7.3.eps", width=7, height=5)
 
 par(.oldpar)
-# 
-# par(mar=c(3.6, 7.1, 2.1,3.6))
-# plot( c(1,2,3,4,5,6),c(data.7.2[,2]), type="l", ylim=c(0, 100), col=redgray[1],
-#       xaxt="n", lwd=2,xlim=c(1,6.2),
-#       axes=FALSE, xlab="", ylab="")
-# lines(c(1,2,3,4,5,6),data.7.2[,3], type="l", col="black", lwd=2)
-# lines(c(1,2,3,4,5,6),data.7.2[,5], type="l", col="gray30", lwd=2)
-# lines(c(1,2,3,4,5,6),data.7.2[,6], type="l", col="gray70", lwd=2)
-# lines(c(1,2,3,4,5,6),data.7.2[,7], type="l", col=redgray[20], lwd=2)
-# lines(c(1,2,3,4,5,6),data.7.2[,4], type="l", col="red", lwd=2)
-# 
-# axis(4, las=2)
-# mtext("y", side=4, line=3)
-# axis(1, at=seq(1,6, 1), labels=letters[1:6])
-# 
-# text(0.8, data.7.2[1,2], "a")
-# text(0.8, data.7.2[1,3], "b")
-# text(0.8, data.7.2[1,4], "c")
-# text(0.8, data.7.2[1,5], "d")
-# text(0.8, data.7.2[1,6], "e")
-# text(0.8, data.7.2[1,7], "f")
 
-## Fig 7.3
+
+## Fig 7.4 Internet purchasing, by age group, in Great Britain, 2008 to 2015.
 ###############################################################################
-data.7.3 <- read.csv("fig73.csv")
+data.7.3 <- read.csv("data/UKInternetPurchase.csv")
 
-par(mar=c(3.1, 2.5, 1.1,7.1), xpd=TRUE)
+par(mar=c(3.1, 3.1, 1.1,7.1), xpd=TRUE)
 mp <- barplot(t(as.matrix(data.7.3[,2:9])), beside=TRUE, names.arg = 1:6,
               col =gray.colors(8), lwd=2, density=rev(c(1,5,10,15,20,25,30,35)), angle=45,
               axes=FALSE)
@@ -1646,17 +1657,19 @@ barplot(t(as.matrix(data.7.3[,2:9])), beside=TRUE, names.arg = 1:6,
 
 legend(55,75, LETTERS[1:8], fill =  rev(gray.colors(8)),
        bty="n", cex=1.5, y.intersp = 1,density=c(1,5,10,15,20,25,30,35), angle=45)
+mtext("x", side = 1, line = 2.5)
+mtext("y", side = 2, line = 2.5)
 
-dev.copy2eps(file="fig21.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig7.4.eps", width=7, height=3.5)
 
 par(.oldpar)
 
 
-## Fig 7.4
+## Fig 7.5 Proportion of adults who own a smartphone, by age: 2010-14 (\% of UK adults).
 ###############################################################################
-data.7.4 <- read.csv("fig74.csv")
+data.7.4 <- read.csv("data/UKSmartphones.csv")
 
-par(mar=c(3.1, 2.5, 1.1,7.1), xpd=TRUE)
+par(mar=c(3.1, 3.1, 1.1,7.1), xpd=TRUE)
 mp <- barplot(t(as.matrix(data.7.4[,2:6])), beside=TRUE, names.arg = 1:6,
               col =gray.colors(5), lwd=2,density=rev(c(5,10,15,20,25)), angle=45,
               axes=FALSE)
@@ -1671,38 +1684,17 @@ legend(37,75, LETTERS[1:5], fill =  rev(gray.colors(5)),density=c(5,10,15,20,25)
 barplot(t(as.matrix(data.7.4[,2:6])), beside=TRUE, names.arg = 1:6,
         col =gray.colors(5), lwd=2, density=rev(c(5,10,15,20,25)), angle=45,
         axes=FALSE, add=TRUE)
-dev.copy2eps(file="fig22.eps", width=7, height=3.5)
+mtext("x", side = 1, line = 2.5)
+mtext("y", side = 2, line = 2.5)
 
-
+dev.copy2eps(file="figures/Fig7.5.eps", width=7, height=3.5)
 par(.oldpar)
 
-## Fig 7.5
+## Fig 7.6 Specific internet skills by lifestage. 
 ###############################################################################
-data.7.5 <- read.csv("fig75.csv")
+data.7.6 <- read.csv("data/UKInternetSkills.csv")
 
-par(mar=c(3.1, 2.5, 1.1,7.1), xpd=TRUE)
-mp <- barplot(t(as.matrix(data.7.5[,2:6])), beside=TRUE, names.arg = 1:6,
-              col =gray.colors(5), lwd=2,density=rev(c(5,10,15,20,25)), angle=45,
-              axes=FALSE)
-axis(2, las=2)
-
-lines(c(0, 36), c(10,10), lty=2, col="gray80")
-lines(c(0, 36), c(20,20), lty=2, col="gray80")
-lines(c(0, 36), c(30,30), lty=2, col="gray80")
-lines(c(0, 36), c(40,40), lty=2, col="gray80")
-legend(37,30, LETTERS[1:5], fill =  rev(gray.colors(5)),
-       bty="n", cex=1.5, y.intersp = 1, density=c(5,10,15,20,25), angle=45)
-
-barplot(t(as.matrix(data.7.5[,2:6])), beside=TRUE, names.arg = 1:6,
-        col =gray.colors(5), lwd=2, density=rev(c(5,10,15,20,25)), angle=45,
-        axes=FALSE,add=TRUE)
-dev.copy2eps(file="fig23.eps", width=7, height=3.5)
-par(.oldpar)
-## Fig 7.6
-###############################################################################
-data.7.6 <- read.csv("fig76.csv")
-
-par(mar=c(3.1, 2.5, 1.1,7.1), xpd=TRUE, lwd=1)
+par(mar=c(3.1, 3.1, 1.1,7.1), xpd=TRUE, lwd=1)
 mp <- barplot(as.matrix(data.7.6[,2:5]), beside=TRUE, names.arg = 1:4,
               col =gray.colors(3), border=c("black", "black",  "red"), lwd=2,
               density=rev(c(5,15,25)),angle=45,
@@ -1719,42 +1711,10 @@ barplot(as.matrix(data.7.6[,2:5]), beside=TRUE, names.arg = 1:4,
         col =gray.colors(3), border=c("black", "black",  "red"), lwd=2,
         density=rev(c(5,15,25)),angle=45,
         axes=FALSE, add=TRUE)
-
-dev.copy2eps(file="fig24.eps", width=7, height=3.5)
+mtext("x", side = 1, line = 2.5)
+mtext("y", side = 2, line = 2.5)
+dev.copy2eps(file="figures/Fig7.6.eps", width=7, height=3.5)
 par(.oldpar)
-
-## Fig 7.7
-###############################################################################
-data.7.7 <- read.csv("fig77.csv")
-
-par(mar=c(3.1, 2.5, 1.1,4.1), xpd=TRUE, lwd=1)
-mp <- barplot(as.matrix(data.7.7[,2:11]), beside=TRUE, names.arg = rep("",10),
-              col =gray.colors(4), lwd=2,
-              density=rev(c(5,10,15,20)),angle=45,
-              axes=FALSE, space = c(1, rep(0,3),3,rep(0,3),1,rep(0,3),1,rep(0,3),1,rep(0,3),1,
-                                    rep(0,3),1,rep(0,3),3,rep(0,3),1,rep(0,3),1,rep(0,3)))
-axis(2, las=2)
-lines(c(0, 55), c(0,0), lty=2, col="gray80")
-lines(c(0, 55), c(60,60), lty=2, col="gray80")
-lines(c(0, 55), c(20,20), lty=2, col="gray80")
-lines(c(0, 55), c(80,80), lty=2, col="gray80")
-lines(c(0, 55), c(40,40), lty=2, col="gray80")
-
-barplot(as.matrix(data.7.7[,2:11]), beside=TRUE, names.arg = rep("",10),
-        col =gray.colors(4), lwd=2,
-        density=rev(c(5,10,15,20)),angle=45,
-        axes=FALSE, space = c(1, rep(0,3),3,rep(0,3),1,rep(0,3),1,rep(0,3),1,rep(0,3),1,
-                              rep(0,3),1,rep(0,3),3,rep(0,3),1,rep(0,3),1,rep(0,3)), add=TRUE)
-legend(54,70, LETTERS[1:4], fill =  rev(gray.colors(4)),
-       bty="n", cex=1.5, y.intersp = 1,density=c(5,10,15,20),angle=45)
-text(colMeans(mp), -7, 1:10)
-
-text(mean(mp[,4:5]), -15, "X")
-text(mean(mp[,9]), -15, "Y")
-
-dev.copy2eps(file="fig77.eps", width=7, height=3.5)
-par(.oldpar)
-
 
 ## Tab 7.1
 ###############################################################################
