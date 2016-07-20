@@ -1,0 +1,9 @@
+class,gender,0-15,16-44,45-64,65 and over
+Higher professional,males,4,8,18,37
+Intermediate,males,4,9,24,43
+Semi-routine,males,5,15,33,44
+Never worked and long-term unemployed,males,7,27,37,53
+Higher professional,females,4,10,19,40
+Intermediate,females,5,12,23,40
+Semi-routine,females,5,13,33,45
+Never worked and long-term unemployed,females,11,21,58,40

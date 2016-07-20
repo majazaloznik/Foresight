@@ -1573,6 +1573,12 @@ mtext("x", side = 1, line=2)
 dev.copy2eps(file="figures/Fig7.1.eps", width=7, height=2.5)
 par(.oldpar)
 
+## Tab 7.1
+###############################################################################
+require(xtable)
+table.7.1 <- t(data.7.1)
+print(xtable(table.7.1) )
+
 ## Fig 7.2 Home internet access by age and socio-economic group.
 ###############################################################################
 data.7.7 <- read.csv("data/UKInternetAccess.csv")
@@ -1606,6 +1612,12 @@ text(mean(mp[,9]), -15, "Y")
 dev.copy2eps(file="figures/Fig7.2.eps", width=7, height=3.5)
 par(.oldpar)
 
+## Tab 7.2
+###############################################################################
+require(xtable)
+table.7.7 <- t(data.7.7)
+print(xtable(table.7.7) )
+
 
 
 ## Fig 7.3 Internet activities by age group in Great Britain, 2015.
@@ -1636,6 +1648,12 @@ mtext("x", side = 1, line = 1.8)
 dev.copy2eps(file="figures/Fig7.3.eps", width=7, height=5)
 
 par(.oldpar)
+## Tab 7.3
+###############################################################################
+require(xtable)
+table.7.2 <- data.7.2
+print(xtable(table.7.2), include.rownames=FALSE )
+
 
 
 ## Fig 7.4 Internet purchasing, by age group, in Great Britain, 2008 to 2015.
@@ -1663,7 +1681,11 @@ mtext("y", side = 2, line = 2.5)
 dev.copy2eps(file="figures/Fig7.4.eps", width=7, height=3.5)
 
 par(.oldpar)
-
+## Tab 7.4
+###############################################################################
+require(xtable)
+table.7.3 <- data.7.3
+print(xtable(table.7.3), include.rownames=FALSE )
 
 ## Fig 7.5 Proportion of adults who own a smartphone, by age: 2010-14 (\% of UK adults).
 ###############################################################################
@@ -1689,6 +1711,12 @@ mtext("y", side = 2, line = 2.5)
 
 dev.copy2eps(file="figures/Fig7.5.eps", width=7, height=3.5)
 par(.oldpar)
+
+## Tab 7.5
+###############################################################################
+require(xtable)
+table.7.4 <- data.7.4
+print(xtable(table.7.4), include.rownames=FALSE )
 
 ## Fig 7.6 Specific internet skills by lifestage. 
 ###############################################################################
@@ -1716,61 +1744,22 @@ mtext("y", side = 2, line = 2.5)
 dev.copy2eps(file="figures/Fig7.6.eps", width=7, height=3.5)
 par(.oldpar)
 
-## Tab 7.1
-###############################################################################
-require(xtable)
-table.7.1 <- t(data.7.1)
-print(xtable(table.7.1) )
-
-
-
-## Tab 7.2
-###############################################################################
-require(xtable)
-table.7.2 <- data.7.2
-print(xtable(table.7.2), include.rownames=FALSE )
-
-
-
-## Tab 7.3
-###############################################################################
-require(xtable)
-table.7.3 <- data.7.3
-print(xtable(table.7.3), include.rownames=FALSE )
-
-
-## Tab 7.4
-###############################################################################
-require(xtable)
-table.7.4 <- data.7.4
-print(xtable(table.7.4), include.rownames=FALSE )
-
-## Tab 7.5
-###############################################################################
-require(xtable)
-table.7.5 <- data.7.5
-print(xtable(table.7.5), include.rownames=FALSE )
-
 ## Tab 7.6
 ###############################################################################
 require(xtable)
 table.7.6 <- data.7.6
 print(xtable(table.7.6), include.rownames=FALSE )
 
-## Tab 7.7
-###############################################################################
-require(xtable)
-table.7.7 <- t(data.7.7)
-print(xtable(table.7.7) )
 
 
-## Fig 8.1
 ###############################################################################
-data.8.1 <- read.csv("fig81.csv")
+## Fig 8.1 Estimated percentage of pensioners in relative/absolute low income After Housing Costs (AHC)
+###############################################################################
+data.8.1 <- read.csv("data/UKPensionerPoverty.csv")
 require(RColorBrewer)
 redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
 
-par(mar=c(3.1, 2.5, 1.1,2.1), xpd=TRUE)
+par(mar=c(4.1, 3.1, 1.1,2.1), xpd=TRUE)
 plot(1998:2013, data.8.1[,2], typ="l",
      axes= FALSE,
      col= "red",
@@ -1806,18 +1795,29 @@ text(x=1998:2013, y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
 legend(2004,50, LETTERS[1:3], col =  c(redgray[1], "red", "black"),
        bty="n", cex=1, y.intersp = 3.5, lwd=2, pch=c(15, 17, 16))
 
-
-dev.copy2eps(file="fig25.eps", width=7, height=3.5)
+mtext("x", side = 1, line = 3.5)
+mtext("y", side = 2, line = 2.5)
+dev.copy2eps(file="figures/Fig8.1.eps", width=7, height=3.5)
 par(.oldpar)
 
-## Fig 8.2
+
+
+
+## Tab 8.1
 ###############################################################################
-data.8.2 <- read.csv("fig82.csv")
+require(xtable)
+table.8.1 <- data.8.1
+print(xtable(table.8.1),include.rownames=FALSE )
+
+
+## Fig 8.2 Quintile distribution of income (AHC - net equivalised disposable household income) for pensioners by age
+###############################################################################
+data.8.2 <- read.csv("data/UKPensionerIncome.csv")
 
 # manually add totals
 totals <- c(13,	24,	24,	21,	18)
 
-par(mar=c(4.1, 2.5, 2.1,7.1), xpd=TRUE)
+par(mar=c(4.1, 3.1, 2.1,7.1), xpd=TRUE)
 mp <- barplot(as.matrix(data.8.2[,2:6]), beside=TRUE, names.arg = letters[1:5],
               col =gray.colors(6), lwd=2,
               axes=FALSE, xlab = "ic", ylim=c(0,30),
@@ -1839,24 +1839,33 @@ legend(36,23, LETTERS[7], bty="n", cex=1.5,
 for (i in 1:5){
 lines(c((i-1)*7+1, (i-1)*7+7), c(totals[i], totals[i]), lty=3, lwd=2, col="red")}
 
+mtext("y", side = 2, line = 2.5)
 
 barplot(as.matrix(data.8.2[,2:6]), beside=TRUE, names.arg = letters[1:5],
         col =gray.colors(6), lwd=2, ylim=c(0,30),
         density=rev(c(1,5,10,15,20,25)),angle=45,
         axes=FALSE, add=TRUE)
 
-dev.copy2eps(file="fig82.eps", width=7, height=3.8)
+dev.copy2eps(file="figures/Fig8.2.eps", width=7, height=3.8)
 par(.oldpar)
 
-## Fig 8.3
+## Tab 8.2
+###############################################################################
+require(xtable)
+table.8.2 <- data.8.2
+print(xtable(table.8.2),include.rownames=FALSE )
+
+
+## Fig 8.3 Inequality in LE and DFLE for men and women at age 65 by area 
+## deprivation quintile, 2003-06 and 2007-10, England 
 ###############################################################################
 require(RColorBrewer)
 redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
-data.8.3 <- read.csv("fig83.csv")
-par(mar=c(4.1, 2.5, 1.1,7.1), xpd=TRUE)
+data.8.3 <- read.csv("data/UKLexpIneqMen.csv")
+par(mar=c(4.1, 3.1, 1.1,7.1), xpd=TRUE)
 
 mp <- barplot(as.matrix(data.8.3[c(1,3,2,4),3:7]), beside=TRUE, 
-              lwd=2,ylim=c(0,25),
+              lwd=2,ylim=c(0,23),
               space = c(0,rep(c(0,0.3,0,1),4), 0,0.3,0),
               axes=FALSE,
               col=c(redgray[1], redgray[1], "gray50", "gray50"),
@@ -1880,25 +1889,34 @@ legend(25,15, LETTERS[1:2], fill =  c(redgray[1], redgray[1] ),angle=45, density
 
 legend(25,10, LETTERS[3:4], fill =  c("gray50", "gray50"),angle=45, density = c(20,10),
        bty="n", cex=1.5, y.intersp = 1)
+mtext("y", side = 2, line = 2.5)
+mtext("x", side = 1, line = 2.5)
 
-dev.copy2eps(file="fig83.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig8.3.eps", width=7, height=3.5)
 
 par(.oldpar)
+
+## Tab 8.3
+###############################################################################
+require(xtable)
+table.8.3 <- t(data.8.3)
+print(xtable(table.8.3),include.rownames=FALSE )
+
 
 data.8.4[,3:7] - data.8.3[,3:7]
 data.8.3[,3] - data.8.3[,7]
 data.8.4[,3] - data.8.4[,7]
-## Fig 8.4
+## Fig 8.4 Inequality in LE and DFLE for \emph{women} at age 65 by area deprivation quintile,
 ###############################################################################
-data.8.4 <- read.csv("fig84.csv")
-par(mar=c(4.1, 2.5, 1.1,7.1), xpd=TRUE)
+data.8.4 <- read.csv("data/UKLexpIneqWomen.csv")
+par(mar=c(4.1, 3.1, 1.1,7.1), xpd=TRUE)
 require(RColorBrewer)
 redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
 
 mp <- barplot(as.matrix(data.8.4[c(1,3,2,4),3:7]), beside=TRUE, 
               lwd=2,
               space = c(0,rep(c(0,0.3,0,1),4), 0,0.3,0),
-              axes=FALSE, ylim=c(0,25),
+              axes=FALSE, ylim=c(0,23),
               col=c(redgray[1], redgray[1], "gray50", "gray50"),
               angle=45, density = c(20,10))
 
@@ -1920,54 +1938,35 @@ legend(25,15, LETTERS[1:2], fill =  c(redgray[1], redgray[1] ),angle=45, density
 
 legend(25,10, LETTERS[3:4], fill =  c("gray50", "gray50"),angle=45, density = c(20,10),
        bty="n", cex=1.5, y.intersp = 1)
+mtext("y", side = 2, line = 2.5)
+mtext("x", side = 1, line = 2.5)
 
-dev.copy2eps(file="fig28.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig8.4.eps", width=7, height=3.5)
 
 par(.oldpar)
 
-## Fig 8.6
+## Tab 8.4
 ###############################################################################
-data.8.6 <- read.csv("fig86.csv")
+require(xtable)
+table.8.4 <- t(data.8.4)
+print(xtable(table.8.4),include.rownames=FALSE )
+
+
+
+
+## Fig 8.5 Age-standardised mortality rates (per 100,000) by socioeconomic classification (NS-SEC) in the North East and South West region5
+###############################################################################
+data.8.7 <- read.csv("data/UKRegMortality.csv")
 require(RColorBrewer)
 redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
 
-par(mar=c(3.1, 4.5, 3.1,1.1), xpd=TRUE)
-
-mp <- barplot(t(as.matrix(data.8.6[,2:3])), beside=TRUE, 
-              lwd=2,
-              axes=FALSE,
-              col=c(redgray[1],  "gray50"),
-              angle=45, density = c(20,10), ylab="x")
-
-for (i in seq(0,180,30)){
-  lines(c(0, 18.5), c(i,i), lty=2, col="gray80")
-}
-axis(2, las=2, at = seq(0,180,30))
-barplot(t(as.matrix(data.8.6[,2:3])), beside=TRUE, 
-        lwd=2,
-        axes=FALSE,
-        col=c(redgray[1],  "gray50"),
-        angle=45, density = c(20,10), add=TRUE)
-text(colMeans(mp), -10, letters[1:6])
-legend(5,205, LETTERS[1:2], fill =  c(redgray[1], "gray50" ),angle=45, density = c(20,10),
-       bty="n", cex=1.5, y.intersp = 1)
-
-dev.copy2eps(file="fig86.eps", width=7, height=3.5)
-par(.oldpar)
-
-## Fig 8.7
-###############################################################################
-data.8.7 <- read.csv("fig87.csv")
-require(RColorBrewer)
-redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
-
-par(mar=c(3.1, 4.5, 2.1,0.1), xpd=TRUE)
+par(mar=c(5.1, 4.5, 2.1,0.1), xpd=TRUE)
 
 mp <- barplot(t(as.matrix(data.8.7[,c(2,3,10)])), beside=TRUE, 
               lwd=2,
               axes=FALSE,
               col=c( "gray50", "red", redgray[1]),
-              angle=45, density = c(10,15,15), ylab="x")
+              angle=45, density = c(10,15,15), ylab="y")
 for (i in seq(0,700,100)){
   lines(c(0, 28.5), c(i,i), lty=2, col="gray80")
 }
@@ -1976,26 +1975,34 @@ barplot(t(as.matrix(data.8.7[,c(2,3,10)])), beside=TRUE,
         lwd=2,
         axes=FALSE,
         col=c( "gray50", "red", redgray[1]),
-        angle=45, density = c(10,15,15), ylab="x", add=TRUE)
+        angle=45, density = c(10,15,15), ylab="y", add=TRUE)
 text(colMeans(mp), -30, letters[1:7])
 legend(3,700, LETTERS[1:3], fill =  c( "gray50", "red", redgray[1]),angle=45, density = c(10,20,20),
        bty="n", cex=1.5, y.intersp = 1)
+mtext("x", side = 1, line = 4)
 
-dev.copy2eps(file="fig87.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig8.5.eps", width=7, height=3.5)
 
 par(.oldpar)
 
-data.8.7
-
-## Fig 8.8
+## Tab 8.7
 ###############################################################################
-data.8.8 <- read.csv("fig88.csv")
+require(xtable)
+table.8.7 <- data.8.7[,c(3,4,2)]
+print(xtable(table.8.7),include.rownames=FALSE )
+
+
+
+
+## Fig 8.6 Life expectancy at birth by social class,
+###############################################################################
+data.8.8 <- read.csv("data/UKLexpSocClass.csv")
 require(RColorBrewer)
 redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
 
 cbind(data.8.8, data.8.8[,9]-data.8.8[,4])
 
-par(mar=c(3.1, 2.5, 1.1,2.1), xpd=TRUE)
+par(mar=c(3.5, 3.5, 1.1,2.1), xpd=TRUE)
 plot(seq(1984, 2009, 5), data.8.8[2,4:9], typ="l",
      axes= FALSE,
      col= "red", ylim=c(70,90),
@@ -2041,12 +2048,26 @@ legend(1985,91, legend=c("X", "Y", "Z"), col =  c(redgray[1], redgray[10], redgr
 
 text( 2009.5,mean(data.8.8[1:9,9]), "g")
 text( 2009.5,mean(data.8.8[10:18,9]), "h")
-dev.copy2eps(file="fig88.eps", width=7, height=3.5)
+mtext("y", side = 2, line = 2.5)
+mtext("x", side = 1, line = 2.5)
+dev.copy2eps(file="figures/Fig8.6.eps", width=7, height=3.5)
 par(.oldpar)
 
-## Fig 8.9
+
+## Tab 8.8
 ###############################################################################
-data.8.9 <- read.csv("fig89.csv")
+require(xtable)
+data.8.8 %>%
+  filter(type=="Life Ex1") %>%
+  dplyr::select(-type) ->
+  table.8.8
+
+print(xtable(table.8.8),include.rownames=FALSE )
+
+
+## Fig 8.7 Percentage of males and females with limiting long-term illness, by age and socioeconomic classification 
+###############################################################################
+data.8.9 <- read.csv("data/UKLLTISocClass.csv")
 require(RColorBrewer)
 redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
 
@@ -2072,6 +2093,7 @@ barplot(as.matrix(-data.8.9[1:4,3:6]), beside=TRUE,
         names.arg = rep("", 4),  xlim=c(-60,0),space = c(0,2),
         main="mm", add=TRUE)
 axis(1, at=seq(0,-60,-10), labels=seq(0,60,10))
+mtext("x", side = 1, line = 2.5)
 
 par("usr")
 
@@ -2106,95 +2128,15 @@ barplot(as.matrix(data.8.9[5:8,3:6]), beside=TRUE,
         density=15, horiz = TRUE,
         names.arg = rep("", 4),  xlim=c(0,60),space = c(0,2),
         main="ff", add=TRUE)
+mtext("x", side = 1, line = 2.5)
 
 text(data.8.9[8,5]+1, 17.5, "X")
 text(data.8.9[8,6]+1, 23.5, "X")
-text(60, -1.5, "XX")
+text(60, 1.75, "XX")
 
-dev.copy2eps(file="fig89.eps", width=7, height=4.5)
+dev.copy2eps(file="figures/Fig8.7.eps", width=7, height=4.5)
 par(.oldpar)
 layout(1)
-
-
-## Fig 8.10
-###############################################################################
-data.8.10 <- read.csv("fig810.csv")
-require(RColorBrewer)
-redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
-data.8.10[10,2:6] <- apply(data.8.10[6:8,2:6], 2, sum)
-
-
-par(mar=c(3.6, 3.1, 1.1,7), xpd=TRUE)
-x <- barplot(as.matrix(data.8.10[c(1:5,10),2:6]),
-        axes=FALSE,names.arg = rep("", 5),
-        ylim=c(0,10000), density=c(25,20,15,10,5,0))
-axis(2, las=2)
-text( x,-500, letters[1:5])
-for (i in seq(0,10000,2000)){
-  lines( c(0, max(x)+0.7), c(i,i), lty=2, col="gray80")
-}
-barplot(as.matrix(data.8.10[c(1:5,10),2:6]),
-        axes=FALSE,names.arg = rep("", 5),
-        ylim=c(0,10000), density=c(25,20,15,10,5,0), add=TRUE)
-
-legend(max(x)+0.7,8000, rev(LETTERS[1:6]), fill =  rev(gray.colors(6)),angle=45, 
-       density = rev(c(25,20,15,10,5,0)),bty="n", cex=1.5, y.intersp = 1)
-
-dev.copy2eps(file="fig810.eps", width=7, height=3.5)
-
-
-## Tab 8.1
-###############################################################################
-require(xtable)
-table.8.1 <- data.8.1
-print(xtable(table.8.1),include.rownames=FALSE )
-
-## Tab 8.2
-###############################################################################
-require(xtable)
-table.8.2 <- data.8.2
-print(xtable(table.8.2),include.rownames=FALSE )
-
-
-## Tab 8.3
-###############################################################################
-require(xtable)
-table.8.3 <- t(data.8.3)
-print(xtable(table.8.3),include.rownames=FALSE )
-
-## Tab 8.4
-###############################################################################
-require(xtable)
-table.8.4 <- t(data.8.4)
-print(xtable(table.8.4),include.rownames=FALSE )
-
-
-## Tab 8.6
-###############################################################################
-require(xtable)
-table.8.6 <- t(data.8.6[,2:3])
-print(xtable(table.8.6),include.rownames=FALSE )
-
-
-## Tab 8.7
-###############################################################################
-require(xtable)
-table.8.7 <- data.8.7[,c(3,4,2)]
-print(xtable(table.8.7),include.rownames=FALSE )
-
-
-## Tab 8.8
-###############################################################################
-require(xtable)
-
-
-data.8.8 %>%
-  filter(type=="Life Ex1") %>%
-  dplyr::select(-type) ->
-  table.8.8
-
-print(xtable(table.8.8),include.rownames=FALSE )
-
 ## Tab 8.9
 ###############################################################################
 require(xtable)
@@ -2202,13 +2144,100 @@ table.8.9 <- data.8.9[,c(2,1,3,4,5,6)]
 print(xtable(table.8.9),include.rownames=FALSE )
 
 
-## Tab 8.10
+
+## Fig 8.8
 ###############################################################################
+data.E01<- read.csv("data/UKEthnHealth.csv")
+
+require(RColorBrewer)
+redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
+
+par(mar=c(2.9, 2.9, 0.1,0.5), xpd=FALSE)
+
+plot(data.E01[,3], data.E01[,2],
+     ylim=c(5,35),
+     xlim=c(7,60),
+     axes=FALSE, pch=21, bg=redgray[1],
+     xlab="",
+     ylab="")
+mtext("a", side=1, line=2)
+mtext("b", side=2, line=2)
+lines(c(10, 10), c(5,35), lty=2, col="gray80")
+lines(c(20, 20), c(5,35), lty=2, col="gray80")
+lines(c(30, 30), c(5,35), lty=2, col="gray80")
+lines(c(40, 40), c(5,35), lty=2, col="gray80")
+lines(c(50, 50), c(5,35), lty=2, col="gray80")
+lines(c(60, 60), c(5,35), lty=2, col="gray80")
+lines(c(5,62), c(10,10), lty=2, col="gray80")
+lines(c(5,62), c(20,20), lty=2, col="gray80")
+lines(c(5,62), c(30,30), lty=2, col="gray80")
+
+axis(1)
+axis(2, las=2)
+abline(lm(data.E01[,2] ~ data.E01[,3]))
+
+text(data.E01[,3], data.E01[,2], labels=LETTERS[1:18], cex= 0.7, pos=c(3,4,3,4,3,4,4,2,4,4,3,3,2,2,2,2,1,2))
+
+dev.copy2eps(file="figures/Fig8.8.eps", width=7, height=3.5)
+par(.oldpar)
+
 require(xtable)
-table.8.10 <- data.8.10
-print(xtable(table.8.10, digits=c(0,0,0,0,0,0,0)),include.rownames=FALSE)
+print(xtable(data.E01), include.rownames=FALSE )
 
 
+## Fig 8.9
+###############################################################################
+data.E02<- read.csv("data/UKEthnCare.csv")
+
+layout(1)
+require(RColorBrewer)
+redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
+
+
+
+par(mar=c(2.1, 11, 2.1,0.5), xpd=TRUE)
+
+barplot(t(as.matrix(data.E02[,2:4])), horiz = TRUE,
+        axes=FALSE, las=2, angle=45, density = c(10,20,20),
+        col=c("black",  "gray50", redgray[1]),
+        xlim=c(0,12), names.arg = LETTERS[1:18])
+axis(1)
+lines(c(0.0,0.0), c(0, 22), lty=2, col="gray80")
+lines(c(2,2), c(0, 22), lty=2, col="gray80")
+lines(c(4,4), c(0, 22), lty=2, col="gray80")
+lines(c(6,6), c(0, 22), lty=2, col="gray80")
+lines(c(8,8), c(0, 22), lty=2, col="gray80")
+lines(c(10,10), c(0, 22), lty=2, col="gray80")
+lines(c(12,12), c(0, 22), lty=2, col="gray80")
+barplot(t(as.matrix(data.E02[,2:4])), horiz = TRUE,
+        axes=FALSE, las=2, angle=45, density = c(10,20,20),
+        col=c("black",  "gray50", redgray[1]),
+        xlim=c(0,12), names.arg = LETTERS[1:18], add=TRUE)
+
+legend(x=0,y=25, letters[1],col =c( "black"), fill =  c("black"),
+       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
+
+legend(x=4,y=25, letters[3],col =c(  "gray50"), fill =  c( "gray50"),
+       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
+
+legend(x=8,y=25, letters[5],col =c(  redgray[1]), fill =  c( redgray[1]),
+       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
+
+
+dev.copy2eps(file="figE02.eps", width=7, height=5)
+par(.oldpar)
+
+
+data.E02 <- data.E02[order(data.E02[,1]),]
+data.E01 <- data.E01[order(data.E01[,1]),]
+data.E1n2 <- left_join(data.E01, data.E02, by=c("Ethnic.group"="ethnicity"))
+require(xtable)
+print(xtable(data.E1n2), include.rownames=FALSE )
+
+
+
+
+###############################################################################
 ## Fig 9.1
 ###############################################################################
 
