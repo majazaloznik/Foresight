@@ -2469,10 +2469,6 @@ print(xtable(cbind(data.US02.men[c(1,3:6)]*100, data.US02.women[3:6]*100)),
 ## Fig 8.12 Percentage of persons aged 60 years and over by income quintile and ethnic group
 ###############################################################################
 
-
-##############################################################################
-### figure 3 - self rated health income quintile
-###############################################################################
 layout(1)
 data.US03orig<- read.csv("data/UKUnderstandingSociety.csv")
 require(laeken)
@@ -2505,7 +2501,7 @@ data.US032 <- data.US03orig %>%
 layout(1)
 par(mar=c(2.5, 7, 1.1,0.3), xpd=TRUE)
 barplot(as.matrix(data.US032[2:12]), horiz = TRUE,
-        col=gray.colors(5), density=c(25,25,15,15,5),
+        col=gray.colors(5), density=c(20,20,15,10,5),
         names.arg=LETTERS[1:11], las=2, axes=FALSE)
 lines(c(0,0), c(0,13.5), col="gray80", lty=2)
 lines(c(0.2,0.2), c(0,13.5), col="gray80", lty=2)
@@ -2514,7 +2510,7 @@ lines(c(0.6,0.6), c(0,13.5), col="gray80", lty=2)
 lines(c(0.8,0.8), c(0,13.5), col="gray80", lty=2)
 lines(c(1,1), c(0,13.5), col="gray80", lty=2)
 barplot(as.matrix(data.US032[2:12]), horiz = TRUE,
-        col=gray.colors(5), density=c(25,25,15,15,5),
+        col=gray.colors(5), density=c(20,20,15,10,5),
         names.arg="", las=2, axes=FALSE, add=TRUE)
 text( 0.1, 13.6,"a")
 text( 0.3, 13.6,"b")
@@ -2528,10 +2524,8 @@ mtext("x", line = 2.1, side=1)
 dev.copy2eps(file="figures/Fig8.12.eps", width=7, height=4.5)
 par(.oldpar)
 
+### Table 8.11
 ##############################################################################
-### TABLE US2 - self rated health poor
-###############################################################################
-
 require(xtable)
 print(xtable(t(data.US032[2:12]*100)),
       include.rownames = FALSE, digits=2)
@@ -2540,16 +2534,52 @@ print(xtable(t(data.US032[2:12]*100)),
 
 
 ###############################################################################
-## Fig 9.1
+## Fig 9.1 Proportion of people who volunteered in the previous 12 months by sex and age,
 ###############################################################################
 
-data.9.1 <- read.csv("fig91.csv", colClasses = c("numeric","factor",rep("numeric",9)))
+data.9.3 <- read.csv("data/UKVolunteering.csv")
+
+par(mar=c(3.1, 3.1, 3.1,2.1), xpd=TRUE)
+
+barplot(t(as.matrix(data.9.3[,2:3])), beside=TRUE, col =c("black","gray50"), 
+        density=c(15, 10), names.arg = LETTERS[1:7],
+        axes=FALSE)
+axis(2, las=2)
+legend(6,29, letters[1],col =c( "gray50"), fill =  c("gray50"),
+       density=c(15,10), bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
+legend(2,29, letters[2],col =c("black"), fill =  c("black"),
+       density=c(15,10), bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
+
+lines(c(0, 22), c(20,20), lty=2, col="gray80")
+lines(c(0, 22), c(10,10), lty=2, col="gray80")
+lines(c(0, 22), c(0,0), lty=2, col="gray80")
+lines(c(0, 22), c(25,25), lty=2, col="gray80")
+lines(c(0, 22), c(15,15), lty=2, col="gray80")
+lines(c(0, 22), c(5,5), lty=2, col="gray80")
+
+barplot(t(as.matrix(data.9.3[,2:3])), beside=TRUE, col =c("black","gray50"), 
+        density=c(15, 10), names.arg = rep("",7),
+        axes=FALSE, add=TRUE)
+
+mtext("y", side = 2, line = 2.5)
+mtext("x", side = 1, line = 2.5)
+
+dev.copy2eps(file="figures/Fig9.1.eps", width=7, height=3.5)
+par(.oldpar)
+
+
+## Fig 9.2 Average number of trips (trip rates) by age group and purpose (selected)
+###############################################################################
+require(RColorBrewer)
+redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
+
+data.9.1 <- read.csv("data/UKTravelRates.csv", colClasses = c("numeric","factor",rep("numeric",9)))
 table.9.1 <- cbind(x2002.60 = data.9.1[c(1,2,5,7:12),10], 
                    x2013.60 = data.9.1[c(133,134,137,139:144),10],
                    x2002.70 = data.9.1[c(1,2,5,7:12),11],
                    x2013.70 = data.9.1[c(133,134,137,139:144),11])
 
-par(mar=c(1.6, 9.1, 0.1,1), xpd=TRUE)
+par(mar=c(2.6, 9.1, 0.1,1), xpd=TRUE)
 
 mp <- barplot(t(as.matrix(table.9.1)),
         space = c(0,rep(c(0,0.3,0,.7),8), 0,0.3,0),
@@ -2577,89 +2607,20 @@ legend(180,37, LETTERS[1:2], fill =  c(redgray[1], redgray[1] ),angle=45, densit
 legend(180,45, LETTERS[3:4], fill =  c("gray50", "gray50"),angle=45, density = c(10,20),
        bty="n", cex=1.2, y.intersp = 1)
 
-dev.copy2eps(file="fig91.eps", width=7, height=4.2)
-par(.oldpar)
-
-
-## Fig 9.2
-###############################################################################
-
-data.9.2 <- read.csv("fig92.csv")
-
-par(mar=c(3.1, 4.1, 0.6,1), xpd=TRUE)
-plot(data.9.2[,1], data.9.2[,2], type="l",
-     ylim=c(0,80), bty="n", axes=FALSE, xlab="", ylab="")
-axis(2, las=2, at=seq(0,80,10))
-axis(1)
-lines(c(2008, 2015), c(0,0), lty=2, col="gray80")
-lines(c(2008, 2015), c(10,10), lty=2, col="gray80")
-lines(c(2008, 2015), c(20,20), lty=2, col="gray80")
-lines(c(2008, 2015), c(30,30), lty=2, col="gray80")
-lines(c(2008, 2015), c(40,40), lty=2, col="gray80")
-lines(c(2008, 2015), c(50,50), lty=2, col="gray80")
-lines(c(2008, 2015), c(60,60), lty=2, col="gray80")
-lines(c(2008, 2015), c(70,70), lty=2, col="gray80")
-lines(c(2008, 2015), c(80,80), lty=2, col="gray80")
-lines(data.9.2[,1], data.9.2[,2], type="l",
-     col="black", lwd=2)
-
-lines(data.9.2[,1], data.9.2[,3], type="l",
-      col=redgray[1], lwd=2)
-
-
-legend(2012,20, LETTERS[1:2], col =  c( "black",redgray[1]),lwd=2,
-       bty="n", cex=1.2, y.intersp = 1.5, x.intersp = 0.6)
-
-dev.copy2eps(file="fig92.eps", width=7, height=2.5)
-par(.oldpar)
-
-## Fig 9.3
-###############################################################################
-
-data.9.3 <- read.csv("fig93.csv")
-
-par(mar=c(3.1, 2.5, 3.1,2.1), xpd=TRUE)
-
-barplot(t(as.matrix(data.9.3[,2:3])), beside=TRUE, col =c("black","gray50"), 
-        density=c(15, 10), names.arg = LETTERS[1:7],
-        axes=FALSE)
-axis(2, las=2)
-legend(6,29, letters[1],col =c( "gray50"), fill =  c("gray50"),
-       density=c(15,10), bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
-legend(2,29, letters[2],col =c("black"), fill =  c("black"),
-       density=c(15,10), bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
-
-lines(c(0, 22), c(20,20), lty=2, col="gray80")
-lines(c(0, 22), c(10,10), lty=2, col="gray80")
-lines(c(0, 22), c(0,0), lty=2, col="gray80")
-lines(c(0, 22), c(25,25), lty=2, col="gray80")
-lines(c(0, 22), c(15,15), lty=2, col="gray80")
-lines(c(0, 22), c(5,5), lty=2, col="gray80")
-
-barplot(t(as.matrix(data.9.3[,2:3])), beside=TRUE, col =c("black","gray50"), 
-        density=c(15, 10), names.arg = LETTERS[1:7],
-        axes=FALSE, add=TRUE)
-
-# par(mar=c(3.6, 7.1, 2.1,3.6))
-# plot( c(1,2,3,4,5,6),c(data.7.1[,2]), type="l", ylim=c(0, 100), col=redgray[1],
-#       xaxt="n", lwd=2,xlim=c(1,6.2),
-#      axes=FALSE, xlab="", ylab="")
-# lines(c(1,2,3,4,5,6),data.7.1[,3], type="l", col="black", lwd=2)
-# axis(4, las=2)
-# mtext("y", side=4, line=3)
-# axis(1, at=seq(1,6, 1), labels=letters[1:6])
-
-dev.copy2eps(file="fig93.eps", width=7, height=3.5)
+mtext("x", side = 1, line = 2.4)
+dev.copy2eps(file="figures/Fig9.2.eps", width=7, height=4.2)
 par(.oldpar)
 
 
 
-## Fig 9.4
+
+## Fig 9.3 Proportion of people who report feeling lonely more than half, most or all the time by age
+
 ###############################################################################
 
-data.9.4 <- read.csv("fig94.csv")
+data.9.4 <- read.csv("data/UKLoneliness.csv")
 
-par(mar=c(3.1, 2.5, 3.1,2.1), xpd=TRUE)
+par(mar=c(3.1, 3.1, 3.1,2.1), xpd=TRUE)
 
 barplot(t(as.matrix(data.9.4[,2:3])), beside=TRUE, col =c(redgray[1],"black"), 
         density=c(20,20), names.arg = LETTERS[1:7],
@@ -2675,10 +2636,12 @@ lines(c(0, 22), c(60,60), lty=2, col="gray80")
 lines(c(0, 22), c(80,80), lty=2, col="gray80")
 
 barplot(t(as.matrix(data.9.4[,2:3])), beside=TRUE, col =c(redgray[1],"black"), 
-        density=c(20,20), names.arg = LETTERS[1:7],
+        density=c(20,20), names.arg = rep("",7),
         axes=FALSE, add=TRUE)
+mtext("x", line = 2.5, side = 1)
+mtext("y", line = 2.5, side = 2)
 
-dev.copy2eps(file="fig94.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig9.3.eps", width=7, height=3.5)
 par(.oldpar)
 
 
@@ -2689,14 +2652,6 @@ require(xtable)
 data.9.1 <- read.csv("fig91.csv", colClasses = c("numeric","factor",rep("numeric",9)))
 rownames(table.9.1) <- data.9.1[c(1,2,5,7:12),2]
 print(xtable(table.9.1, digits=c(0,0,0,0,0)) )
-
-
-
-## Tab 9.2
-###############################################################################
-require(xtable)
-data.9.2 <- read.csv("fig92.csv")
-print(xtable(t(data.9.2) ))
 
 
 ## Tab 9.3
@@ -2713,266 +2668,3 @@ data.9.4 <- read.csv("fig94.csv")
 t(as.matrix(data.9.4))
 print(xtable(data.9.4), include.rownames=FALSE )
 
-
-
-## Fig extra ethn
-###############################################################################
-data.E01<- read.csv("figE01.csv")
-
-require(RColorBrewer)
-redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
-
-par(mar=c(2.9, 2.9, 0.1,0.5), xpd=FALSE)
-
-plot(data.E01[,3], data.E01[,2],
-     ylim=c(5,35),
-     xlim=c(7,60),
-     axes=FALSE, pch=21, bg=redgray[1],
-     xlab="",
-     ylab="")
-mtext("a", side=1, line=2)
-mtext("b", side=2, line=2)
-lines(c(10, 10), c(5,35), lty=2, col="gray80")
-lines(c(20, 20), c(5,35), lty=2, col="gray80")
-lines(c(30, 30), c(5,35), lty=2, col="gray80")
-lines(c(40, 40), c(5,35), lty=2, col="gray80")
-lines(c(50, 50), c(5,35), lty=2, col="gray80")
-lines(c(60, 60), c(5,35), lty=2, col="gray80")
-lines(c(5,62), c(10,10), lty=2, col="gray80")
-lines(c(5,62), c(20,20), lty=2, col="gray80")
-lines(c(5,62), c(30,30), lty=2, col="gray80")
-
-axis(1)
-axis(2, las=2)
-abline(lm(data.E01[,2] ~ data.E01[,3]))
-
-text(data.E01[,3], data.E01[,2], labels=LETTERS[1:18], cex= 0.7, pos=c(3,4,3,4,3,4,4,2,4,4,3,3,2,2,2,2,1,2))
-
-dev.copy2eps(file="figE01.eps", width=7, height=3.5)
-par(.oldpar)
-
-require(xtable)
-print(xtable(data.E01), include.rownames=FALSE )
-
-
-## Fig extra ethn2
-###############################################################################
-data.E02<- read.csv("figE02.csv")
-
-layout(1)
-require(RColorBrewer)
-redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
-
-
-
-par(mar=c(2.1, 11, 2.1,0.5), xpd=TRUE)
-
-barplot(t(as.matrix(data.E02[,2:4])), horiz = TRUE,
-        axes=FALSE, las=2, angle=45, density = c(10,20,20),
-        col=c("black",  "gray50", redgray[1]),
-        xlim=c(0,12), names.arg = LETTERS[1:18])
-axis(1)
-lines(c(0.0,0.0), c(0, 22), lty=2, col="gray80")
-lines(c(2,2), c(0, 22), lty=2, col="gray80")
-lines(c(4,4), c(0, 22), lty=2, col="gray80")
-lines(c(6,6), c(0, 22), lty=2, col="gray80")
-lines(c(8,8), c(0, 22), lty=2, col="gray80")
-lines(c(10,10), c(0, 22), lty=2, col="gray80")
-lines(c(12,12), c(0, 22), lty=2, col="gray80")
-barplot(t(as.matrix(data.E02[,2:4])), horiz = TRUE,
-        axes=FALSE, las=2, angle=45, density = c(10,20,20),
-        col=c("black",  "gray50", redgray[1]),
-        xlim=c(0,12), names.arg = LETTERS[1:18], add=TRUE)
-
-legend(x=0,y=25, letters[1],col =c( "black"), fill =  c("black"),
-       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
-
-legend(x=4,y=25, letters[3],col =c(  "gray50"), fill =  c( "gray50"),
-       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
-
-legend(x=8,y=25, letters[5],col =c(  redgray[1]), fill =  c( redgray[1]),
-       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
-
-
-dev.copy2eps(file="figE02.eps", width=7, height=5)
-par(.oldpar)
-
-
-data.E02 <- data.E02[order(data.E02[,1]),]
-data.E01 <- data.E01[order(data.E01[,1]),]
-data.E1n2 <- left_join(data.E01, data.E02, by=c("Ethnic.group"="ethnicity"))
-require(xtable)
-print(xtable(data.E1n2), include.rownames=FALSE )
-
-
-
-##############################################################################
-### figure 4 - home ownership value
-###############################################################################
-require(Hmisc)
-require(dplyr)
-require(tidyr)
-require(laeken)
-
-# manual csv from e_hhresp.tab including:
-
-data.USW5hh.orig<- read.csv("UsocW5ownership.hh.csv")
-## which member(s)are owners
-data.USW5hh<- data.USW5hh.orig %>%
-  mutate(e_hsowr10 = ifelse(e_hsowr10 ==1, 0, -9), 
-         e_hsowr11 = ifelse(e_hsowr11 ==1, 1, -9),
-         e_hsowr12 = ifelse(e_hsowr12 ==1, 2, -9),
-         e_hsowr13 = ifelse(e_hsowr13 ==1, 3, -9),
-         e_hsowr14 = ifelse(e_hsowr14 ==1, 4, -9),
-         e_hsowr15 = ifelse(e_hsowr15 ==1, 5, -9),
-         e_hsowr16 = ifelse(e_hsowr16 ==1, 6, -9),
-         e_hsowr17 = ifelse(e_hsowr17 ==1, 7, -9),
-         e_hsowr18 = ifelse(e_hsowr18 ==1, 8, -9),
-         e_hsowr19 = ifelse(e_hsowr19 ==1, 9, -9),
-         e_hsowr110 = ifelse(e_hsowr110 ==1, 10, -9),
-         e_hsowr111 = ifelse(e_hsowr111 ==1, 11, -9),
-         e_hsowr112 = ifelse(e_hsowr112 ==1, 12, -9),
-         e_hsowr113 = ifelse(e_hsowr113 ==1, 13, -9),
-         e_hsowr114 = ifelse(e_hsowr114 ==1, 14, -9),
-         e_hsowr115 = ifelse(e_hsowr115 ==1, 15, -9),
-         e_hsowr116 = ifelse(e_hsowr116 ==1, 16, -9))
-
-# manual csv from 
-data.USW5ind.orig<- read.csv("UsocW5ages.ind.csv")
-
-
-## take all owned households where at least one member is over 65
-## within each region divide into 4 quantiles
-## unweighted
-data.USW5ind  <- data.USW5ind.orig %>%
-  filter(e_age_cr >=65) %>%
-  distinct(e_hidp) %>%
-  left_join(data.USW5hh) %>%
-  filter(e_hsownd == 1 | e_hsownd == 2) %>%
-  filter(e_hsval >= 0) %>%
-  filter(e_gor_dv >0) %>%
-  group_by(e_gor_dv) %>%
-  mutate(valueq=cut(e_hsval,
-                    c(-1, quantile(e_hsval)[2:6]),
-                #c(-1, incQuintile(e_hsval, e_hhdenub_xw, k=0:5)[2:6]),
-                labels = FALSE, inlcude.lowest=TRUE)) %>%
-  group_by(valueq, add = TRUE) %>%
-  dplyr::summarize(meanhv = mean(e_hsval)) %>%
-  spread(valueq, meanhv)
-
-par(mar=c(2,4,1,1))
-barplot(t(as.matrix(data.USW5ind[,2:5])),
-        beside=TRUE, las=2)
-
-## take all owned households where at least one member is over 65
-## within each region divide into 4 quantiles
-## weighted
-data.USW5ind  <- data.USW5ind.orig %>%
-  filter(e_age_cr >=65) %>%
-  distinct(e_hidp) %>%
-  left_join(data.USW5hh.orig) %>%
-  filter(e_hsownd == 1 | e_hsownd == 2) %>%
-  filter(e_hsval >= 0) %>%
-  filter(e_gor_dv >0) %>%
-  group_by(e_gor_dv) %>%
-  mutate(valueq = cut(e_hsval,
-                    wtd.quantile(e_hsval, weights=e_hhdenub_xw,
-                                 probs=c(0, .25, .5, .75, 1),
-                                 type="i/n"),
-                    include.lowest=TRUE,labels = FALSE)) %>%
-  group_by(valueq, add = TRUE) %>%
-  dplyr::summarize(meanhv = mean(e_hsval)) %>%
-  spread(valueq, meanhv)
-
-par(mar=c(4,4,1,1))
-barplot(t(as.matrix(data.USW5ind[,2:5])),
-        beside=TRUE, las=2, names.arg = groz)
-groz <- c("North East",
-"North West",
-"Yorkshire and the Humber	",
-"East Midlands",	
-"West Midlands",	
-"East of England",	
-"London",
-"South East",
-"South West",
-"Wales",
-"Scotland",
-"Northern Ireland")
-
-
-## take all over 65, who are (co) owners of the house
-## get the 4 quantiles, 25, 40, 75, 95
-## weighted
-data.USW5ind  <- data.USW5ind.orig %>%
-  filter(e_age_cr >=65) %>%
-  left_join(data.USW5hh) %>%
-  filter(e_hsownd == 1 | e_hsownd == 2) %>%
-  filter(e_hsval >= 0) %>%
-  filter(e_gor_dv >0) %>%
- mutate(owner=ifelse(e_pno %in% c(e_hsowr11, e_hsowr12,e_hsowr13, e_hsowr14,
-                                  e_hsowr15, e_hsowr16, e_hsowr17, e_hsowr18,
-                                  e_hsowr19, e_hsowr110, e_hsowr111, e_hsowr112,
-                                  e_hsowr113, e_hsowr114, e_hsowr115, e_hsowr116), 1, 0)) %>%
-  filter(owner==1) %>%
-  group_by(e_gor_dv) %>%
-  dplyr::summarize(q25 =  wtd.quantile(e_hsval, probs=0.25),
-                   q50 =  wtd.quantile(e_hsval, probs=0.50),
-                   q75 =  wtd.quantile(e_hsval, probs=0.75),
-                   q95 =  wtd.quantile(e_hsval, probs=0.95))
-  
-
-
-
-
-groz <- c("North East",
-          "North West",
-          "Yorkshire and the Humber	",
-          "East Midlands",	
-          "West Midlands",	
-          "East of England",	
-          "London",
-          "South East",
-          "South West",
-          "Wales",
-          "Scotland",
-          "Northern Ireland")
-
-
-par(mar=c(4,4,1,1))
-barplot(t(as.matrix(data.USW5ind[,2:5])),
-        beside=TRUE, las=2, names.arg = groz)
-
-
-
-### ELSA
-###############################################################################
-data.elsa <- read.csv("elsa2.csv")
-require(dplyr)
-
-data.elsa %>%
-  filter(indager>=50, hormvjr >=0) -> over50
-colSums(over50)/nrow(over50)  
-
-data.elsa %>%
-  filter(indager>=65, hormvjr >=0) -> over65
-colSums(over65)/nrow(over65)  
-
-data.elsa %>%
-  filter(indager>=75, hormvjr >=0) -> over75
-colSums(over75)/nrow(over75)  
-
-data.elsa %>%
-  filter(indager>=85, hormvjr >=0) -> over85
-colSums(over85)/nrow(over85)  
-
-
-moving <- rbind(colSums(over50)/nrow(over50),
-      colSums(over65)/nrow(over65),
-      colSums(over75)/nrow(over75),
-      colSums(over85)/nrow(over85)  
-   )
-
-moving <- moving[,c(4, 11, 7, 3, 12)]
-
-barplot(moving, beside=TRUE)
