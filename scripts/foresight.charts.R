@@ -2145,7 +2145,8 @@ print(xtable(table.8.9),include.rownames=FALSE )
 
 
 
-## Fig 8.8
+## Fig 8.8 The relationship between increasing age and percentage of people with 
+## ‘Not Good’ general health: by ethnic group, 
 ###############################################################################
 data.E01<- read.csv("data/UKEthnHealth.csv")
 
@@ -2185,7 +2186,8 @@ require(xtable)
 print(xtable(data.E01), include.rownames=FALSE )
 
 
-## Fig 8.9
+## Fig 8.9 Ranked proportions of total unpaid care provision and the extent of unpaid care
+## provided: by ethnic group
 ###############################################################################
 data.E02<- read.csv("data/UKEthnCare.csv")
 
@@ -2193,9 +2195,7 @@ layout(1)
 require(RColorBrewer)
 redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
 
-
-
-par(mar=c(2.1, 11, 2.1,0.5), xpd=TRUE)
+par(mar=c(3.1, 11, 2.1,0.5), xpd=TRUE)
 
 barplot(t(as.matrix(data.E02[,2:4])), horiz = TRUE,
         axes=FALSE, las=2, angle=45, density = c(10,20,20),
@@ -2222,9 +2222,10 @@ legend(x=4,y=25, letters[3],col =c(  "gray50"), fill =  c( "gray50"),
 
 legend(x=8,y=25, letters[5],col =c(  redgray[1]), fill =  c( redgray[1]),
        density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
+mtext("x", side = 1, line = 2.5)
 
 
-dev.copy2eps(file="figE02.eps", width=7, height=5)
+dev.copy2eps(file="figures/Fig8.9.eps", width=7, height=5)
 par(.oldpar)
 
 
@@ -2233,6 +2234,307 @@ data.E01 <- data.E01[order(data.E01[,1]),]
 data.E1n2 <- left_join(data.E01, data.E02, by=c("Ethnic.group"="ethnicity"))
 require(xtable)
 print(xtable(data.E1n2), include.rownames=FALSE )
+
+
+## 8.10 Proportion reporting their health limits \emph{typical activities} by age 
+## and ethnic group, UK. Weighted data from the 1st (2009-2011) wave of the Understanding Society  survey
+###############################################################################
+###############################################################################
+## Fig US01 - understanding society
+###############################################################################
+data.US01<- read.csv("data/UKUnderstandingSociety.csv")
+
+require(dplyr)
+require(tidyr)
+
+# remove missing values
+# recode new variables
+data.US01 <- data.US01 %>%
+  filter(a_racel > 0) %>%
+  filter(a_sf2a > 0) %>%
+  filter(a_racel > 0) %>%
+  mutate(agegroup = ifelse(a_age_cr >=75, 4, 
+                           ifelse(a_age_cr>=60, 3,
+                                  ifelse(a_age_cr >= 40,2,1)))) %>%
+  mutate(race_group = ifelse(a_racel ==3 | a_racel ==4, 3,
+                             ifelse(a_racel >=5 & a_racel <=8, 4,
+                                    ifelse(a_racel ==12 | a_racel ==13, 12,
+                                           ifelse(a_racel ==16 | a_racel ==17 | a_racel ==97, 16,
+                                                  a_racel))))) %>%
+  mutate(limit = ifelse(a_sf2a == 3, 0, 1))
+
+## men only, weighted
+data.US01.men <-data.US01 %>%
+  group_by(agegroup, race_group, a_sex_cr) %>%
+  filter(a_sex_cr == 1) %>%
+  summarize(prop = sum(limit*a_indpxus_xw)/sum(a_indpxus_xw)) %>%
+  spread(agegroup, prop)
+
+## women only, weighted
+data.US01.women <-data.US01 %>%
+  group_by(agegroup, race_group, a_sex_cr) %>%
+  filter(a_sex_cr == 2) %>%
+  summarize(prop = sum(limit*a_indpxus_xw)/sum(a_indpxus_xw)) %>%
+  spread(agegroup, prop)
+
+##plot
+###############################################################################
+
+layout(matrix(c(1,2,3),1), widths=c(9,1,9), heights=c(1,1,1))
+par(mar=c(3.6, 0.3, 0.5,3), xpd=TRUE)
+
+x <- barplot(as.matrix(-data.US01.men[,3:6]), beside=TRUE,
+             axes=FALSE, 
+             col=gray.colors(11),
+             density=c(rep(seq(25,5,-5),each=2),0), horiz = TRUE,
+             names.arg = rep("", 4), space = c(0,3), xlim=c(-1,0),
+             main="mm")
+lines(c(0,0), c(0,57.1), col="gray80", lty=2)
+lines(c(-0.2,-0.2), c(0,57.1), col="gray80", lty=2)
+lines(c(-0.4,-0.4), c(0,57.1), col="gray80", lty=2)
+lines(c(-0.6,-0.6), c(0,57.1), col="gray80", lty=2)
+lines(c(-0.8,-0.8), c(0,57.1), col="gray80", lty=2)
+lines(c(-1,-1), c(0,57.1), col="gray80", lty=2)
+barplot(as.matrix(-data.US01.men[,3:6]), beside=TRUE,
+        axes=FALSE, 
+        col=gray.colors(11),
+        density=c(rep(seq(25,5,-5),each=2),0), horiz = TRUE,
+        names.arg = rep("", 4), space = c(0,3), xlim=c(-1,0),
+        add=TRUE)
+mtext("x", side = 1, line =3)
+axis(1, at=seq(0,-1,-0.2), labels=seq(0,1,0.2))
+par("usr")
+
+par(mar=c(3.6, 0, 0.1,0), xpd=TRUE)
+plot.new()
+par("usr")
+par(mar=c(3.6, 0, 0.1,0), xpd=TRUE)
+t.pos <- x/(58.12-0.88)*1.08-0.052
+
+text( x=.5,y=t.pos, LETTERS[1:11])
+text( x=.5, y=mean(c(t.pos[11,1], t.pos[1,2])), "a")
+
+text( x=.5, y=mean(c(t.pos[11,2], t.pos[1,3])), "b")
+text( x=.5, y=mean(c(t.pos[11,3], t.pos[1,4])), "c")
+text( x=.5, y=1.031, "d")
+
+text( x=.5, y=-0.07, "Y")
+
+par(mar=c(3.6, 3, 0.5,0.3), xpd=TRUE)
+x <- barplot(as.matrix(data.US01.women[,3:6]), beside=TRUE,
+             axes=FALSE, 
+             col=gray.colors(11),
+             density=c(rep(seq(25,5,-5),each=2),0), horiz = TRUE,
+             names.arg = rep("", 4),space = c(0,3), xlim=c(0,1),
+             main="ff")
+mtext("x", side = 1, line =3)
+
+axis(1, at=seq(0,1,0.2))
+lines(c(0,0), c(0,57.1), col="gray80", lty=2)
+lines(c(0.2,0.2), c(0,57.1), col="gray80", lty=2)
+lines(c(0.4,0.4), c(0,57.1), col="gray80", lty=2)
+lines(c(0.6,0.6), c(0,57.1), col="gray80", lty=2)
+lines(c(0.8,0.8), c(0,57.1), col="gray80", lty=2)
+lines(c(1,1), c(0,57.1), col="gray80", lty=2)
+barplot(as.matrix(data.US01.women[,3:6]), beside=TRUE,
+        axes=FALSE, 
+        col=gray.colors(11),
+        density=c(rep(seq(25,5,-5),each=2),0), horiz = TRUE,
+        names.arg = rep("", 4),space = c(0,3), xlim=c(0,1),
+        add=TRUE)
+
+dev.copy2eps(file="figures/Fig8.10.eps", width=7, height=9.5)
+par(.oldpar)
+
+### Table 8.10
+###############################################################################
+
+require(xtable)
+print(xtable(cbind(data.US01.men[c(1,3:6)]*100, data.US01.women[3:6]*100)),
+      include.rownames = FALSE, digits=2)
+
+### Figure 8.11  Proportion reporting their health limits \emph{typical activities} by age and ethnic group, UK. 
+###############################################################################
+require(tidyr)
+data.US02<- read.csv("data/UKUnderstandingSociety.csv")
+data.US02 <- data.US02 %>%
+  filter(a_racel > 0) %>%
+  filter(a_sf1 > 0) %>%
+  mutate(agegroup = ifelse(a_age_cr >=75, 4, 
+                           ifelse(a_age_cr>=60, 3,
+                                  ifelse(a_age_cr >= 40,2,1)))) %>%
+  mutate(race_group = ifelse(a_racel ==3 | a_racel ==4, 3,
+                             ifelse(a_racel >=5 & a_racel <=8, 4,
+                                    ifelse(a_racel ==12 | a_racel ==13, 12,
+                                           ifelse(a_racel ==16 | a_racel ==17 | a_racel ==97, 16,
+                                                  a_racel))))) %>%
+  mutate(health = ifelse(a_sf1 == 5, 1, 0))
+
+data.US02 %>%
+  filter(a_racel==11,
+         a_age_cr>=75)
+## men only, weighted
+data.US02.men <-data.US02 %>%
+  group_by(agegroup, race_group, a_sex_cr) %>%
+  filter(a_sex_cr == 1) %>%
+  summarize(prop = sum(health*a_indpxus_xw)/sum(a_indpxus_xw)) %>%
+  spread(agegroup, prop)
+
+## women only, weighted
+data.US02.women <-data.US02 %>%
+  group_by(agegroup, race_group, a_sex_cr) %>%
+  filter(a_sex_cr == 2) %>%
+  summarize(prop = sum(health*a_indpxus_xw)/sum(a_indpxus_xw)) %>%
+  spread(agegroup, prop)
+
+
+##plot
+###############################################################################
+
+layout(matrix(c(1,2,3),1), widths=c(9,1,9), heights=c(1,1,1))
+
+par(mar=c(3.6, 0.3, 0.5,3), xpd=TRUE)
+
+x <- barplot(as.matrix(-data.US02.men[,3:6]), beside=TRUE,
+             axes=FALSE, 
+             col=gray.colors(11),
+             density=c(rep(seq(25,5,-5),each=2),0), horiz = TRUE,
+             names.arg = rep("", 4), space = c(0,3), xlim=c(-1,0),
+             main="mm")
+lines(c(0,0), c(0,57.1), col="gray80", lty=2)
+lines(c(-0.2,-0.2), c(0,57.1), col="gray80", lty=2)
+lines(c(-0.4,-0.4), c(0,57.1), col="gray80", lty=2)
+lines(c(-0.6,-0.6), c(0,57.1), col="gray80", lty=2)
+lines(c(-0.8,-0.8), c(0,57.1), col="gray80", lty=2)
+lines(c(-1,-1), c(0,57.1), col="gray80", lty=2)
+barplot(as.matrix(-data.US02.men[,3:6]), beside=TRUE,
+        axes=FALSE, 
+        col=gray.colors(11),
+        density=c(rep(seq(25,5,-5),each=2),0), horiz = TRUE,
+        names.arg = rep("", 4), space = c(0,3), xlim=c(-1,0),
+        add=TRUE)
+axis(1, at=seq(0,-1,-0.2), labels=seq(0,1,0.2))
+mtext("x", side = 1, line =3)
+
+par("usr")
+
+par(mar=c(3.6, 0, 0.1,0), xpd=TRUE)
+plot.new()
+par("usr")
+par(mar=c(3.6, 0, 0.1,0), xpd=TRUE)
+t.pos <- x/(58.12-0.88)*1.08-0.052
+
+text( x=.5,y=t.pos, LETTERS[1:11])
+text( x=.5, y=mean(c(t.pos[11,1], t.pos[1,2])), "a")
+
+text( x=.5, y=mean(c(t.pos[11,2], t.pos[1,3])), "b")
+text( x=.5, y=mean(c(t.pos[11,3], t.pos[1,4])), "c")
+text( x=.5, y=1.031, "d")
+
+
+text( x=.5, y=-0.07, "Y")
+par(mar=c(3.6, 3, 0.5,0.3), xpd=TRUE)
+x <- barplot(as.matrix(data.US02.women[,3:6]), beside=TRUE,
+             axes=FALSE, 
+             col=gray.colors(11),
+             density=c(rep(seq(25,5,-5),each=2),0), horiz = TRUE,
+             names.arg = rep("", 4),space = c(0,3), xlim=c(0,1),
+             main="ff")
+axis(1, at=seq(0,1,0.2))
+mtext("x", side = 1, line =3)
+
+lines(c(0,0), c(0,57.1), col="gray80", lty=2)
+lines(c(0.2,0.2), c(0,57.1), col="gray80", lty=2)
+lines(c(0.4,0.4), c(0,57.1), col="gray80", lty=2)
+lines(c(0.6,0.6), c(0,57.1), col="gray80", lty=2)
+lines(c(0.8,0.8), c(0,57.1), col="gray80", lty=2)
+lines(c(1,1), c(0,57.1), col="gray80", lty=2)
+barplot(as.matrix(data.US02.women[,3:6]), beside=TRUE,
+        axes=FALSE, 
+        col=gray.colors(11),
+        density=c(rep(seq(25,5,-5),each=2),0), horiz = TRUE,
+        names.arg = rep("", 4),space = c(0,3), xlim=c(0,1),
+        add=TRUE)
+
+dev.copy2eps(file="figures/Fig8.11.eps", width=7, height=10)
+par(.oldpar)
+
+### Table 8.10 
+###############################################################################
+require(xtable)
+print(xtable(cbind(data.US02.men[c(1,3:6)]*100, data.US02.women[3:6]*100)),
+      include.rownames = FALSE, digits=2)
+
+
+## Fig 8.12 Percentage of persons aged 60 years and over by income quintile and ethnic group
+###############################################################################
+
+
+##############################################################################
+### figure 3 - self rated health income quintile
+###############################################################################
+layout(1)
+data.US03orig<- read.csv("data/UKUnderstandingSociety.csv")
+require(laeken)
+
+data.US032 <- data.US03orig %>%
+  filter(a_racel > 0) %>%
+  filter(a_netinc1 >= 0) %>%
+  filter(a_age_cr >=60) %>%
+  mutate(income.q = ntile(a_netinc1*a_indpxus_xw, 5),
+         income.q2=cut(a_netinc1,
+                       c(-1, incQuintile(a_netinc1, a_indpxus_xw, k=0:5)[2:6]),
+                       labels = FALSE, inlcude.lowest=TRUE)) %>%
+  mutate(race_group = ifelse(a_racel ==3 | a_racel ==4, 3,
+                             ifelse(a_racel >=5 & a_racel <=8, 4,
+                                    ifelse(a_racel ==12 | a_racel ==13, 12,
+                                           ifelse(a_racel ==16 | a_racel ==17 | a_racel ==97, 16,
+                                                  a_racel))))) %>%
+  group_by(race_group) %>%
+  mutate(countT = sum(a_indpxus_xw) ) %>%
+  group_by(income.q2, add=TRUE) %>%
+  mutate(countG = sum(a_indpxus_xw)) %>%
+  mutate(per=countG/countT) %>%
+  #summarize(G = unique(countG), T=unique(countT), prop = unique(per))%>%
+  summarize( per=unique(per)) %>%
+  #summarize( total=unique(countT)) %>%
+  spread(race_group, per )
+
+##plot
+###############################################################################
+layout(1)
+par(mar=c(2.5, 7, 1.1,0.3), xpd=TRUE)
+barplot(as.matrix(data.US032[2:12]), horiz = TRUE,
+        col=gray.colors(5), density=c(25,25,15,15,5),
+        names.arg=LETTERS[1:11], las=2, axes=FALSE)
+lines(c(0,0), c(0,13.5), col="gray80", lty=2)
+lines(c(0.2,0.2), c(0,13.5), col="gray80", lty=2)
+lines(c(0.4,0.4), c(0,13.51), col="gray80", lty=2)
+lines(c(0.6,0.6), c(0,13.5), col="gray80", lty=2)
+lines(c(0.8,0.8), c(0,13.5), col="gray80", lty=2)
+lines(c(1,1), c(0,13.5), col="gray80", lty=2)
+barplot(as.matrix(data.US032[2:12]), horiz = TRUE,
+        col=gray.colors(5), density=c(25,25,15,15,5),
+        names.arg="", las=2, axes=FALSE, add=TRUE)
+text( 0.1, 13.6,"a")
+text( 0.3, 13.6,"b")
+text( 0.5, 13.6,"c")
+text( 0.7, 13.6,"d")
+text( 0.9, 13.6,"e")
+text( 0.5, 14.4,"h")
+
+axis(1)
+mtext("x", line = 2.1, side=1)
+dev.copy2eps(file="figures/Fig8.12.eps", width=7, height=4.5)
+par(.oldpar)
+
+##############################################################################
+### TABLE US2 - self rated health poor
+###############################################################################
+
+require(xtable)
+print(xtable(t(data.US032[2:12]*100)),
+      include.rownames = FALSE, digits=2)
 
 
 
@@ -2501,295 +2803,6 @@ data.E01 <- data.E01[order(data.E01[,1]),]
 data.E1n2 <- left_join(data.E01, data.E02, by=c("Ethnic.group"="ethnicity"))
 require(xtable)
 print(xtable(data.E1n2), include.rownames=FALSE )
-
-###############################################################################
-## Fig US01 - understanding society
-###############################################################################
-data.US01<- read.csv("understanding.soc.csv")
-
-require(dplyr)
-require(tidyr)
-
-# remove missing values
-# recode new variables
-data.US01 <- data.US01 %>%
-  filter(a_racel > 0) %>%
-  filter(a_sf2a > 0) %>%
-  filter(a_racel > 0) %>%
-  mutate(agegroup = ifelse(a_age_cr >=75, 4, 
-                           ifelse(a_age_cr>=60, 3,
-                                  ifelse(a_age_cr >= 40,2,1)))) %>%
-  mutate(race_group = ifelse(a_racel ==3 | a_racel ==4, 3,
-                             ifelse(a_racel >=5 & a_racel <=8, 4,
-                                    ifelse(a_racel ==12 | a_racel ==13, 12,
-                                           ifelse(a_racel ==16 | a_racel ==17 | a_racel ==97, 16,
-                                                  a_racel))))) %>%
-  mutate(limit = ifelse(a_sf2a == 3, 0, 1))
-  
-## men only, weighted
-data.US01.men <-data.US01 %>%
-  group_by(agegroup, race_group, a_sex_cr) %>%
-  filter(a_sex_cr == 1) %>%
-  summarize(prop = sum(limit*a_indpxus_xw)/sum(a_indpxus_xw)) %>%
-  spread(agegroup, prop)
-
-## women only, weighted
-data.US01.women <-data.US01 %>%
-  group_by(agegroup, race_group, a_sex_cr) %>%
-  filter(a_sex_cr == 2) %>%
-  summarize(prop = sum(limit*a_indpxus_xw)/sum(a_indpxus_xw)) %>%
-  spread(agegroup, prop)
-# data.US01.women[7,6] <- 0
-# 
-
-##plot
-###############################################################################
-
-layout(matrix(c(1,2,3),1), widths=c(9,1,9), heights=c(1,1,1))
-
-par(mar=c(3.6, 0.3, 0.1,3), xpd=TRUE)
-
-x <- barplot(as.matrix(-data.US01.men[,3:6]), beside=TRUE,
-             axes=FALSE, 
-             col=gray.colors(11),
-             density=c(rep(seq(25,5,-5),each=2),0), horiz = TRUE,
-             names.arg = rep("", 4), space = c(0,3), xlim=c(-1,0),
-             main="mm")
-lines(c(0,0), c(0,57.1), col="gray80", lty=2)
-lines(c(-0.2,-0.2), c(0,57.1), col="gray80", lty=2)
-lines(c(-0.4,-0.4), c(0,57.1), col="gray80", lty=2)
-lines(c(-0.6,-0.6), c(0,57.1), col="gray80", lty=2)
-lines(c(-0.8,-0.8), c(0,57.1), col="gray80", lty=2)
-lines(c(-1,-1), c(0,57.1), col="gray80", lty=2)
-barplot(as.matrix(-data.US01.men[,3:6]), beside=TRUE,
-        axes=FALSE, 
-        col=gray.colors(11),
-        density=c(rep(seq(25,5,-5),each=2),0), horiz = TRUE,
-        names.arg = rep("", 4), space = c(0,3), xlim=c(-1,0),
-        add=TRUE)
-axis(1, at=seq(0,-1,-0.2), labels=seq(0,1,0.2))
-par("usr")
-
-par(mar=c(3.6, 0, 0.1,0), xpd=TRUE)
-plot.new()
-par("usr")
-par(mar=c(3.6, 0, 0.1,0), xpd=TRUE)
-t.pos <- x/(58.12-0.88)*1.08-0.052
-
-text( x=.5,y=t.pos, LETTERS[1:11])
-text( x=.5, y=mean(c(t.pos[11,1], t.pos[1,2])), "a")
-
-text( x=.5, y=mean(c(t.pos[11,2], t.pos[1,3])), "b")
-text( x=.5, y=mean(c(t.pos[11,3], t.pos[1,4])), "c")
-text( x=.5, y=1.031, "d")
-
-
-par(mar=c(3.6, 3, 0.1,0.3), xpd=TRUE)
-x <- barplot(as.matrix(data.US01.women[,3:6]), beside=TRUE,
-             axes=FALSE, 
-             col=gray.colors(11),
-             density=c(rep(seq(25,5,-5),each=2),0), horiz = TRUE,
-             names.arg = rep("", 4),space = c(0,3), xlim=c(0,1),
-             main="ff")
-axis(1, at=seq(0,1,0.2))
-lines(c(0,0), c(0,57.1), col="gray80", lty=2)
-lines(c(0.2,0.2), c(0,57.1), col="gray80", lty=2)
-lines(c(0.4,0.4), c(0,57.1), col="gray80", lty=2)
-lines(c(0.6,0.6), c(0,57.1), col="gray80", lty=2)
-lines(c(0.8,0.8), c(0,57.1), col="gray80", lty=2)
-lines(c(1,1), c(0,57.1), col="gray80", lty=2)
-barplot(as.matrix(data.US01.women[,3:6]), beside=TRUE,
-        axes=FALSE, 
-        col=gray.colors(11),
-        density=c(rep(seq(25,5,-5),each=2),0), horiz = TRUE,
-        names.arg = rep("", 4),space = c(0,3), xlim=c(0,1),
-        add=TRUE)
-
-dev.copy2eps(file="figUS01.eps", width=7, height=9.5)
-par(.oldpar)
-
-##############################################################################
-### TABLE US1 - limited daily
-###############################################################################
-
-require(xtable)
-print(xtable(cbind(data.US01.men[c(1,3:6)]*100, data.US01.women[3:6]*100)),
-      include.rownames = FALSE, digits=2)
-
-##############################################################################
-### figure 2 - self rated health poor
-###############################################################################
-require(tidyr)
-data.US02<- read.csv("understanding.soc.csv")
-data.US02 <- data.US02 %>%
-  filter(a_racel > 0) %>%
-  filter(a_sf1 > 0) %>%
-  mutate(agegroup = ifelse(a_age_cr >=75, 4, 
-                           ifelse(a_age_cr>=60, 3,
-                                  ifelse(a_age_cr >= 40,2,1)))) %>%
-  mutate(race_group = ifelse(a_racel ==3 | a_racel ==4, 3,
-                             ifelse(a_racel >=5 & a_racel <=8, 4,
-                                    ifelse(a_racel ==12 | a_racel ==13, 12,
-                                           ifelse(a_racel ==16 | a_racel ==17 | a_racel ==97, 16,
-                                                  a_racel))))) %>%
-  mutate(health = ifelse(a_sf1 == 5, 1, 0))
-
-data.US02 %>%
-  filter(a_racel==11,
-         a_age_cr>=75)
-## men only, weighted
-data.US02.men <-data.US02 %>%
-  group_by(agegroup, race_group, a_sex_cr) %>%
-  filter(a_sex_cr == 1) %>%
-  summarize(prop = sum(health*a_indpxus_xw)/sum(a_indpxus_xw)) %>%
-  spread(agegroup, prop)
-
-## women only, weighted
-data.US02.women <-data.US02 %>%
-  group_by(agegroup, race_group, a_sex_cr) %>%
-  filter(a_sex_cr == 2) %>%
-  summarize(prop = sum(health*a_indpxus_xw)/sum(a_indpxus_xw)) %>%
-  spread(agegroup, prop)
-# data.US01.women[7,6] <- 0
-
-
-##plot
-###############################################################################
-
-layout(matrix(c(1,2,3),1), widths=c(9,1,9), heights=c(1,1,1))
-
-par(mar=c(3.6, 0.3, 0.1,3), xpd=TRUE)
-
-x <- barplot(as.matrix(-data.US02.men[,3:6]), beside=TRUE,
-             axes=FALSE, 
-             col=gray.colors(11),
-             density=c(rep(seq(25,5,-5),each=2),0), horiz = TRUE,
-             names.arg = rep("", 4), space = c(0,3), xlim=c(-1,0),
-             main="mm")
-lines(c(0,0), c(0,57.1), col="gray80", lty=2)
-lines(c(-0.2,-0.2), c(0,57.1), col="gray80", lty=2)
-lines(c(-0.4,-0.4), c(0,57.1), col="gray80", lty=2)
-lines(c(-0.6,-0.6), c(0,57.1), col="gray80", lty=2)
-lines(c(-0.8,-0.8), c(0,57.1), col="gray80", lty=2)
-lines(c(-1,-1), c(0,57.1), col="gray80", lty=2)
-barplot(as.matrix(-data.US02.men[,3:6]), beside=TRUE,
-        axes=FALSE, 
-        col=gray.colors(11),
-        density=c(rep(seq(25,5,-5),each=2),0), horiz = TRUE,
-        names.arg = rep("", 4), space = c(0,3), xlim=c(-1,0),
-        add=TRUE)
-axis(1, at=seq(0,-1,-0.2), labels=seq(0,1,0.2))
-par("usr")
-
-par(mar=c(3.6, 0, 0.1,0), xpd=TRUE)
-plot.new()
-par("usr")
-par(mar=c(3.6, 0, 0.1,0), xpd=TRUE)
-t.pos <- x/(58.12-0.88)*1.08-0.052
-
-text( x=.5,y=t.pos, LETTERS[1:11])
-text( x=.5, y=mean(c(t.pos[11,1], t.pos[1,2])), "a")
-
-text( x=.5, y=mean(c(t.pos[11,2], t.pos[1,3])), "b")
-text( x=.5, y=mean(c(t.pos[11,3], t.pos[1,4])), "c")
-text( x=.5, y=1.031, "d")
-
-
-par(mar=c(3.6, 3, 0.1,0.3), xpd=TRUE)
-x <- barplot(as.matrix(data.US02.women[,3:6]), beside=TRUE,
-             axes=FALSE, 
-             col=gray.colors(11),
-             density=c(rep(seq(25,5,-5),each=2),0), horiz = TRUE,
-             names.arg = rep("", 4),space = c(0,3), xlim=c(0,1),
-             main="ff")
-axis(1, at=seq(0,1,0.2))
-lines(c(0,0), c(0,57.1), col="gray80", lty=2)
-lines(c(0.2,0.2), c(0,57.1), col="gray80", lty=2)
-lines(c(0.4,0.4), c(0,57.1), col="gray80", lty=2)
-lines(c(0.6,0.6), c(0,57.1), col="gray80", lty=2)
-lines(c(0.8,0.8), c(0,57.1), col="gray80", lty=2)
-lines(c(1,1), c(0,57.1), col="gray80", lty=2)
-barplot(as.matrix(data.US02.women[,3:6]), beside=TRUE,
-        axes=FALSE, 
-        col=gray.colors(11),
-        density=c(rep(seq(25,5,-5),each=2),0), horiz = TRUE,
-        names.arg = rep("", 4),space = c(0,3), xlim=c(0,1),
-        add=TRUE)
-
-dev.copy2eps(file="figUS02.eps", width=7, height=10)
-par(.oldpar)
-
-##############################################################################
-### TABLE US2 - self rated health poor
-###############################################################################
-
-require(xtable)
-print(xtable(cbind(data.US02.men[c(1,3:6)]*100, data.US02.women[3:6]*100)),
-      include.rownames = FALSE, digits=2)
-
-
-##############################################################################
-### figure 3 - self rated health income quintile
-###############################################################################
-layout(1)
-data.US03orig<- read.csv("understanding.soc.csv")
-require(laeken)
-
-data.US032 <- data.US03orig %>%
-  filter(a_racel > 0) %>%
-  filter(a_netinc1 >= 0) %>%
-  filter(a_age_cr >=60) %>%
-  mutate(income.q = ntile(a_netinc1*a_indpxus_xw, 5),
-         income.q2=cut(a_netinc1,
-                       c(-1, incQuintile(a_netinc1, a_indpxus_xw, k=0:5)[2:6]),
-                       labels = FALSE, inlcude.lowest=TRUE)) %>%
-  mutate(race_group = ifelse(a_racel ==3 | a_racel ==4, 3,
-                             ifelse(a_racel >=5 & a_racel <=8, 4,
-                                    ifelse(a_racel ==12 | a_racel ==13, 12,
-                                           ifelse(a_racel ==16 | a_racel ==17 | a_racel ==97, 16,
-                                                  a_racel))))) %>%
-  group_by(race_group) %>%
-  mutate(countT = sum(a_indpxus_xw) ) %>%
-  group_by(income.q2, add=TRUE) %>%
-  mutate(countG = sum(a_indpxus_xw)) %>%
-  mutate(per=countG/countT) %>%
-  #summarize(G = unique(countG), T=unique(countT), prop = unique(per))%>%
-  summarize( per=unique(per)) %>%
-  #summarize( total=unique(countT)) %>%
-  spread(race_group, per )
-
-##plot
-###############################################################################
-
-par(mar=c(2.1, 7, 1.1,0.3), xpd=TRUE)
-barplot(as.matrix(data.US032[2:12]), horiz = TRUE,
-        col=gray.colors(5), density=c(25,25,15,15,5),
-        names.arg=LETTERS[1:11], las=2, axes=FALSE)
-lines(c(0,0), c(0,13.5), col="gray80", lty=2)
-lines(c(0.2,0.2), c(0,13.5), col="gray80", lty=2)
-lines(c(0.4,0.4), c(0,13.51), col="gray80", lty=2)
-lines(c(0.6,0.6), c(0,13.5), col="gray80", lty=2)
-lines(c(0.8,0.8), c(0,13.5), col="gray80", lty=2)
-lines(c(1,1), c(0,13.5), col="gray80", lty=2)
-barplot(as.matrix(data.US032[2:12]), horiz = TRUE,
-        col=gray.colors(5), density=c(25,25,15,15,5),
-        names.arg=LETTERS[1:11], las=2, axes=FALSE, add=TRUE)
-text( 0.1, 14,"a")
-text( 0.3, 14,"b")
-text( 0.5, 14,"c")
-text( 0.7, 14,"d")
-text( 0.9, 14,"e")
-axis(1)
-dev.copy2eps(file="figUS03.eps", width=7, height=5)
-par(.oldpar)
-
-##############################################################################
-### TABLE US2 - self rated health poor
-###############################################################################
-
-require(xtable)
-print(xtable(t(data.US032[2:12]*100)),
-      include.rownames = FALSE, digits=2)
 
 
 
