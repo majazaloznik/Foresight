@@ -129,19 +129,27 @@ bibencoding=ascii,
 \renewcommand{\labelitemii}{$\rightarrow$}
 
 \begin{document}
-\title{\Large {\emph{Foresight Trends}}\\ \vspace{2cm}
-\LARGE{Future of an Ageing Population}\\ \vspace{4cm}}
 
+\begin{titlepage}
+	\centering
 
+	{\scshape\Large Foresight Trends\par}
+	\vspace{2cm}
+	{\scshape\LARGE Future of an Ageing Population\par}
+	\vspace{1.5cm}
+	{\itshape George Leeson, Nana Nanitashvili \& Maja Zalo\v znik\par}
+	\vspace{0.5cm}
+	{\large\scshape The Oxford Institute of Population Ageing\par}
+	\vspace{0.5cm}
+	\small {August 2016}\par
 
-\author{George Leeson, Nana Nanitashvili \& Maja Zalo\v znik
-%\textit{Authors}
-\\
-\textsc{\small The Oxford Institute of Population Ageing}\\ \vspace*{1cm} } 
-\date{\small July 2016}
+	\vfill
 
+% Bottom of the page
+
+\emph{This review has been commissioned as part of the UK government's Foresight Future of an Ageing Population project. The views expressed do not represent policy of any government or organisation.}
+\end{titlepage}
 %
-\maketitle
 
 \setcounter{secnumdepth}{1}
 \setcounter{tocdepth}{5}
@@ -195,7 +203,7 @@ In the United Kingdom, the 20th century saw a dramatic transformation of the pop
 
 \begin{table}[hbtp!]
 
-\caption{The population distribution of the United Kingdom by age group for 1925, 1950 and 2015 (see Figure \ref{Fig:01}). Source: \citet{ONS2013b} and  \citet{HMD2015}.}\label{Tab:11}
+\caption{The population distribution of the United Kingdom by age group for 1925, 1950 and 2015 -- percent of population in each age group (see Figure \ref{Fig:01}). Source: \citet{ONS2013b} and  \citet{HMD2015}.}\label{Tab:11}
 \centering
 \vspace{2ex}
 
@@ -258,7 +266,7 @@ In the United Kingdom, the 20th century saw a dramatic transformation of the pop
 \psfrag{y}{\normalsize{\emph{Year}}}
 
 \includegraphics[width=\textwidth]{../figures/Fig1.2.eps}
-\caption{Total fertility in the United Kingdom, 1960--2012 Source: \citet{ONS2014}.}
+\caption{Total fertility rates in the United Kingdom, 1960--2012 Source: \citet{ONS2014}.}
 \label{Fig:03}
 \end{figure}
 
@@ -267,7 +275,7 @@ Fertility in the United Kingdom fell towards replacement level in the continued 
  
 \begin{table}[ht]
 
-\caption{Total fertility in the United Kingdom, 1960--2012 (see Figure \ref{Fig:03}). Source: \citet{ONS2014}.}\label{Tab:12}
+\caption{Total fertility rates in the United Kingdom, 1960--2012 (see Figure \ref{Fig:03}). Source: \citet{ONS2014}.}\label{Tab:12}
 \centering
 \vspace{2ex}
 \centering
@@ -283,6 +291,7 @@ TFR &  2.71 & 2.88 & 2.44 & 1.81 & 1.90 & 1.79 & 1.83 & 1.71 & 1.64 & 1.78 & 1.9
 \end{tabular}
 \end{table}
 
+\noindent \emph{The \emph{total fertility rate} (TFR) is a synthetic measure of fertility levels in a given population. Its level can be interpreted as the number of children a woman would have in her reproductive period \emph{if} she experienced the current age-specific fertility rates. Because age-specific fertility changes over time, the TFR generally does not represent the experience of any actual women, and care should be taken to avoid that interpretation. }
 \clearpage
 
 
@@ -316,7 +325,7 @@ TFR &  2.71 & 2.88 & 2.44 & 1.81 & 1.90 & 1.79 & 1.83 & 1.71 & 1.64 & 1.78 & 1.9
 \psfrag{x}[c][c]{\emph{Year}}
 
 \includegraphics[width=\textwidth]{../figures/Fig1.3.eps}
-\caption{Total fertility in EU countries (1960--2013), grouped by welfare regime/policy configuration type (see text for explanation). Source: \citet{INED2016} for 1960--2010 and \citet{EUST2016} for 2011--2013.}
+\caption{Total fertility rates in EU countries (1960--2013), grouped by welfare regime/policy configuration type (see text for explanation). Source: \citet{INED2016} for 1960--2010 and \citet{EUST2016} for 2011--2013.}
 \label{Fig:03.1}
 \end{figure}
 
@@ -331,18 +340,18 @@ TFR &  2.71 & 2.88 & 2.44 & 1.81 & 1.90 & 1.79 & 1.83 & 1.71 & 1.64 & 1.78 & 1.9
 
 
 \begin{table}[hbtp!]
-\caption{Total fertility in EU countries (1960--2013), grouped by welfare regime/policy configuration type (see text for explanation) (see Figure \ref{Fig:03.1}). Source: \citet{INED2016} for 1960-2010 and \citet{EUST2016} for 2011--2013.}\label{Tab:EUfert}
+\caption{Total fertility rates in EU countries (1960--2013), grouped by welfare regime/policy configuration type (see text for explanation) (see Figure \ref{Fig:03.1}). Source: \citet{INED2016} for 1960-2010 and \citet{EUST2016} for 2011--2013.}\label{Tab:EUfert}
 \vspace{1ex}
 
 \centering
 \def\tabularxcolumn#1{m{#1}}
 
-\begin{tabularx}\textwidth{p{1cm} *6{>{\centering\arraybackslash \small}X}@{}}
+\begin{tabularx}\textwidth{>{\centering\arraybackslash \small}p{1cm} *6{>{\centering\arraybackslash \small}X}@{}}
 \hline 
 && \emph{Dual-Earners:} & \emph{Familialistic:} &\emph{General Family Support:} &\emph{Liberal}: & \emph{Transition Post-Socialist:}\\
 \cline{3-7}
 
- &United Kingdom 
+\emph{Year} &United Kingdom 
  & Denmark, Finland, Iceland, Norway, Sweden&  
   Greece,   Italy,   Portugal, Spain    &
   Austria, Belgium, France, Germany (FRG only until 1990), Luxembourg, Netherlands &  United Kingdom, Ireland,  Switzerland & 
@@ -399,6 +408,7 @@ TFR &  2.71 & 2.88 & 2.44 & 1.81 & 1.90 & 1.79 & 1.83 & 1.71 & 1.64 & 1.78 & 1.9
 \psfrag{5}{\small{5}}
 \includegraphics[width=\textwidth]{../figures/Fig1.4.eps}
 \caption{Crude death rate (per 1000 population) and infant mortality rate (deaths under 1 year per 1000 live births) in the United Kingdom, 1953--2012. Source: ONS 2014a.}
+\label{Fig:04.1}
 \end{figure}
 
 
@@ -406,7 +416,7 @@ By 2012, the total number of deaths in the UK population (known as the Crude Dea
 
 \begin{table}[hbtp!]
 
-\caption{Crude death rate (per 1000 population) and infant mortality rate (deaths under 1 year per 1000 live births) in the United Kingdom, 1953--2012 (see Figure \ref{Fig:04}). Source: ONS 2014a. }\label{Tab:CDR}
+\caption{Crude death rate (per 1000 population) and infant mortality rate (deaths under 1 year per 1000 live births) in the United Kingdom, 1953--2012 (see Figure \ref{Fig:04.1}). Source: ONS 2014a. }\label{Tab:CDR}
 \centering
 \vspace{1ex}
 
@@ -454,16 +464,16 @@ By 2012, the total number of deaths in the UK population (known as the Crude Dea
 \caption{Current and projected population distribution (principle variant) of the United Kingdom by age group, 2015 and 2040. Source: \citet{ONS2013b} and  \citet{HMD2015}.}\label{Fig:05.5}
 \end{figure}
 
-It is clear for both males and females that the age pyramid for the United Kingdom continues to change dramatically moving forward to 2050 with the proportions in younger age groups continuing to decline and those in later-life age groups in particular increasing. In 2015, the proportions of the population aged 15-64 years were 65 per cent (males) and 64 per cent (females). By 2050, these have declined to 60 and 57 per cent respectively. On the other hand, the proportions aged over 65 years will in the same period increase from 16 and 19 per cent to 23 and 27 per cent.
+It is clear for both males and females that the age pyramid for the United Kingdom continues to change dramatically moving forward to 2050 with the proportions in younger age groups continuing to decline and those in later-life age groups in particular increasing. In 2015, the proportions of the population aged 15-64 years were 65 per cent (males) and 64 per cent (females). By 2050, these are projected to  decline to 60 and 57 per cent respectively. On the other hand, the proportions aged over 65 years will in the same period increase from 16 and 19 per cent to 23 and 27 per cent.
 
 
 \begin{table}[hbtp!]
 
-\caption{Current and projected population distribution (principle variant) of the United Kingdom by age group, 2015 and 2040 (see for Figure \ref{Fig:05.5}). Source: \citet{ONS2013b} and  \citet{HMD2015}.}\label{Tab:13}
+\caption{Current and projected population distribution (principle variant) of the United Kingdom by age group, 2015 and 2040 -- percent of population in each age group (see for Figure \ref{Fig:05.5}). Source: \citet{ONS2013b} and  \citet{HMD2015}.}\label{Tab:13}
 \centering
 \begin{tabularx}\textwidth{p{3cm} *4{>{\centering\arraybackslash}X}@{}}
 \hline 
- & \multicolumn{2}{c}{\emph{Males}} & \multicolumn{2}{c}{\emph{Females}}\\ 
+\multirow{2}{*}{\emph{Age group}} & \multicolumn{2}{c}{\emph{Males}} & \multicolumn{2}{c}{\emph{Females}}\\ 
  \cline{2-5}
  & 2015 & 2040 & 2015 & 2040 \\ 
   \hline
@@ -485,7 +495,7 @@ It is clear for both males and females that the age pyramid for the United Kingd
 \subsection{Life Expectancy at Birth}
 
 \begin{figure}[hbtp!]
-\psfrag{y}[c][c]{\small{\emph{Life expectancy}}}
+\psfrag{y}[c][c]{\small{\emph{Life expectancy (years)}}}
 \psfrag{x}[c][c]{\small{\emph{Year}}}
 \psfrag{f}[lB][lB]{\small{\emph{Females}}}
 \psfrag{m}[lB][lB]{\small{\emph{Males}}}
@@ -518,7 +528,7 @@ It is clear for both males and females that the age pyramid for the United Kingd
 \psfrag{1955}[r][r]{\small{1955}}
 \psfrag{1960}[r][r]{\small{1960}}
 \includegraphics[width=\textwidth]{../figures/Fig2.1.eps}
-\caption{Life expectancy at birth for males and females in the United Kingdom, 1950--2010 and life expectancy gender difference. Source: \citet{HMD2015}.}
+\caption{Life expectancy at birth for males and females in the United Kingdom, 1950--2010 and life expectancy gender difference -- in years. Source: \citet{HMD2015}.}
 \label{Fig:07}
 \end{figure}
 
@@ -526,7 +536,7 @@ Figure \ref{Fig:07} shows how life expectancy at birth in the UK has been changi
 
 
 \begin{table}[hbtp!]
-\caption{Life expectancy at birth for males and females in the United Kingdom, 1950--2010 and life expectancy gender difference (See Figure \ref{Fig:07}). Source: \citet{HMD2015}.}\label{Tab:07}
+\caption{Life expectancy at birth for males and females in the United Kingdom, 1950--2010 and life expectancy gender difference -- in years (See Figure \ref{Fig:07}). Source: \citet{HMD2015}.}\label{Tab:07}
 \centering
 \bigskip
 \begin{tabular}{>{\small}l<{\hspace{-6pt}}>{\small}r<{\hspace{-6pt}}>{\small}r<{\hspace{-6pt}}>{\small}r<{\hspace{-6pt}}>{\small}r<{\hspace{-6pt}}>{\small}r<{\hspace{-6pt}}>{\small}r<{\hspace{-6pt}}>{\small}r<{\hspace{-6pt}}>{\small}r<{\hspace{-6pt}}>{\small}r<{\hspace{-6pt}}>{\small}r<{\hspace{-6pt}}>{\small}r<{\hspace{-6pt}}>{\small}r<{\hspace{-6pt}}>{\small}r<{\hspace{-6pt}}}
@@ -545,7 +555,7 @@ Figure \ref{Fig:07} shows how life expectancy at birth in the UK has been changi
 \subsection{Life Expectancy at 65 and 80}
 
 \begin{figure}[hbtp!]
-\psfrag{y}[c][c]{\small{\emph{Remaining life expectancy}}}
+\psfrag{y}[c][c]{\small{\emph{Remaining life expectancy (years)}}}
 \psfrag{x}[c][c]{\small{\emph{Year}}}
 \psfrag{2010}[r][r]{\small{2010}}
 \psfrag{2000}[r][r]{\small{2000}}
@@ -576,7 +586,7 @@ Figure \ref{Fig:07} shows how life expectancy at birth in the UK has been changi
 \label{Fig:08}
 \end{figure}
 
-Figure \ref{Fig:08} charts the trends in life expectancy at ages 65 and 80 in the UK. For both age groups women's life expectancy has increased slightly faster over the whole period, with 65-year-old women gaining  6.32 years as opposed to 6.08 for men, and 80-year-old women gaining  3.5 years compared to the 3.05 years gained by men over the past 60 years. The gender differential has however been decreasing from the late 1970s (for 65-year-olds) and the early 1990s (for 80-year-olds) in a similar fashion as overall life expectancy shown above. 
+Figure \ref{Fig:08} charts the UK trends in remaining life expectancy at ages 65 and 80 -- that is the average number of years of life a person is expected to live at age 65 or 80 respectively. For both age groups women's life expectancy has increased slightly faster over the period 1950--2010, with 65-year-old women gaining  6.32 years as opposed to 6.08 for men, and 80-year-old women gaining  3.5 years compared to the 3.05 years gained by men over the past 60 years. The gender differential has however been decreasing from the late 1970s (for 65-year-olds) and the early 1990s (for 80-year-olds) in a similar fashion as life expectancy at birth shown above (Figure \ref{Fig:07}) . 
 
 \begin{table}[hbtp!]
 \caption{Remaining life expectancy at ages 65 and 80 for males and females in the United Kingdom, 1950--2010 (see Figure \ref{Fig:08}). Source: \citet{HMD2015}.}\label{Tab:22}
@@ -603,7 +613,7 @@ $e_{80}$ \emph{males}  &5.01 & 5.01 & 5.37 & 5.47 & 5.57 & 5.52 & 5.68 & 5.76 & 
 
 \psfrag{a}[l][l]{\emph{I(0,15)}}
 \psfrag{b}[l][l]{\emph{I(60,75)}}
-\psfrag{y}[c][c]{\small{\emph{Proportion surviving}}}
+\psfrag{y}[c][c]{\small{\emph{Proportion of population surviving}}}
 \psfrag{x}[c][c]{\small{\emph{Year}}}
 \psfrag{0.0}[r][r]{\small{0.0}}
 \psfrag{0.2}[r][r]{\small{0.2}}
@@ -628,21 +638,21 @@ $e_{80}$ \emph{males}  &5.01 & 5.01 & 5.37 & 5.47 & 5.57 & 5.52 & 5.68 & 5.76 & 
 \psfrag{M}[r][r]{\scriptsize{1980-84}}
 \psfrag{N}[r][r]{\scriptsize{1985-89}}
 \psfrag{O}[r][r]{\scriptsize{1990-94}}
-\psfrag{P}[r][r]{\scriptsize{1995-9}}
+\psfrag{P}[r][r]{\scriptsize{1995-99}}
 \psfrag{Q}[r][r]{\scriptsize{2000-04}}
 \psfrag{R}[r][r]{\scriptsize{2005-09}}
-\psfrag{S}[r][r]{\scriptsize{2010-14}}
+\psfrag{S}[r][r]{\scriptsize{2010-11}}
 \includegraphics[width=\textwidth]{../figures/Fig2.3.eps}
 
-\caption{Survival from birth to age 15 and from age 60 to age 75 years, United Kingdom, 1922--2011, both sexes combined. Source: own calculations from the Human Mortality Database \citep{Lees2014}.}
+\caption{Survivorship -- proportion of population surviving from birth to age 15, and from age 60 to age 75 years, United Kingdom, 1922--2011, both sexes combined. Source: own calculations from the Human Mortality Database \citep{Lees2014}.}
 \label{Fig:9}
 \end{figure}
-Figure \ref{Fig:9} shows survivorship from birth to age 15 and from 60 to 75 years in the UK for both sexes combined. Up until around 1950, the gradient of the two curves is similar, but from 1950 to the present day, survivorship from birth to age 15 has stagnated (simply because survivorship is asymptoting unity which corresponds to 100 per cent survival over the first 15 years of life) while survivorship from age 60 to age 75 years continues to improve. Currently, 81 per cent of 60-year-olds survive to age 75 years – and 92 per cent of a birth cohort survives to age 60 years.
+Figure \ref{Fig:9} shows survivorship from birth to age 15 and from 60 to 75 years in the UK for both sexes combined. Up until around 1950, the gradient of the two curves is similar, but from 1950 to the present day, survivorship from birth to age 15 has stagnated (simply because survivorship cannot be more than 100 \%) while survivorship from age 60 to age 75 years continues to improve. Currently, 81 per cent of 60-year-olds survive to age 75 years – and 92 per cent of a birth cohort survives to age 60 years.
 
 \renewcommand{\arraystretch}{1.}
 
 \begin{table}[hbtp!]
-\caption{Survival from birth to age 15 and from age 60 to age 75 years, United Kingdom, 1922--2011, both sexes combined (see Figure \ref{Fig:9}). Source: own calculations from the Human Mortality Database \citep{Lees2014}.}
+\caption{Survivorship -- proportion of population surviving from birth to age 15 and from age 60 to age 75 years, United Kingdom, 1922--2011, both sexes combined (see Figure \ref{Fig:9}). Source: own calculations from the Human Mortality Database \citep{Lees2014}.}
 \centering
 \begin{tabularx}\textwidth{>{\centering\arraybackslash\em\small}p{2cm} *2{>{\centering\arraybackslash\small}X}@{} >{\centering\arraybackslash\em\small}p{2cm} *2{>{\centering\arraybackslash\small}X}@{}}
 
@@ -681,7 +691,7 @@ Years &\emph{I(0,15)} &\emph{ I(60,75) }& Years & \emph{I(0,15)}& \emph{I(60,75)
 \psfrag{f}[lB][lB]{\small{\emph{Females}}}
 \psfrag{m}[lB][lB]{\small{\emph{Males}}}
 \psfrag{d}[lB][lB]{\small{\emph{Difference}}}
-\psfrag{y}[c][c]{\small{\emph{Life expectancy}}}
+\psfrag{y}[c][c]{\small{\emph{Life expectancy (years)}}}
 \psfrag{x}[c][c]{\small{\emph{Year}}}
 \psfrag{0}[r][r]{\small{0}}
 \psfrag{10}[r][r]{\small{10}}
@@ -698,7 +708,7 @@ Years &\emph{I(0,15)} &\emph{ I(60,75) }& Years & \emph{I(0,15)}& \emph{I(60,75)
 \psfrag{100}[r][r]{\small{100}}
 
 \includegraphics[width=\textwidth]{../figures/Fig2.4.eps}
-\caption{Life expectancy at birth for males and females in the United Kingdom, 2012-2050 and life expectancy gender difference. Source: \citet{ONS2013c}.}
+\caption{Projected life expectancy at birth for males and females in the United Kingdom, 2012-2050 and life expectancy gender difference (years). Source: \citet{ONS2013c}.}
 \label{Fig:10}
 \end{figure}
 
@@ -707,7 +717,7 @@ The increasing trends in life expectancy are projected to continue to the middle
 
 
 \begin{table}[hbtp!]
-\caption{Life expectancy at birth for males and females in the United Kingdom, 2012-2050 and life expectancy gender difference (see for Figure \ref{Fig:10}). Source: \citet{ONS2013c}.}\label{Tab:10}
+\caption{Projected life expectancy at birth for males and females in the United Kingdom, 2012-2050 and life expectancy gender difference -- in years (see for Figure \ref{Fig:10}). Source: \citet{ONS2013c}.}\label{Tab:10}
 \centering
 \bigskip
 \renewcommand{\arraystretch}{1.2}
@@ -727,7 +737,7 @@ The increasing trends in life expectancy are projected to continue to the middle
 \subsection{Projected Life Expectancy at 65 and 80}
 
 \begin{figure}[hbtp!]
-\psfrag{y}[c][c]{\small{\emph{Remaining life expectancy}}}
+\psfrag{y}[c][c]{\small{\emph{Remaining life expectancy (years)}}}
 \psfrag{x}[c][c]{\small{\emph{Year}}}
 \psfrag{2012}[r][r]{\small{2012}}
 \psfrag{2015}[r][r]{\small{2015}}
@@ -751,14 +761,14 @@ The increasing trends in life expectancy are projected to continue to the middle
 \psfrag{30}[r][r]{\small{30}}
 
 \includegraphics[width=\textwidth]{../figures/Fig2.5.eps}
-\caption{Life expectancy at ages 65 and 80 for males and females in the United Kingdom, 2012--2050. Source: \citet{ONS2013c}.}
+\caption{Projected life expectancy at ages 65 and 80 for males and females in the United Kingdom, 2012--2050 (years). Source: \citet{ONS2013c}.}
 \label{Fig:11}
 \end{figure}
 
 By 2050, life expectancy at age 65 is expected to reach 24 years for males and 26 years for females, while at age 80, life expectancies will have reached 12 and 14 years for males and females respectively. By 2050, life expectancies at age 80 will be at levels observed at age 65 years in the early 1980s, while life expectancies at age 65 in 2050 will correspond to those observed at age 50-55 years in early 1980s. 
 
 \begin{table}[hbtp!]
-\caption{Life expectancy at ages 65 and 80 for males and females in the United Kingdom, 2012--2050 (see Figure \ref{Fig:11}). Source: \citet{ONS2013c}.}\label{Tab:21}
+\caption{Projected life expectancy at ages 65 and 80 for males and females in the United Kingdom, 2012--2050 -- in years (see Figure \ref{Fig:11}). Source: \citet{ONS2013c}.}\label{Tab:21}
 \centering
 \bigskip
 \renewcommand{\arraystretch}{1.2}
@@ -792,7 +802,7 @@ $e_{80}$ \emph{females} &  9.50 & 10.20 & 11.00 & 11.60 & 12.20 & 12.60 & 13.00 
 \psfrag{F}[r][l]{\small{75}}
 \psfrag{G}[r][l]{\small{80}}
 \psfrag{H}[r][l]{\small{85}}
-\psfrag{LE}[c][c]{\small{\emph{Life expectancy}}}
+\psfrag{LE}[c][c]{\small{\emph{Life expectancy (years)}}}
 
 \psfrag{xx}{\small{\emph{Males}}}
 \psfrag{yy}{\small{\emph{Females}}}
@@ -803,15 +813,14 @@ $e_{80}$ \emph{females} &  9.50 & 10.20 & 11.00 & 11.60 & 12.20 & 12.60 & 13.00 
 \psfrag{80}[r][r]{\small{80}}
 \psfrag{100}[r][r]{\small{100}}
 \includegraphics[width=\textwidth]{../figures/Fig2.6.eps}
-\caption{Cohort life expectancies in 2012 and 2050 for selected cohorts, principal projection, 2012-based. Source: \citet{ONS2013c}.}
+\caption{Projected cohort life expectancies in 2012 and 2050 for selected cohorts, principal projection, 2012-based. A cohort's life expectancy is the sum of their  attained age (double cross-hatch) and their remaining life expectancy (single cross-hatch). Source: \citet{ONS2013c}.}
 \label{Fig:26}
 \end{figure}
 
 As opposed to the \emph{period} life expectancies described in the previous two charts, the \emph{cohort} life expectancies shown in Figure \ref{Fig:26} are about 10 years higher at birth for both males and females.  This is because cohort measures take into account predicted future improvements in mortality rates. A baby born in 2012 is therefore expected to live until the age of 90.6 if he is a boy or 93.90 if she is a girl. Babies born in 2050 can expect to live almost 6 years longer.  
-   
 
 \begin{table}[hbtp!]
-\caption{Cohort life expectancies in 2012 and 2050 for selected cohorts, principal projection, 2012-based (see Figure \ref{Fig:26}). Source: \citet{ONS2013c}.}\label{Tab:26}
+\caption{Projected cohort life expectancies in 2012 and 2050 for selected cohorts, principal projection, 2012-based (see Figure \ref{Fig:26}). Source: \citet{ONS2013c}.}\label{Tab:26}
 \vspace{1ex}
 
 \centering
@@ -829,6 +838,7 @@ As opposed to the \emph{period} life expectancies described in the previous two 
 \end{tabularx}
 \end{table}
 
+\noindent \emph{\emph{Period life expectancies} discussed above are synthetic measures -- they represent the average number of years a person would have left to live \emph{if} they experienced the current age-specific mortality rates. But age-specific mortality rates change over time, and this is what cohort life expectancies take into account, and are therefore more representative of people's actual experience. }
 
 
 
@@ -848,8 +858,8 @@ As opposed to the \emph{period} life expectancies described in the previous two 
 \psfrag{2007}[r][r]{\small{2007-09}}
 \psfrag{2008}[r][r]{\small{2008-10}}
 \psfrag{2009}[r][r]{\small{2009-11}}
-\psfrag{y}[c][c]{\small{Life expectancy}}
-\psfrag{x}[c][c]{\small{Years}}
+\psfrag{y}[c][c]{\small{\emph{Life expectancy (years)}}}
+\psfrag{x}[c][c]{\small{\emph{Years}}}
 
 \psfrag{a}[Bl][Bl]{\small{LE \emph{males}}}
 \psfrag{b}[Bl][Bl]{\small{HLE \emph{males}}}
@@ -864,13 +874,13 @@ As opposed to the \emph{period} life expectancies described in the previous two 
 \psfrag{80}[r][r]{\small{80}}
 
 \includegraphics[width=\textwidth]{../figures/Fig3.1.eps}
-\caption{Life expectancy (LE), healthy life expectancy (HLE) and disability-free life expectancy (DFLE) at birth in the United Kingdom, 2000--02 to 2009--11, males and females. Source: \citet{ONS2012}.}
+\caption{Life expectancy (LE), healthy life expectancy (HLE) and disability-free life expectancy (DFLE) at birth in the United Kingdom in years, 2000--02 to 2009--11, males and females. Source: \citet{ONS2012}.}
 \label{Fig:31}
 \end{figure}
 
 
 
-As life expectancy (LE) increases as discussed above, health expectancies enable us to determine whether these `extra' years lived are spent in good health or free from a limiting illness or disability. The development in life expectancy, healthy life expectancy (HLE) and disability-free life expectancy (DFLE) at birth for the United Kingdom for the period 2000-02 to 2009-11 is shown in Figure \ref{Fig:31} which reveals over this period that healthy life expectancy at birth increased in absolute terms more than life expectancy for males and females, which would suggest a compression of morbidity. While this is also observed for disability-free life expectancy at birth for males, it is not the case for females.  
+As life expectancy (LE) increases as discussed above, healthy expectancies enable us to determine whether these `extra' years lived are spent in good health or free from a limiting illness or disability. The development in life expectancy, healthy life expectancy (HLE) and disability-free life expectancy (DFLE) at birth for the United Kingdom for the period 2000-02 to 2009-11 is shown in Figure \ref{Fig:31} which reveals over this period that healthy life expectancy at birth increased in absolute terms more than life expectancy for males and females, which would suggest a compression of morbidity. While this is also observed for disability-free life expectancy at birth for males, it is not the case for females.  
 
 Gender differences in life expectancy are generally greater than the gender differences in both healthy life expectancy and disability-free life expectancy, which would suggest that most of the increase in life expectancy for females is with disability or in not good health.  
 
@@ -878,7 +888,7 @@ Gender differences in life expectancy are generally greater than the gender diff
 \begin{table}[hpbt!]
 
 \centering
-\caption{Life expectancy (LE), healthy life expectancy (HLE) and disability-free life expectancy (DFLE) at birth in the United Kingdom, 2000--02 to 2009--11, males and females (see Figure \ref{Fig:31}). Source: \citet{ONS2012}.}
+\caption{Life expectancy (LE), healthy life expectancy (HLE) and disability-free life expectancy (DFLE) at birth in the United Kingdom in years, 2000--02 to 2009--11, males and females (see Figure \ref{Fig:31}). Source: \citet{ONS2012}.}
 \vspace{1ex}
 
 \begin{tabularx}\textwidth{X X X X X}
@@ -938,7 +948,7 @@ Gender differences in life expectancy are generally greater than the gender diff
 \psfrag{1978}[r][r]{\small{1978}}
 \psfrag{1974}[r][r]{\small{1974}}
 
-\psfrag{ma}{\normalsize{\emph{Median age}}}
+\psfrag{ma}{\normalsize{\emph{Median age (years)}}}
 \psfrag{x}{\normalsize{\emph{Year}}}
 \psfrag{30}{\small{30}}
 \psfrag{32}{\small{32}}
@@ -949,7 +959,7 @@ Gender differences in life expectancy are generally greater than the gender diff
 \psfrag{42}{\small{42}}
 
 \includegraphics[width=\textwidth]{../figures/Fig4.1.eps}
-\caption{Median age in the UK 1974 onwards. Source: \citet{ONS2015b}.}
+\caption{Median age (in years) in the UK 1974 to 2014. Source: \citet{ONS2015b}.}
 \label{Fig:12}
 \end{figure}
 
@@ -961,7 +971,7 @@ Over the 40 year period 1974 to 2014, the median age of the UK population has in
 
 \begin{table}[hbtp!]
 \centering
-\caption{Median age in the UK 1974 onwards (see Figure \ref{Fig:12}). Source: \citet{ONS2015b}.}
+\caption{Median age (in years) in the UK 1974 to 2014 (see Figure \ref{Fig:12}). Source: \citet{ONS2015b}.}
 \vspace{1ex}
 \begin{tabularx}\textwidth{>{\small\hspace{-6pt}}p{1.6cm} *{11}{>{\centering\arraybackslash}X}@{}}
   \hline
@@ -1004,7 +1014,7 @@ Over the 40 year period 1974 to 2014, the median age of the UK population has in
 \psfrag{c}{\small{85 and over}}
 
 \includegraphics[width=\textwidth]{../figures/Fig4.2.eps}
-\caption{Proportion of people at older ages, UK population mid-1974 onwards. Source: \citet{ONS2015b}.}
+\caption{Proportion of people in three older age groups, UK population mid-1974 to 2014. Source: \citet{ONS2015b}.}
 \label{Fig:13}
 \end{figure}
 
@@ -1015,7 +1025,7 @@ In terms of increases in the number and proportion of older people in the UK pop
 \begin{table}[hpbt!]
 \renewcommand{\arraystretch}{0.89}
 \centering
-\caption{Proportion of people at older ages, UK population mid-1974 onwards (see Figure \ref{Fig:13}). Source: \citet{ONS2015b}.}\label{Tab:41}
+\caption{Proportion of people in three older age groups, UK population mid-1974 to 2014 (see Figure \ref{Fig:13}). Source: \citet{ONS2015b}.}\label{Tab:41}
 \vspace{1ex}
 
 \begin{tabularx}\textwidth{p{3cm} *4{>{\centering\arraybackslash}X}@{}}
@@ -1023,7 +1033,7 @@ In terms of increases in the number and proportion of older people in the UK pop
 \hline
  & \multicolumn{3}{l}{\emph{Age-group as percentage of total population}}	&  \\
  \hline
- \emph{Mid-Year} &\emph{ 65 -- 74 }& \emph{75 -- 84} & \emph{85 and over} & \emph{Median Age} \\ 
+ \emph{Year} &\emph{ 65 -- 74 }& \emph{75 -- 84} & \emph{85 and over} & \emph{Median Age} \\ 
   \hline
 1974 & 8.90 & 4.00 & 0.90 & 33.90 \\ 
   1975 & 9.00 & 4.10 & 0.90 & 33.80 \\ 
@@ -1085,16 +1095,17 @@ In terms of increases in the number and proportion of older people in the UK pop
 The great majority of the predicted increase of the UK population over the coming decades is split almost equally between the working age and pension age age groups. In relative terms however, this translates to a lowering of the old age dependency ratio (or support ratio), which is the number of people of working age per person of pension age. Due to changes in the state pension age (SPA) the ratio will increase slightly for a few more years, and reach a maximum of 3.47 in 2020 before starting to fall, and is currently predicted to be 2.65 in 2041 unless further changes to the SPA are forthcoming. 
 
 
-\footnotetext{Working age and pensionable age populations based on state pension age (SPA) for given year. Between 2012 and 2018, SPA will change from 65 years for men and 61 years for women, to 65 years for both sexes. Then between 2019 and 2020, SPA will change from 65 years to 66 years, and between 2034 and 2046 the SPA will increase in two stages from 66 years to 68 years for both sexes. }
+\footnotetext{Working age and pensionable age populations based on state pension age (SPA) for given year. Between 2012 and 2018, SPA will change from 65 years for men and 61 years for women, to 65 years for both sexes. Then between 2019 and 2020, SPA will change from 65 years to 66 years, and between 2034 and 2046 the SPA will increase in two stages from 66 years to 68 years for both sexes. The population sizes used are the ONS principal variant projections.  }
 
 \begin{table}[hpbt!]
+\renewcommand{\arraystretch}{0.95}
 
 \centering
 \caption{Projections of working age and pensionable age population (in thousands); United Kingdom 2012--2041 (see Figure \ref{Fig:14}). Source: \citet{ONS2013c}.}\label{Tab:42}
 \begin{tabularx}\textwidth{p{3cm} *3{>{\centering\arraybackslash}X}@{}}
 \hline
 
- & \emph{Working age} & \emph{Pension age} & \emph{Old-age Dependency Ratio} \\ 
+\emph{Year} & \emph{Working age} & \emph{Pension age} & \emph{Old-age Dependency Ratio} \\ 
   \hline
   2012 & 39,441 & 12,280 & 3.21 \\ 
  
@@ -1132,7 +1143,7 @@ The great majority of the predicted increase of the UK population over the comin
 \psfrag{e}[r][r]{\small{N. Ireland}}
 
 \psfrag{x}[c][c]{\small{\emph{Year}}}
-\psfrag{y}[c][c]{\small{\emph{Dependency Ratio}}}
+\psfrag{y}[c][c]{\small{\emph{Old-age dependency Ratio}}}
 \psfrag{2.2}[r][r]{\small{2.2}}
 \psfrag{2.4}[r][r]{\small{2.4}}
 \psfrag{2.6}[r][r]{\small{2.6}}
@@ -1205,7 +1216,7 @@ The projected changes in the old age-dependency ratio for the UK and its constit
 
 
 \includegraphics[width=\textwidth]{../figures/Fig5.1.eps}
-\caption{Proportion of workers (empoyed and self-employed) by age group and sector, 2012, Labour Force Survey (LSF) representative sample of UK private households. Source: \citet{DWP2013}.}\label{Fig:51}
+\caption{Proportion of workers (empoyed and self-employed) by age group and sector, 2012, Labour Force Survey (LFS) representative sample of UK private households. Source: \citet{DWP2013}.}\label{Fig:51}
 \end{figure}
 
 
@@ -1214,7 +1225,7 @@ Figure \ref{Fig:51} plots the proportion of workers in each age group by occupat
 
 \begin{table}[hbtp!]
 
-\caption{Proportion of workers (empoyed and self-employed) by age group and sector, 2012, LFS representative sample of UK private households -- \emph{row} percentages  (see Figure \ref{Fig:51}). Source: \citet{DWP2013}.}\label{Tab:51}
+\caption{Proportion of workers (employed and self-employed) by age group and sector, 2012, LFS representative sample of UK private households: distribution by age group within each sector -- \emph{row} percentages  (see Figure \ref{Fig:51}). Source: \citet{DWP2013}.}\label{Tab:51}
 \centering
 \begin{tabularx}\textwidth{l *5{>{}X<{\raggedleft \enspace \%}}@{}}
   \hline
@@ -1241,7 +1252,7 @@ Figure \ref{Fig:51} plots the proportion of workers in each age group by occupat
 
 \begin{table}[hbtp!]
 
-\caption{Proportion of workers (empoyed and self-employed) by age group and sector, 2012, LFS representative sample of UK private households -- \emph{column} percentages  (see Figure \ref{Fig:51}). Source: \citet{DWP2013}.}\label{Tab:53}
+\caption{Proportion of workers (employed and self-employed) by age group and sector, 2012, LFS representative sample of UK private households: distribution by sector within each age group -- \emph{column} percentages  (see Figure \ref{Fig:51}). Source: \citet{DWP2013}.}\label{Tab:53}
 \centering
 \begin{tabularx}\textwidth{l *5{>{}X<{\raggedleft \enspace \%}}@{}}
   \hline
@@ -1312,14 +1323,19 @@ Figure \ref{Fig:51} plots the proportion of workers in each age group by occupat
 \psfrag{0.6}[l][l]{\small{60}}
 \psfrag{0.8}[l][l]{\small{80}}
 \psfrag{1.0}[l][l]{\small{100}}
-\psfrag{a}[r][r]{\small{\emph{Age}}}
+\psfrag{a}[rc][rt]{\small{
+\renewcommand{\arraystretch}{0.8}
+\begin{tabular}{@{}c}
+\emph{Age}\\
+\emph{(years)}
+\end{tabular}}}
 
 \psfrag{xx}[c][c]{\small{\emph{Full-time}}}
 \psfrag{yy}[c][c]{\small{\emph{Part-time}}}
 \psfrag{Y}[c][c]{\small{\emph{Percentage of workers}}}
 
 \includegraphics[width=\textwidth]{../figures/Fig5.2.eps}
-\caption{Proportion of \emph{male} employees aged between 40 and 70 in full-time or part-time work in the UK, 4th quarter average 2011. Source: \citet{DWP2013}.}\label{Fig:53}
+\caption{Proportion of \emph{male} employees aged between 40 and 70 in full-time or part-time work in the UK (bar widths proportional to number of employees), 4th quarter average 2011. Source: \citet{DWP2013}.}\label{Fig:53}
 \end{figure}
 
 \begin{figure}[hbtp!]
@@ -1360,13 +1376,17 @@ Figure \ref{Fig:51} plots the proportion of workers in each age group by occupat
 \psfrag{0.6}[l][l]{\small{60}}
 \psfrag{0.8}[l][l]{\small{80}}
 \psfrag{1.0}[l][l]{\small{100}}
-\psfrag{a}[r][r]{\small{\emph{Age}}}
-\psfrag{Y}[c][c]{\small{\emph{Percentage of workers}}}
+\psfrag{a}[rc][rt]{\small{
+\renewcommand{\arraystretch}{0.8}
+\begin{tabular}{@{}c}
+\emph{Age}\\
+\emph{(years)}
+\end{tabular}}}\psfrag{Y}[c][c]{\small{\emph{Percentage of workers}}}
 
 \psfrag{xx}[c][c]{\small{\emph{Full-time}}}
 \psfrag{yy}[c][c]{\small{\emph{Part-time}}}
 \includegraphics[width=\textwidth]{../figures/Fig5.3.eps}
-\caption{Proportion of \emph{female} employees aged between 40 and 70 in full-time or part-time work in the UK, 4th quarter average 2011. Source: \citet{DWP2013}.}\label{Fig:54}
+\caption{Proportion of \emph{female} employees aged between 40 and 70 in full-time or part-time work in the UK(bar widths proportional to number of employees), 4th quarter average 2011. Source: \citet{DWP2013}.}\label{Fig:54}
 \end{figure}
 
 Compared to Figure \ref{Fig:53} it is clear from Figure \ref{Fig:54} that women are significantly more likely to engage in part-time work throughout the life-course. After the age of about 60 (and 65 for men) the proportion working part-time increases dramatically for both genders, although the numbers of employees at those ages are considerably smaller (as indicated by the width of the bars). 
@@ -1375,7 +1395,7 @@ Compared to Figure \ref{Fig:53} it is clear from Figure \ref{Fig:54} that women 
 \renewcommand{\arraystretch}{1.08}
 
 \centering
-\caption{Proportion of employees aged between 40 and 70 in full-time or part-time work in the UK, 4th quarter average 2011 (see Figures \ref{Fig:53} and \ref{Fig:54}). Source: \citet{DWP2013}.}
+\caption{Number (in thousands) and proportion of employees aged between 40 and 70 in full-time or part-time work in the UK, 4th quarter average 2011 (see Figures \ref{Fig:53} and \ref{Fig:54}). Source: \citet{DWP2013}.}
 \begin{tabularx}\textwidth{p{3cm}
  *6{>{\centering\arraybackslash}X}@{}}
 
@@ -1463,11 +1483,11 @@ Compared to Figure \ref{Fig:53} it is clear from Figure \ref{Fig:54} that women 
 
 
 \includegraphics[width=\textwidth]{../figures/Fig5.4.eps}
-\caption{Participation rates in the United Kingdom for both genders and women only in dashed line, 1994-2014, based on 4 quarter rolling averages. Source: \citet{ONS2015a}.  Note: SPA stands for State Pension Age and takes into account the incremental increase in State Pension Age}
+\caption{Labour market participation rates in the United Kingdom for both genders and women only in dashed line, 1994-2014, based on 4 quarter rolling averages. Source: \citet{ONS2015a}.  Note: SPA stands for State Pension Age and takes into account the incremental increase in State Pension Age}
 \label{Fig:58}
 \end{figure}
 
-Labour market participation rates are highest for the 25---49 age group, and have remained relatively constant over the past two decades and stand at 86 \%, while for women in this group they have increased by almost 5 percentage points to 79.4 \%. Participation has increased most in the 50 to State pension age (SPA)  group , by over 7 percentage points (almost 11 for women). Labour participation for people over the pension age is much lower, but has also been increasing in the past decade particularly, standing at 12.2 \% (and 11.3 \% for women).
+Labour market participation rates are highest for the 25---49 age group, and have remained relatively constant over the past two decades and in 2014 stood at 86 \%, while for women in this group they have increased by almost 5 percentage points to 79.4 \%. Between 1994 and 2014 participation increased most in the 50 to State pension age (SPA) group , by over 7 percentage points (almost 11 for women). Labour participation for people over the pension age is much lower, but has also been increasing in the past decade particularly, standing at 12.2 \% (and 11.3 \% for women) in 2014.
 
 
 
@@ -1475,7 +1495,7 @@ Labour market participation rates are highest for the 25---49 age group, and hav
 \renewcommand{\arraystretch}{1.1}
 
 \centering
-\caption{Participation rates in the United Kingdom for both genders and women only in dashed line, 1994-2014, based on 4 quarter rolling averages(see Figure \ref{Fig:58}). Source: \citet{ONS2015a}.}
+\caption{Labour market participation rates in the United Kingdom for both genders and women only in dashed line, 1994-2014, based on 4 quarter rolling averages(see Figure \ref{Fig:58}). Source: \citet{ONS2015a}.}
 \begin{tabularx}\textwidth{>{\hspace{-2pt}\em}p{0.8cm}
  *8{>{\centering\arraybackslash\small\hspace{-8pt}}X}@{}}
 \hline

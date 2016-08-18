@@ -21,10 +21,10 @@ lines(c(-6,-6), c(-5,100), lty=2, col="gray80")
 lines(c(-8,-8), c(-5,100), lty=2, col="gray80")
 lines(c(-10,-10), c(-5,100), lty=2, col="gray80")
 polygon(c(0,-rep(data.1.1[,2], each=2),0), 
-        c(rep(data.1.1[1:20,1],each=2), 100,100), col="gray90", border="gray90", lwd = 1)
+        c(rep(data.1.1[1:20,1],each=2), 100,100), col="gray60", border="gray60", lwd = 1)
 lines(c(0,-data.1.1[,3],0), c(data.1.1[1:20,1], 100, 100), type="s", col="gray50", lwd = 1)
 polygon(c(0,-rep(data.1.1[,3], each=2),0), 
-        c(rep(data.1.1[1:20,1],each=2), 100,100), col="gray50", border="gray50", lwd = 1,angle=45, density=10)
+        c(rep(data.1.1[1:20,1],each=2), 100,100), col="gray40", border="gray40", lwd = 1,angle=45, density=10)
 lines(c(0,-data.1.1[,4],0), c(data.1.1[1:20,1],100, 100), type="s", col="black", lwd = 1)
 polygon(c(0,-rep(data.1.1[,4], each=2),0), 
         c(rep(data.1.1[1:20,1],each=2), 100,100), col="black", border="black", angle=-45, density=10,lwd = 1)
@@ -34,7 +34,7 @@ axis(4, las=2, at= c(0,5,10,data.1.1[4:20,1])+2.5, labels=FALSE)
 par("usr")
 rect(-7,70,-11,100, col="white", border=NA)
 legend(x=-10, y=105, rev(c("A", "B", "C")), col=rev(c(NA, NA, NA)), 
-       density=rev(c(10,10,NA)), angle=c(0,45,-45), fill=rev(c("black", "gray50", "gray90")),
+       density=rev(c(10,10,NA)), angle=c(0,45,-45), fill=rev(c("black", "gray40", "gray60")),
        border=rev(c("black", "gray50", "gray90")),
        bty="n", lwd=c(1,1,1), cex=1.5, lty = c(NA, NA, NA),
        x.intersp=rep(-1,3))
@@ -51,10 +51,10 @@ lines(c(6,6), c(-5,100), lty=2, col="gray80")
 lines(c(8,8), c(-5,100), lty=2, col="gray80")
 lines(c(10,10), c(-5,100), lty=2, col="gray80")
 polygon(c(0,rep(data.1.2[,2], each=2),0), 
-        c(rep(data.1.2[1:20,1],each=2), 100,100), col="gray90", border="gray90", lwd = 1)
-lines(c(0,data.1.2[,3],0), c(data.1.2[1:20,1], 100, 100), type="s", col="gray50", lwd = 1)
+        c(rep(data.1.2[1:20,1],each=2), 100,100), col="gray60", border="gray60", lwd = 1)
+lines(c(0,data.1.2[,3],0), c(data.1.2[1:20,1], 100, 100), type="s", col="gray40", lwd = 1)
 polygon(c(0,rep(data.1.2[,3], each=2),0), 
-        c(rep(data.1.2[1:20,1],each=2), 100,100), col="gray50", border="gray50", lwd = 1,angle=45, density=10)
+        c(rep(data.1.2[1:20,1],each=2), 100,100), col="gray40", border="gray40", lwd = 1,angle=45, density=10)
 lines(c(0,data.1.2[,4],0), c(data.1.2[1:20,1],100, 100), type="s", col="black", lwd = 1)
 polygon(c(0,rep(data.1.2[,4], each=2),0), 
         c(rep(data.1.2[1:20,1],each=2), 100,100), col="black", border="black", angle=-45, density=10,lwd = 1)
@@ -64,7 +64,7 @@ axis(2, las=2, at= c(0,5,10,data.1.2[4:20,1])+2.5, labels= c(91,51,19,data.1.2[4
 par("usr")
 rect(7,70,11,100, col="white", border=NA)
 legend(x=7, y=105, rev(c("A", "B", "C")), col=rev(c(NA, NA, NA)), 
-       density=rev(c(10,10,NA)), angle=c(0,45,-45), fill=rev(c("black", "gray50", "gray90")),
+       density=rev(c(10,10,NA)), angle=c(0,45,-45), fill=rev(c("black", "gray40", "gray60")),
        border=rev(c("black", "gray50", "gray90")),
        bty="n", lwd=c(1,1,1), cex=1.5, lty = c(NA, NA, NA),
        x.intersp=rep(-1,3))
@@ -435,14 +435,19 @@ data.G01<- read.csv("data/UKsurvivorship.csv")
 
 require(RColorBrewer)
 redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
+data.G01 %>%
+  separate(FIG.3, into = c("a", "b"))  %>%
+  mutate(a = as.numeric(a))%>%
+  mutate(x.point = ifelse(a==1922 | a==2010, a+1, a+2)) -> data.G01
 
 par(mar=c(3.6, 3.6, 2.1,4.1), xpd=TRUE)
-plot(c(1922, seq(1925,2010,5)), data.G01[,2], typ="l",
+plot(data.G01$x.point, data.G01[,3], typ="l",
      axes= FALSE,
      col= "gray50",
      xlab="x", ylab="y", lwd=2,
      ylim=c(0,1))
-lines(c(1922, seq(1925,2010,5)), data.G01[,3], lwd=2, col= redgray[1])
+lines(data.G01$x.point, data.G01[,4], lwd=2, col= redgray[1])
+
 
 lines(c(1922, 2010), c(0,0), lty=2, col="gray80")
 lines(c(1922, 2010), c(0.2,0.2), lty=2, col="gray80")
@@ -452,11 +457,11 @@ lines(c(1922, 2010), c(0.8,0.8), lty=2, col="gray80")
 lines(c(1922, 2010), c(1.0,1.0), lty=2, col="gray80")
 
 axis(2, las=2)
-axis(1, c(1922, seq(1925,2010,5)), labels=FALSE)
-text(x=c(1922, seq(1925,2010,5)), y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
+axis(1, data.G01$x.point, labels=FALSE)
+text(x=data.G01$x.point, y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
      labels=LETTERS[1:19], srt=45, adj=1, xpd=TRUE)
-text(2013, data.G01[19,2], "a")
-text(2013, data.G01[19,3], "b")
+text(2013, data.G01[19,3], "a")
+text(2013, data.G01[19,4], "b")
 
 dev.copy2eps(file="figures/Fig2.3.eps", width=7, height=3.5)
 par(.oldpar)
@@ -1010,14 +1015,14 @@ data.5.8$date <- rep(seq(1994,2014), each=4)+ rep(c(0, .25, .5, .75),21)
 
 par(mar=c(3.6, 4.6, 3.1,1.1), xpd=TRUE)
 plot(data.5.8[,10],data.5.8[,2], type="l",
-     lwd=2, col="black", bty="n", axes=FALSE, xlab="x", ylab="", ylim=c(0,100))
-lines(data.5.8[,10],data.5.8[,3], col="gray40", lwd=2)
-lines(data.5.8[,10],data.5.8[,4], col="gray60", lwd=2)
+     lwd=2, col="gray60", bty="n", axes=FALSE, xlab="x", ylab="", ylim=c(0,100))
+lines(data.5.8[,10],data.5.8[,3], col="black", lwd=2)
+lines(data.5.8[,10],data.5.8[,4], col="red", lwd=2)
 lines(data.5.8[,10],data.5.8[,5], col=redgray[1], lwd=2)
 mtext("y", side=2, line=4)
-lines(data.5.8[,10],data.5.8[,6], col="black",lwd=2, lty=2)
-lines(data.5.8[,10],data.5.8[,7], col="gray40", lwd=2, lty=2)
-lines(data.5.8[,10],data.5.8[,8], col="gray60", lwd=2, lty=2)
+lines(data.5.8[,10],data.5.8[,6], col="gray60",lwd=2, lty=2)
+lines(data.5.8[,10],data.5.8[,7], col="black", lwd=2, lty=2)
+lines(data.5.8[,10],data.5.8[,8], col="red", lwd=2, lty=2)
 lines(data.5.8[,10],data.5.8[,9],col=redgray[1], lwd=2, lty=2)
 axis(1, at=seq(1994, 2015), labels=FALSE)
 axis(2, las=2)
@@ -1025,7 +1030,7 @@ text(x=seq(1994, 2015), y=par()$usr[3]-0.08*(par()$usr[4]-par()$usr[3]),
      labels=seq(1994, 2015), srt=45, adj=1, xpd=TRUE)
 
 legend(x=1995, y=115, c("a", "c", "e", "o"), horiz = TRUE, bty="n", x.intersp = 7,
-       col=c("black", "gray40", "gray60", redgray[1]), lwd=2)
+       col=c("gray60", "red", "gray60", redgray[1]), lwd=2)
 
 
 dev.copy2eps(file="figures/Fig5.4.eps", width=7, height=3.5)
