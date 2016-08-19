@@ -1064,7 +1064,7 @@ plot(myseq,data.oecd1[,2], ylim=c(0,100),
      xlab="", ylab="")
 axis(1, at=myseq, labels = c(letters, LETTERS[1:16]))
 axis(2, las=2)
-mtext("yy", side=2, line=5)
+mtext("yy", side=2, line=4.5)
 mtext("xx", side=1, line=5)
 
 lines(c(1,44), rep(data.oecd1[1,5],2), col="gray20", lty=2, lwd=2)
@@ -1100,10 +1100,10 @@ points(myseq,data.oecd1[,2], pch=16, col="black",cex=3)
 points(myseq,data.oecd1[,3], pch=16, col="red",cex=3)
 points(myseq,data.oecd1[,4], pch=16, col="gray50", cex=3)
 
-legend(20, 125, legend = c("Q", "R", "S"), pch=16, col=c("black", "red", "gray50"), 
+legend(20, 115, legend = c("Q", "R", "S"), pch=16, col=c("black", "red", "gray50"), 
        pt.cex=3, bty="n", y.intersp = 1.2, title="V")
 
-legend(30, 115, legend = c("T", "U"),  fill=c("pink", "gray80"),
+legend(30, 105, legend = c("T", "U"),  fill=c("pink", "gray80"),
        density = 15, angle=45, border=c("pink", "gray80"),
        bty="n", y.intersp = 1.2, title = "W")
 
@@ -1518,7 +1518,7 @@ legend(15,20, c("a", "b", "c"),
        angle = c(45, 45, 45, 45),
        density = 10,
        bty="n", lwd=c(1,1,1), cex=1.2, lty = c(NA,  NA,NA),
-       y.intersp=1.4)
+       y.intersp=1.4, title = "ltitle")
 mtext("y", side = 2, line=2.5)
 mtext("x", side = 1, line=3)
 text(colMeans(mp), -1, LETTERS[1:5])
@@ -1564,7 +1564,7 @@ barplot(t(as.matrix(data.7.1[,2:3])), beside=TRUE, col =c("black","gray50"),
         axes=FALSE)
 axis(2, las=2)
 legend(19,50, letters[1:2],col =c( "gray50", "black"), fill =  c("black","gray50"),
-       density=c(10,5), bty="n", cex=2, y.intersp = 2)
+       density=c(10,5), bty="n", cex=2, y.intersp = 2, title = "tt")
 lines(c(0, 19), c(20,20), lty=2, col="gray80")
 lines(c(0, 19), c(40,40), lty=2, col="gray80")
 lines(c(0, 19), c(60,60), lty=2, col="gray80")
@@ -1608,7 +1608,8 @@ barplot(as.matrix(data.7.7[,2:11]), beside=TRUE, names.arg = rep("",10),
         axes=FALSE, space = c(1, rep(0,3),3,rep(0,3),1,rep(0,3),1,rep(0,3),1,rep(0,3),1,
                               rep(0,3),1,rep(0,3),3,rep(0,3),1,rep(0,3),1,rep(0,3)), add=TRUE)
 legend(54,70, LETTERS[1:4], fill =  rev(gray.colors(4)),
-       bty="n", cex=1.5, y.intersp = 1,density=c(5,10,15,20),angle=45)
+       bty="n", cex=1.5, y.intersp = 1,density=c(5,10,15,20),angle=45,
+       title = "tt")
 text(colMeans(mp), -7, 1:10)
 
 text(mean(mp[,4:5]), -15, "X")
@@ -1650,7 +1651,7 @@ text(rep(-2,6), mp[,6],1:6)
 text(-4, 44, "Y")
 text(-20, 44, "X")
 mtext("x", side = 1, line = 1.8)
-dev.copy2eps(file="figures/Fig7.3.eps", width=7, height=5)
+dev.copy2eps(file="figures/Fig7.3.eps", width=7, height=4.5)
 
 par(.oldpar)
 ## Tab 7.3
@@ -1668,18 +1669,21 @@ data.7.3 <- read.csv("data/UKInternetPurchase.csv")
 par(mar=c(3.1, 3.1, 1.1,7.1), xpd=TRUE)
 mp <- barplot(t(as.matrix(data.7.3[,2:9])), beside=TRUE, names.arg = 1:6,
               col =gray.colors(8), lwd=2, density=rev(c(1,5,10,15,20,25,30,35)), angle=45,
-              axes=FALSE)
+              axes=FALSE, ylim = c(0,100))
 axis(2, las=2)
 lines(c(0, 55), c(20,20), lty=2, col="gray80")
 lines(c(0, 55), c(40,40), lty=2, col="gray80")
 lines(c(0, 55), c(60,60), lty=2, col="gray80")
 lines(c(0, 55), c(80,80), lty=2, col="gray80")
+lines(c(0, 55), c(100,100), lty=2, col="gray80")
+
 barplot(t(as.matrix(data.7.3[,2:9])), beside=TRUE, names.arg = 1:6,
         col =gray.colors(8), lwd=2, density=rev(c(1,5,10,15,20,25,30,35)), angle=45,
         axes=FALSE, add=TRUE)
 
 legend(55,75, LETTERS[1:8], fill =  rev(gray.colors(8)),
-       bty="n", cex=1.5, y.intersp = 1,density=c(1,5,10,15,20,25,30,35), angle=45)
+       bty="n", cex=1.5, y.intersp = 1,density=c(1,5,10,15,20,25,30,35), angle=45,
+       title = "tt")
 mtext("x", side = 1, line = 2.5)
 mtext("y", side = 2, line = 2.5)
 
@@ -1699,13 +1703,14 @@ data.7.4 <- read.csv("data/UKSmartphones.csv")
 par(mar=c(3.1, 3.1, 1.1,7.1), xpd=TRUE)
 mp <- barplot(t(as.matrix(data.7.4[,2:6])), beside=TRUE, names.arg = 1:6,
               col =gray.colors(5), lwd=2,density=rev(c(5,10,15,20,25)), angle=45,
-              axes=FALSE)
+              axes=FALSE, ylim = c(0,100))
 axis(2, las=2)
 
 lines(c(0, 36), c(20,20), lty=2, col="gray80")
 lines(c(0, 36), c(40,40), lty=2, col="gray80")
 lines(c(0, 36), c(60,60), lty=2, col="gray80")
 lines(c(0, 36), c(80,80), lty=2, col="gray80")
+lines(c(0, 36), c(100,100), lty=2, col="gray80")
 legend(37,75, LETTERS[1:5], fill =  rev(gray.colors(5)),density=c(5,10,15,20,25), angle=45,
        bty="n", cex=1.5, y.intersp = 1)
 barplot(t(as.matrix(data.7.4[,2:6])), beside=TRUE, names.arg = 1:6,
@@ -1730,7 +1735,7 @@ data.7.6 <- read.csv("data/UKInternetSkills.csv")
 par(mar=c(3.1, 3.1, 1.1,7.1), xpd=TRUE, lwd=1)
 mp <- barplot(as.matrix(data.7.6[,2:5]), beside=TRUE, names.arg = 1:4,
               col =gray.colors(3), border=c("black", "black",  "red"), lwd=2,
-              density=rev(c(5,15,25)),angle=45,
+              density=rev(c(5,15,25)),angle=45, ylim = c(0,100),
               axes=FALSE)
 axis(2, las=2)
 
@@ -1738,15 +1743,17 @@ lines(c(0, 17), c(60,60), lty=2, col="gray80")
 lines(c(0, 17), c(20,20), lty=2, col="gray80")
 lines(c(0, 17), c(80,80), lty=2, col="gray80")
 lines(c(0, 17), c(40,40), lty=2, col="gray80")
+lines(c(0, 17), c(100,100), lty=2, col="gray80")
+
 legend(17,50, LETTERS[1:3], fill =  rev(gray.colors(3)),border=c(  "red","black", "black"),
-       bty="n", cex=1.5, y.intersp = 1,density=c(5,15,25),angle=45)
+       bty="n", cex=1.5, y.intersp = 1.5,density=c(5,15,25),angle=45)
 barplot(as.matrix(data.7.6[,2:5]), beside=TRUE, names.arg = 1:4,
         col =gray.colors(3), border=c("black", "black",  "red"), lwd=2,
         density=rev(c(5,15,25)),angle=45,
         axes=FALSE, add=TRUE)
 mtext("x", side = 1, line = 2.5)
 mtext("y", side = 2, line = 2.5)
-dev.copy2eps(file="figures/Fig7.6.eps", width=7, height=3.5)
+dev.copy2eps(file="figures/Fig7.6.eps", width=7, height=3)
 par(.oldpar)
 
 ## Tab 7.6
