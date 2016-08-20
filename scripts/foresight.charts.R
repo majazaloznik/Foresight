@@ -1835,7 +1835,14 @@ mp <- barplot(as.matrix(data.8.2[,2:6]), beside=TRUE, names.arg = letters[1:5],
               axes=FALSE, xlab = "ic", ylim=c(0,30),
               density=rev(c(1,5,10,15,20,25)),angle=45)
 axis(2, las=2)
-
+for (i in 1:5){
+  lines(c((i-1)*7+1, (i-1)*7+7), c(totals[i], totals[i]), lty=2, lwd=2, col="red")
+#  rect((i-1)*7+1, 0,  (i-1)*7+7,  totals[i], col = "gray90", border = "gray90")  
+}
+barplot(as.matrix(data.8.2[,2:6]), beside=TRUE, names.arg = letters[1:5],
+              col =gray.colors(6), lwd=2,
+              axes=FALSE, xlab = "ic", ylim=c(0,30),
+              density=rev(c(1,5,10,15,20,25)),angle=45, add = TRUE)
 lines(c(0, 36), c(30,30), lty=2, col="gray80")
 lines(c(0, 36), c(10,10), lty=2, col="gray80")
 lines(c(0, 36), c(20,20), lty=2, col="gray80")
@@ -1844,12 +1851,11 @@ lines(c(0, 36), c(15,15), lty=2, col="gray80")
 lines(c(0, 36), c(5,5), lty=2, col="gray80")
 lines(c(0, 36), c(25,25), lty=2, col="gray80")
 legend(37,20, LETTERS[1:6], fill =  rev(gray.colors(6)),
-       bty="n", cex=1.5, y.intersp = 1,density=c(1,5,10,15,20,25),angle=45)
-legend(36,23, LETTERS[7], bty="n", cex=1.5,
-        x.intersp = 0.2, lwd=2, lty=3, col="red")
+       bty="n", cex=1.5, y.intersp = 1,density=c(1,5,10,15,20,25),angle=45,
+       title = "tt")
+legend(36,5, LETTERS[7], bty="n", cex=1.5,
+        x.intersp = 0.2, lwd=2, lty=2, col="red")
 
-for (i in 1:5){
-lines(c((i-1)*7+1, (i-1)*7+7), c(totals[i], totals[i]), lty=3, lwd=2, col="red")}
 
 mtext("y", side = 2, line = 2.5)
 
@@ -2054,9 +2060,9 @@ axis(2, las=2)
 axis(1, at=seq(1984, 2009, 5), labels=letters[1:6])
 
 legend(1984,91, legend=c("", "", ""), col =  c("black", "gray50", "gray60"),
-       bty="n", cex=1, y.intersp = 1.5, lwd=2, pch=c(1,1,1))
-legend(1985,91, legend=c("X", "Y", "Z"), col =  c(redgray[1], redgray[10], redgray[20]),
-       bty="n", cex=1, y.intersp = 1.5, lwd=2, pch=c(1,1,1))
+       bty="n", cex=1, y.intersp = 1.5, lwd=2, pch=c(1,1,1), title = "M")
+legend(1986,91, legend=c("X", "Y", "Z"), col =  c(redgray[1], redgray[10], redgray[20]),
+       bty="n", cex=1, y.intersp = 1.5, lwd=2, pch=c(1,1,1), title = "m")
 
 text( 2009.5,mean(data.8.8[1:9,9]), "g")
 text( 2009.5,mean(data.8.8[10:18,9]), "h")
@@ -2207,7 +2213,7 @@ layout(1)
 require(RColorBrewer)
 redgray <- colorRampPalette(brewer.pal(9,"RdGy"))(100)
 
-par(mar=c(3.1, 11, 2.1,0.5), xpd=TRUE)
+par(mar=c(3.1, 11, 2.6,0.5), xpd=TRUE)
 
 barplot(t(as.matrix(data.E02[,2:4])), horiz = TRUE,
         axes=FALSE, las=2, angle=45, density = c(10,20,20),
@@ -2227,13 +2233,13 @@ barplot(t(as.matrix(data.E02[,2:4])), horiz = TRUE,
         xlim=c(0,12), names.arg = LETTERS[1:18], add=TRUE)
 
 legend(x=0,y=25, letters[1],col =c( "black"), fill =  c("black"),
-       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
+       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE, title = "tt")
 
 legend(x=4,y=25, letters[3],col =c(  "gray50"), fill =  c( "gray50"),
-       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
+       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE, title = "")
 
 legend(x=8,y=25, letters[5],col =c(  redgray[1]), fill =  c( redgray[1]),
-       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE)
+       density=15, bty="n", cex=1.3, x.intersp = 1.2, horiz = TRUE, title = "")
 mtext("x", side = 1, line = 2.5)
 
 
@@ -2245,7 +2251,7 @@ data.E02 <- data.E02[order(data.E02[,1]),]
 data.E01 <- data.E01[order(data.E01[,1]),]
 data.E1n2 <- left_join(data.E01, data.E02, by=c("Ethnic.group"="ethnicity"))
 require(xtable)
-print(xtable(data.E1n2), include.rownames=FALSE )
+print(xtable(data.E1n2, digits=1), include.rownames=FALSE)
 
 
 ## 8.10 Proportion reporting their health limits \emph{typical activities} by age 
@@ -2480,7 +2486,8 @@ print(xtable(cbind(data.US02.men[c(1,3:6)]*100, data.US02.women[3:6]*100)),
 
 ## Fig 8.12 Percentage of persons aged 60 years and over by income quintile and ethnic group
 ###############################################################################
-
+require(dplyr)
+require(tidyr)
 layout(1)
 data.US03orig<- read.csv("data/UKUnderstandingSociety.csv")
 require(laeken)
@@ -2511,7 +2518,7 @@ data.US032 <- data.US03orig %>%
 ##plot
 ###############################################################################
 layout(1)
-par(mar=c(2.5, 7, 1.1,0.3), xpd=TRUE)
+par(mar=c(2.5, 8, 1.1,0.3), xpd=TRUE)
 barplot(as.matrix(data.US032[2:12]), horiz = TRUE,
         col=gray.colors(5), density=c(20,20,15,10,5),
         names.arg=LETTERS[1:11], las=2, axes=FALSE)
@@ -2530,7 +2537,7 @@ text( 0.5, 13.6,"c")
 text( 0.7, 13.6,"d")
 text( 0.9, 13.6,"e")
 text( 0.5, 14.4,"h")
-
+text( -0.2, 14,"tt")
 axis(1)
 mtext("x", line = 2.1, side=1)
 dev.copy2eps(file="figures/Fig8.12.eps", width=7, height=4.5)
@@ -2620,6 +2627,7 @@ legend(180,45, LETTERS[3:4], fill =  c("gray50", "gray50"),angle=45, density = c
        bty="n", cex=1.2, y.intersp = 1)
 
 mtext("x", side = 1, line = 2.4)
+text(-50, 46, "tt")
 dev.copy2eps(file="figures/Fig9.2.eps", width=7, height=4.2)
 par(.oldpar)
 
